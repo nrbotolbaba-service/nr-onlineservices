@@ -5,90 +5,160 @@ index.html
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NR Online Service - Login</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>NR Online Services | Nasir Roni</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap');
-        body {
-            font-family: 'Hind Siliguri', sans-serif;
-            background-color: #0d1117;
-            color: #ffffff;
-        }
-        .glass-input {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-        .glass-input:focus {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: #3b82f6;
-            outline: none;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Urbanist', sans-serif; }
+        body { background: radial-gradient(circle at top, #1a2a3a, #0b111a); color: #ffffff; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
+
+        .glass { background: rgba(255, 255, 255, 0.04); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 24px; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); }
+
+        /* Navbar */
+        nav { width: 90%; max-width: 1200px; padding: 15px 30px; margin-top: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo-container { display: flex; align-items: center; gap: 15px; }
+        .logo-container img { width: 45px; height: 45px; border: 2px solid #c5a059; border-radius: 50%; padding: 2px; }
+        .logo-container span { color: #c5a059; font-weight: 700; letter-spacing: 1.5px; }
+
+        /* Form Container */
+        .form-section { width: 90%; max-width: 550px; padding: 40px; margin: 50px 0; text-align: center; }
+        .form-section h2 { color: #c5a059; margin-bottom: 10px; font-size: 28px; }
+        .form-section p { color: #94a3b8; margin-bottom: 30px; font-size: 14px; }
+
+        .input-group { text-align: left; margin-bottom: 20px; }
+        .input-group label { display: block; color: #c5a059; font-size: 13px; margin-bottom: 8px; font-weight: 500; }
+        .input-group input { width: 100%; padding: 14px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: #fff; font-size: 15px; outline: none; transition: 0.3s; }
+        .input-group input:focus { border-color: #c5a059; background: rgba(255,255,255,0.1); }
+
+        .submit-btn { width: 100%; padding: 16px; background: linear-gradient(135deg, #c5a059 0%, #8e6d31 100%); border: none; border-radius: 12px; color: #000; font-weight: 700; font-size: 16px; cursor: pointer; transition: 0.3s; margin-top: 10px; }
+        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(197, 160, 89, 0.4); }
+        .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+        /* WhatsApp Button */
+        .wa-float { position: fixed; bottom: 30px; right: 30px; display: flex; align-items: center; gap: 12px; padding: 12px 20px; text-decoration: none; border-radius: 50px; z-index: 1000; }
+        .wa-float i { font-size: 28px; color: #25d366; }
+        .wa-float span { color: #fff; font-weight: 600; font-size: 14px; }
+
+        #response-msg { margin-top: 20px; font-size: 14px; display: none; }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen p-6">
+<body>
 
-    <div class="w-full max-w-md">
-        <div class="text-center mb-10">
-            <div class="bg-blue-600 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto shadow-xl shadow-blue-900/40 mb-4">
-                <i class="fas fa-server text-white text-3xl"></i>
+    <nav class="glass">
+        <div class="logo-container">
+            <img src="logo.png" alt="NR Logo">
+            <span>NR ONLINE SERVICES</span>
+        </div>
+    </nav>
+
+    <div class="form-section glass">
+        <h2>অর্ডার সাবমিট করুন</h2>
+        <p>আপনার তথ্য নিচে সঠিকভাবে প্রদান করুন</p>
+
+        <form id="nrForm">
+            <div class="input-group">
+                <label>নাম (Name)</label>
+                <input type="text" name="Name" required placeholder="আপনার পূর্ণ নাম">
             </div>
-            <h1 class="text-2xl font-bold">NR Online <span class="text-blue-500">Service</span></h1>
-            <p class="text-gray-400 text-sm mt-1">চালিয়ে যেতে লগইন করুন</p>
-        </div>
+            <div class="input-group">
+                <label>ইমেইল (Email Address)</label>
+                <input type="email" name="Email" required placeholder="example@mail.com">
+            </div>
+            <div class="input-group">
+                <label>পাসওয়ার্ড (Password)</label>
+                <input type="password" name="Password" required placeholder="পাসওয়ার্ড লিখুন">
+            </div>
+            <div class="input-group">
+                <label>হোয়াটসঅ্যাপ নম্বর (WhatsApp Number)</label>
+                <input type="text" name="WhatsApp" required placeholder="+968 7133 6522">
+            </div>
+            <div class="input-group">
+                <label>পেমেন্ট ট্রানজেকশন আইডি (Payment Transaction ID)</label>
+                <input type="text" name="TrxID" required placeholder="TrxID প্রদান করুন">
+            </div>
 
-        <div class="bg-gray-900/50 p-8 rounded-[32px] border border-gray-800 backdrop-blur-xl">
-            <form action="#" class="space-y-6">
+            <button type="submit" class="submit-btn" id="submitBtn">সাবমিট করুন</button>
+        </form>
 
-                <div>
-                    <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2 ml-1">ইউজারনেম বা ইমেইল</label>
-                    <div class="relative">
-                        <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-gray-500">
-                            <i class="far fa-envelope"></i>
-                        </span>
-                        <input type="text" placeholder="username@example.com" 
-                               class="glass-input w-full pl-11 pr-4 py-4 rounded-2xl text-sm placeholder-gray-600">
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2 ml-1">পাসওয়ার্ড</label>
-                    <div class="relative">
-                        <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-gray-500">
-                            <i class="fas fa-lock"></i>
-                        </span>
-                        <input type="password" placeholder="••••••••" 
-                               class="glass-input w-full pl-11 pr-4 py-4 rounded-2xl text-sm placeholder-gray-600">
-                    </div>
-                    <div class="text-right mt-2">
-                        <a href="#" class="text-xs text-blue-500 hover:underline">পাসওয়ার্ড ভুলে গেছেন?</a>
-                    </div>
-                </div>
-
-                <button type="submit" 
-                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-2xl shadow-lg shadow-blue-900/30 transition-all active:scale-[0.98]">
-                    সাইন ইন করুন
-                </button>
-
-                <div class="relative flex py-2 items-center">
-                    <div class="flex-grow border-t border-gray-800"></div>
-                    <span class="flex-shrink mx-4 text-gray-600 text-xs uppercase tracking-widest">অথবা</span>
-                    <div class="flex-grow border-t border-gray-800"></div>
-                </div>
-
-                <button type="button" 
-                        class="w-full glass-input hover:bg-white/10 flex items-center justify-center gap-3 py-4 rounded-2xl font-semibold text-sm transition-all">
-                    <img src="https://www.svgrepo.com/show/355037/google.svg" class="w-5 h-5" alt="Google">
-                    গুগল দিয়ে প্রবেশ করুন
-                </button>
-            </form>
-        </div>
-
-        <p class="text-center mt-8 text-sm text-gray-500">
-            অ্যাকাউন্ট নেই? <a href="#" class="text-blue-500 font-bold hover:underline">নতুন তৈরি করুন</a>
-        </p>
+        <div id="response-msg"></div>
     </div>
+
+    <a href="https://wa.me/96871336522" class="wa-float glass">
+        <i class="fab fa-whatsapp"></i>
+        <span>Help: +968 7133 6522</span>
+    </a>
+
+    <script>
+        // আপনার গুগল অ্যাপস স্ক্রিপ্ট ডিলপয় করার পর যে URL পাবেন সেটি এখানে বসান
+        const scriptURL = 'আপনার_অ্যাপ_স্ক্রিপ্ট_URL_এখানে';
+        const form = document.getElementById('nrForm');
+        const btn = document.getElementById('submitBtn');
+        const msg = document.getElementById('response-msg');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            btn.disabled = true;
+            btn.innerText = "প্রসেসিং হচ্ছে...";
+            msg.style.display = "block";
+            msg.innerText = "অপেক্ষা করুন...";
+
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    msg.style.color = "#c5a059";
+                    msg.innerText = "ধন্যবাদ! আপনার তথ্য সফলভাবে শিটে জমা হয়েছে।";
+                    form.reset();
+                    btn.disabled = false;
+                    btn.innerText = "সাবমিট করুন";
+                })
+                .catch(error => {
+                    msg.style.color = "#ff4d4d";
+                    msg.innerText = "দুঃখিত, আবার চেষ্টা করুন।";
+                    btn.disabled = false;
+                    btn.innerText = "সাবমিট করুন";
+                });
+        });
+    </script>
 
 </body>
 </html>
+
+### ২. আপনার শিট সংযুক্ত করার শেষ ধাপ (Apps Script)
+আপনার গুগল শিটের **Extensions > Apps Script**-এ গিয়ে নিচের কোডটি পেস্ট করুন। আমি আপনার শিট আইডি `1Jup3OgF...LUc` এর সাথে এটি সরাসরি সংযুক্ত করে দিয়েছি:
+
+```javascript
+var sheetName = 'Sheet1'; // আপনার শিটের নাম এটি হলে ঠিক আছে
+
+function doPost (e) {
+  var lock = LockService.getScriptLock();
+  lock.tryLock(10000);
+
+  try {
+    // সরাসরি আপনার শিট আইডির সাথে সংযোগ
+    var doc = SpreadsheetApp.openById('1Jup3OgF76eKI2P9rPD1CeVGThoV7ZYConiR45ubNLUc');
+    var sheet = doc.getSheetByName(sheetName);
+
+    // শিটের হেডার অনুযায়ী ডাটা ম্যাপ করা
+    // আপনার হেডার হতে হবে: Name, Email, Password, WhatsApp, TrxID
+    var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+    var nextRow = sheet.getLastRow() + 1;
+
+    var newRow = headers.map(function(header) {
+      return header === 'Date' ? new Date() : e.parameter[header];
+    });
+
+    sheet.getRange(nextRow, 1, 1, newRow.length).setValues([newRow]);
+
+    return ContentService
+      .createTextOutput(JSON.stringify({ 'result': 'success', 'row': nextRow }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+
+  catch (f) {
+    return ContentService
+      .createTextOutput(JSON.stringify({ 'result': 'error', 'error': f }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+
+  finally {
+    lock.releaseLock();
+  }
+}
