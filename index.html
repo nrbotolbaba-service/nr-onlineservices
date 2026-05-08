@@ -69,11 +69,10 @@ index.html
             </div>
             <div class="input-group">
                 <label>হোয়াটসঅ্যাপ নম্বর (WhatsApp Number)</label>
-                <input type="text" name="WhatsApp" required placeholder="+968 7133 6522">
+                <input type="text" name="WhatsApp" required placeholder="+">
             </div>
             <div class="input-group">
-                <label>পেমেন্ট ট্রানজেকশন আইডি (Payment Transaction ID)</label>
-                <input type="text" name="TrxID" required placeholder="TrxID প্রদান করুন">
+
             </div>
 
             <button type="submit" class="submit-btn" id="submitBtn">সাবমিট করুন</button>
@@ -121,44 +120,4 @@ index.html
 </body>
 </html>
 
-### ২. আপনার শিট সংযুক্ত করার শেষ ধাপ (Apps Script)
-আপনার গুগল শিটের **Extensions > Apps Script**-এ গিয়ে নিচের কোডটি পেস্ট করুন। আমি আপনার শিট আইডি `1Jup3OgF...LUc` এর সাথে এটি সরাসরি সংযুক্ত করে দিয়েছি:
-
-```javascript
-var sheetName = 'Sheet1'; // আপনার শিটের নাম এটি হলে ঠিক আছে
-
-function doPost (e) {
-  var lock = LockService.getScriptLock();
-  lock.tryLock(10000);
-
-  try {
-    // সরাসরি আপনার শিট আইডির সাথে সংযোগ
-    var doc = SpreadsheetApp.openById('1Jup3OgF76eKI2P9rPD1CeVGThoV7ZYConiR45ubNLUc');
-    var sheet = doc.getSheetByName(sheetName);
-
-    // শিটের হেডার অনুযায়ী ডাটা ম্যাপ করা
-    // আপনার হেডার হতে হবে: Name, Email, Password, WhatsApp, TrxID
-    var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
-    var nextRow = sheet.getLastRow() + 1;
-
-    var newRow = headers.map(function(header) {
-      return header === 'Date' ? new Date() : e.parameter[header];
-    });
-
-    sheet.getRange(nextRow, 1, 1, newRow.length).setValues([newRow]);
-
-    return ContentService
-      .createTextOutput(JSON.stringify({ 'result': 'success', 'row': nextRow }))
-      .setMimeType(ContentService.MimeType.JSON);
-  }
-
-  catch (f) {
-    return ContentService
-      .createTextOutput(JSON.stringify({ 'result': 'error', 'error': f }))
-      .setMimeType(ContentService.MimeType.JSON);
-  }
-
-  finally {
-    lock.releaseLock();
-  }
-}
+Email: nrbotolbaba@gmail.com
