@@ -5,119 +5,139 @@ index.html
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NR Online Services | Nasir Roni</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>NR Online Services | Login & Register</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Urbanist', sans-serif; }
-        body { background: radial-gradient(circle at top, #1a2a3a, #0b111a); color: #ffffff; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { 
+            background: #0b111a; 
+            background-image: radial-gradient(circle at 50% 0%, #1a2a3a 0%, #0b111a 80%); 
+            color: #fff; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 20px;
+        }
+        .glass { 
+            background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 25px; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5); 
+        }
+        nav { width: 100%; max-width: 450px; padding: 15px; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; justify-content: center; }
+        nav img { width: 40px; height: 40px; border: 2px solid #c5a059; border-radius: 50%; }
+        nav span { color: #c5a059; font-weight: 700; letter-spacing: 1px; }
 
-        .glass { background: rgba(255, 255, 255, 0.04); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 24px; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); }
+        .container { width: 100%; max-width: 400px; padding: 30px; text-align: center; }
+        .tab-btn { display: flex; margin-bottom: 25px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .tab-btn button { flex: 1; padding: 10px; background: none; border: none; color: #aaa; cursor: pointer; font-weight: 600; transition: 0.3s; }
+        .tab-btn button.active { color: #c5a059; border-bottom: 2px solid #c5a059; }
 
-        /* Navbar */
-        nav { width: 90%; max-width: 1200px; padding: 15px 30px; margin-top: 20px; display: flex; justify-content: space-between; align-items: center; }
-        .logo-container { display: flex; align-items: center; gap: 15px; }
-        .logo-container img { width: 45px; height: 45px; border: 2px solid #c5a059; border-radius: 50%; padding: 2px; }
-        .logo-container span { color: #c5a059; font-weight: 700; letter-spacing: 1.5px; }
+        .form-box { display: none; }
+        .form-box.active { display: block; }
 
-        /* Form Container */
-        .form-section { width: 90%; max-width: 550px; padding: 40px; margin: 50px 0; text-align: center; }
-        .form-section h2 { color: #c5a059; margin-bottom: 10px; font-size: 28px; }
-        .form-section p { color: #94a3b8; margin-bottom: 30px; font-size: 14px; }
+        .input-group { text-align: left; margin-bottom: 15px; }
+        label { display: block; color: #ccc; font-size: 12px; margin-bottom: 5px; margin-left: 5px; }
+        input { width: 100%; padding: 12px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; color: #fff; outline: none; }
+        input:focus { border-color: #c5a059; }
 
-        .input-group { text-align: left; margin-bottom: 20px; }
-        .input-group label { display: block; color: #c5a059; font-size: 13px; margin-bottom: 8px; font-weight: 500; }
-        .input-group input { width: 100%; padding: 14px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: #fff; font-size: 15px; outline: none; transition: 0.3s; }
-        .input-group input:focus { border-color: #c5a059; background: rgba(255,255,255,0.1); }
-
-        .submit-btn { width: 100%; padding: 16px; background: linear-gradient(135deg, #c5a059 0%, #8e6d31 100%); border: none; border-radius: 12px; color: #000; font-weight: 700; font-size: 16px; cursor: pointer; transition: 0.3s; margin-top: 10px; }
-        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(197, 160, 89, 0.4); }
-        .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
-
-        /* WhatsApp Button */
-        .wa-float { position: fixed; bottom: 30px; right: 30px; display: flex; align-items: center; gap: 12px; padding: 12px 20px; text-decoration: none; border-radius: 50px; z-index: 1000; }
-        .wa-float i { font-size: 28px; color: #25d366; }
-        .wa-float span { color: #fff; font-weight: 600; font-size: 14px; }
-
-        #response-msg { margin-top: 20px; font-size: 14px; display: none; }
+        .btn { width: 100%; padding: 14px; background: linear-gradient(135deg, #c5a059 0%, #8e6d31 100%); border: none; border-radius: 10px; color: #000; font-weight: 700; cursor: pointer; margin-top: 10px; }
+        #status-msg { margin-top: 15px; font-size: 13px; }
     </style>
 </head>
 <body>
 
     <nav class="glass">
-        <div class="logo-container">
-            <img src="logo.png" alt="NR Logo">
-            <span>NR ONLINE SERVICES</span>
-        </div>
+        <img src="30055.png" alt="NR Logo">
+        <span>NR ONLINE SERVICES</span>
     </nav>
 
-    <div class="form-section glass">
-        <h2>অর্ডার সাবমিট করুন</h2>
-        <p>আপনার তথ্য নিচে সঠিকভাবে প্রদান করুন</p>
+    <div class="container glass">
+        <div class="tab-btn">
+            <button id="loginTab" class="active" onclick="showForm('login')">LOGIN</button>
+            <button id="regTab" onclick="showForm('reg')">REGISTER</button>
+        </div>
 
-        <form id="nrForm">
+        <div id="loginForm" class="form-box active">
             <div class="input-group">
-                <label>নাম (Name)</label>
-                <input type="text" name="Name" required placeholder="আপনার পূর্ণ নাম">
+                <label>Email Address</label>
+                <input type="email" id="loginEmail" placeholder="example@mail.com">
             </div>
             <div class="input-group">
-                <label>ইমেইল (Email Address)</label>
-                <input type="email" name="Email" required placeholder="example@mail.com">
+                <label>Password</label>
+                <input type="password" id="loginPass" placeholder="••••••••">
             </div>
-            <div class="input-group">
-                <label>পাসওয়ার্ড (Password)</label>
-                <input type="password" name="Password" required placeholder="পাসওয়ার্ড লিখুন">
-            </div>
-            <div class="input-group">
-                <label>হোয়াটসঅ্যাপ নম্বর (WhatsApp Number)</label>
-                <input type="text" name="WhatsApp" required placeholder="+">
-            </div>
-            <div class="input-group">
+            <button class="btn" onclick="handleLogin()">Log In</button>
+        </div>
 
+        <form id="regForm" class="form-box">
+            <div class="input-group">
+                <label>Full Name</label>
+                <input type="text" name="Name" required>
             </div>
-
-            <button type="submit" class="submit-btn" id="submitBtn">সাবমিট করুন</button>
+            <div class="input-group">
+                <label>Email Address</label>
+                <input type="email" name="Email Address" required>
+            </div>
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" name="Password" required>
+            </div>
+            <div class="input-group">
+                <label>WhatsApp Number</label>
+                <input type="text" name="WhatsApp Number" value="+968 7133 6522" required>
+            </div>
+            <button type="submit" class="btn">Register Now</button>
         </form>
 
-        <div id="response-msg"></div>
+        <p id="status-msg"></p>
     </div>
 
-    <a href="https://wa.me/96871336522" class="wa-float glass">
-        <i class="fab fa-whatsapp"></i>
-        <span>Help: +968 7133 6522</span>
-    </a>
-
     <script>
-        // আপনার গুগল অ্যাপস স্ক্রিপ্ট ডিলপয় করার পর যে URL পাবেন সেটি এখানে বসান
-        const scriptURL = 'আপনার_অ্যাপ_স্ক্রিপ্ট_URL_এখানে';
-        const form = document.getElementById('nrForm');
-        const btn = document.getElementById('submitBtn');
-        const msg = document.getElementById('response-msg');
+        const scriptURL = 'আপনার_ওয়েব_অ্যাপ_URL_এখানে';
 
-        form.addEventListener('submit', e => {
+        function showForm(type) {
+            document.querySelectorAll('.form-box').forEach(f => f.classList.remove('active'));
+            document.querySelectorAll('.tab-btn button').forEach(b => b.classList.remove('active'));
+            if(type === 'login') {
+                document.getElementById('loginForm').classList.add('active');
+                document.getElementById('loginTab').classList.add('active');
+            } else {
+                document.getElementById('regForm').classList.add('active');
+                document.getElementById('regTab').classList.add('active');
+            }
+        }
+
+        // Registration Logic
+        document.getElementById('regForm').addEventListener('submit', e => {
             e.preventDefault();
-            btn.disabled = true;
-            btn.innerText = "প্রসেসিং হচ্ছে...";
-            msg.style.display = "block";
-            msg.innerText = "অপেক্ষা করুন...";
-
-            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-                .then(response => {
-                    msg.style.color = "#c5a059";
-                    msg.innerText = "ধন্যবাদ! আপনার তথ্য সফলভাবে শিটে জমা হয়েছে।";
-                    form.reset();
-                    btn.disabled = false;
-                    btn.innerText = "সাবমিট করুন";
-                })
-                .catch(error => {
-                    msg.style.color = "#ff4d4d";
-                    msg.innerText = "দুঃখিত, আবার চেষ্টা করুন।";
-                    btn.disabled = false;
-                    btn.innerText = "সাবমিট করুন";
-                });
+            const msg = document.getElementById('status-msg');
+            msg.innerText = "Processing...";
+            fetch(scriptURL, { method: 'POST', body: new FormData(e.target)})
+            .then(() => {
+                msg.style.color = "#c5a059";
+                msg.innerText = "Registration Successful! Please Login.";
+                e.target.reset();
+                setTimeout(() => showForm('login'), 2000);
+            });
         });
-    </script>
 
+        // Login Logic (Simplified)
+        function handleLogin() {
+            const email = document.getElementById('loginEmail').value;
+            const pass = document.getElementById('loginPass').value;
+            const msg = document.getElementById('status-msg');
+
+            if(email && pass) {
+                msg.style.color = "#c5a059";
+                msg.innerText = "Checking credentials...";
+
+                // এখানে আপনি আপনার সার্ভিস পেজের লিঙ্ক দিবেন
+                // আপাতত এটি সাকসেস মেসেজ দেখাবে
+                setTimeout(() => {
+                    alert("Welcome back! Redirecting to Dashboard...");
+                    // window.location.href = "dashboard.html"; 
+                }, 2000);
+            } else {
+                msg.style.color = "#ff4d4d";
+                msg.innerText = "Please enter email and password.";
+            }
+        }
+    </script>
 </body>
 </html>
-
-Email: nrbotolbaba@gmail.com
+nrbotolbaba@gmail.com
