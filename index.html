@@ -1,143 +1,150 @@
-index.html
-
 <!DOCTYPE html>
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NR Online Services | Login & Register</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>NR অনলাইন সেবা পোর্টাল</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        body { 
-            background: #0b111a; 
-            background-image: radial-gradient(circle at 50% 0%, #1a2a3a 0%, #0b111a 80%); 
-            color: #fff; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 20px;
-        }
-        .glass { 
-            background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 25px; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5); 
-        }
-        nav { width: 100%; max-width: 450px; padding: 15px; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; justify-content: center; }
-        nav img { width: 40px; height: 40px; border: 2px solid #c5a059; border-radius: 50%; }
-        nav span { color: #c5a059; font-weight: 700; letter-spacing: 1px; }
-
-        .container { width: 100%; max-width: 400px; padding: 30px; text-align: center; }
-        .tab-btn { display: flex; margin-bottom: 25px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .tab-btn button { flex: 1; padding: 10px; background: none; border: none; color: #aaa; cursor: pointer; font-weight: 600; transition: 0.3s; }
-        .tab-btn button.active { color: #c5a059; border-bottom: 2px solid #c5a059; }
-
-        .form-box { display: none; }
-        .form-box.active { display: block; }
-
-        .input-group { text-align: left; margin-bottom: 15px; }
-        label { display: block; color: #ccc; font-size: 12px; margin-bottom: 5px; margin-left: 5px; }
-        input { width: 100%; padding: 12px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; color: #fff; outline: none; }
-        input:focus { border-color: #c5a059; }
-
-        .btn { width: 100%; padding: 14px; background: linear-gradient(135deg, #c5a059 0%, #8e6d31 100%); border: none; border-radius: 10px; color: #000; font-weight: 700; cursor: pointer; margin-top: 10px; }
-        #status-msg { margin-top: 15px; font-size: 13px; }
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;600&display=swap');
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: #f3f4f6; }
+        .hidden { display: none; }
     </style>
 </head>
 <body>
 
-    <nav class="glass">
-        <img src="30055.png" alt="NR Logo">
-        <span>NR ONLINE SERVICES</span>
-    </nav>
+    <div id="auth-page" class="min-h-screen flex items-center justify-center p-4 bg-indigo-600">
+        <div class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-md">
+            <div class="text-center mb-6">
+                <h1 class="text-3xl font-bold text-indigo-700">NR Service</h1>
+                <p id="auth-desc" class="text-gray-500 mt-2">আপনার একাউন্টে প্রবেশ করুন</p>
+            </div>
 
-    <div class="container glass">
-        <div class="tab-btn">
-            <button id="loginTab" class="active" onclick="showForm('login')">LOGIN</button>
-            <button id="regTab" onclick="showForm('reg')">REGISTER</button>
+            <form id="login-form" class="space-y-4">
+                <input type="email" id="l-email" placeholder="ইমেইল এড্রেস" class="w-full p-3 border rounded-xl outline-none focus:ring-2 focus:ring-indigo-500" required>
+                <input type="password" id="l-pass" placeholder="পাসওয়ার্ড" class="w-full p-3 border rounded-xl outline-none focus:ring-2 focus:ring-indigo-500" required>
+                <button type="submit" class="w-full bg-indigo-600 text-white py-3 rounded-xl font-bold hover:bg-indigo-700 transition">লগইন</button>
+                <p class="text-center text-sm">নতুন ইউজার? <a href="javascript:void(0)" onclick="toggleAuth()" class="text-indigo-600 font-bold">রেজিস্ট্রেশন করুন</a></p>
+            </form>
+
+            <form id="reg-form" class="hidden space-y-4">
+                <input type="text" id="r-name" placeholder="আপনার নাম" class="w-full p-3 border rounded-xl outline-none focus:ring-2 focus:ring-indigo-500" required>
+                <input type="email" id="r-email" placeholder="ইমেইল" class="w-full p-3 border rounded-xl outline-none focus:ring-2 focus:ring-indigo-500" required>
+                <input type="password" id="r-pass" placeholder="পাসওয়ার্ড তৈরি করুন" class="w-full p-3 border rounded-xl outline-none focus:ring-2 focus:ring-indigo-500" required>
+                <input type="text" id="r-wa" placeholder="হোয়াটসঅ্যাপ নম্বর" class="w-full p-3 border rounded-xl outline-none focus:ring-2 focus:ring-indigo-500" required>
+                <button type="submit" class="w-full bg-green-600 text-white py-3 rounded-xl font-bold hover:bg-green-700 transition">একাউন্ট তৈরি করুন</button>
+                <p class="text-center text-sm">একাউন্ট আছে? <a href="javascript:void(0)" onclick="toggleAuth()" class="text-indigo-600 font-bold">লগইন করুন</a></p>
+            </form>
         </div>
+    </div>
 
-        <div id="loginForm" class="form-box active">
-            <div class="input-group">
-                <label>Email Address</label>
-                <input type="email" id="loginEmail" placeholder="example@mail.com">
-            </div>
-            <div class="input-group">
-                <label>Password</label>
-                <input type="password" id="loginPass" placeholder="••••••••">
-            </div>
-            <button class="btn" onclick="handleLogin()">Log In</button>
+    <div id="dashboard-page" class="hidden flex h-screen overflow-hidden">
+        <aside class="w-64 bg-indigo-800 text-white flex flex-col hidden md:flex">
+            <div class="p-6 text-2xl font-bold border-b border-indigo-700">NR PANEL</div>
+            <nav class="flex-1 p-4 space-y-2">
+                <a href="#" class="block p-3 bg-white/10 rounded-lg"><i class="fas fa-home mr-2"></i> ড্যাশবোর্ড</a>
+                <a href="#" class="block p-3 hover:bg-white/10 rounded-lg"><i class="fas fa-list mr-2"></i> সেবা তালিকা</a>
+                <a href="#" class="block p-3 hover:bg-white/10 rounded-lg"><i class="fas fa-wallet mr-2"></i> রিচার্জ</a>
+                <a href="#" onclick="logout()" class="block p-3 hover:bg-red-500 rounded-lg mt-auto"><i class="fas fa-sign-out-alt mr-2"></i> লগআউট</a>
+            </nav>
+        </aside>
+
+        <div class="flex-1 flex flex-col">
+            <header class="bg-white shadow px-8 py-4 flex justify-between items-center">
+                <h2 class="text-lg font-bold text-gray-700">স্বাগতম, <span id="user-display" class="text-indigo-600">ইউজার</span></h2>
+                <div class="bg-green-100 text-green-700 px-4 py-1 rounded-full font-bold">ব্যালেন্স: ৳ ১৫১.০০</div>
+            </header>
+
+            <main class="p-6 overflow-y-auto">
+                <div class="bg-white rounded-2xl shadow-sm border overflow-hidden">
+                    <div class="p-4 border-b bg-gray-50 flex justify-between items-center">
+                        <span class="font-bold text-gray-700 uppercase">সেবা মূল্য তালিকা</span>
+                        <button onclick="fetchServices()" class="text-indigo-600 hover:rotate-180 transition duration-500">
+                            <i class="fas fa-sync-alt"></i>
+                        </button>
+                    </div>
+                    <table class="w-full text-left">
+                        <thead>
+                            <tr class="bg-gray-100 text-xs font-bold text-gray-500 uppercase">
+                                <th class="p-4">সেবার নাম</th>
+                                <th class="p-4 text-center">মূল্য</th>
+                                <th class="p-4 text-right">অ্যাকশন</th>
+                            </tr>
+                        </thead>
+                        <tbody id="service-list" class="divide-y">
+                            <tr><td colspan="3" class="p-10 text-center text-gray-400">ডাটা লোড হচ্ছে...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </main>
         </div>
-
-        <form id="regForm" class="form-box">
-            <div class="input-group">
-                <label>Full Name</label>
-                <input type="text" name="Name" required>
-            </div>
-            <div class="input-group">
-                <label>Email Address</label>
-                <input type="email" name="Email Address" required>
-            </div>
-            <div class="input-group">
-                <label>Password</label>
-                <input type="password" name="Password" required>
-            </div>
-            <div class="input-group">
-                <label>WhatsApp Number</label>
-                <input type="text" name="WhatsApp Number" value="+968 7133 6522" required>
-            </div>
-            <button type="submit" class="btn">Register Now</button>
-        </form>
-
-        <p id="status-msg"></p>
     </div>
 
     <script>
-        const scriptURL = 'আপনার_ওয়েব_অ্যাপ_URL_এখানে';
+        // আপনার Google Apps Script Web App URL এখানে দিন
+        const SCRIPT_URL = 'আপনার_WEB_APP_URL_এখানে_বসান';
 
-        function showForm(type) {
-            document.querySelectorAll('.form-box').forEach(f => f.classList.remove('active'));
-            document.querySelectorAll('.tab-btn button').forEach(b => b.classList.remove('active'));
-            if(type === 'login') {
-                document.getElementById('loginForm').classList.add('active');
-                document.getElementById('loginTab').classList.add('active');
-            } else {
-                document.getElementById('regForm').classList.add('active');
-                document.getElementById('regTab').classList.add('active');
-            }
+        // লগইন এবং রেজিস্ট্রেশন ফর্ম সুইচ করা
+        function toggleAuth() {
+            document.getElementById('login-form').classList.toggle('hidden');
+            document.getElementById('reg-form').classList.toggle('hidden');
+            const desc = document.getElementById('auth-desc');
+            desc.innerText = desc.innerText === 'আপনার একাউন্টে প্রবেশ করুন' ? 'নতুন একাউন্ট তৈরি করুন' : 'আপনার একাউন্টে প্রবেশ করুন';
         }
 
-        // Registration Logic
-        document.getElementById('regForm').addEventListener('submit', e => {
+        // রেজিস্ট্রেশন ডাটা শিটে পাঠানো
+        document.getElementById('reg-form').onsubmit = async (e) => {
             e.preventDefault();
-            const msg = document.getElementById('status-msg');
-            msg.innerText = "Processing...";
-            fetch(scriptURL, { method: 'POST', body: new FormData(e.target)})
-            .then(() => {
-                msg.style.color = "#c5a059";
-                msg.innerText = "Registration Successful! Please Login.";
-                e.target.reset();
-                setTimeout(() => showForm('login'), 2000);
-            });
-        });
+            const btn = e.target.querySelector('button');
+            btn.innerText = 'প্রসেসিং...';
+            
+            const data = {
+                action: 'register',
+                name: document.getElementById('r-name').value,
+                email: document.getElementById('r-email').value,
+                password: document.getElementById('r-pass').value,
+                whatsapp: document.getElementById('r-wa').value
+            };
 
-        // Login Logic (Simplified)
-        function handleLogin() {
-            const email = document.getElementById('loginEmail').value;
-            const pass = document.getElementById('loginPass').value;
-            const msg = document.getElementById('status-msg');
+            await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(data) });
+            alert('রেজিস্ট্রেশন সফল! এখন লগইন করুন।');
+            toggleAuth();
+            btn.innerText = 'একাউন্ট তৈরি করুন';
+        };
 
-            if(email && pass) {
-                msg.style.color = "#c5a059";
-                msg.innerText = "Checking credentials...";
+        // লগইন হ্যান্ডলার
+        document.getElementById('login-form').onsubmit = (e) => {
+            e.preventDefault();
+            document.getElementById('auth-page').classList.add('hidden');
+            document.getElementById('dashboard-page').classList.remove('hidden');
+            document.getElementById('user-display').innerText = document.getElementById('l-email').value.split('@')[0];
+            fetchServices();
+        };
 
-                // এখানে আপনি আপনার সার্ভিস পেজের লিঙ্ক দিবেন
-                // আপাতত এটি সাকসেস মেসেজ দেখাবে
-                setTimeout(() => {
-                    alert("Welcome back! Redirecting to Dashboard...");
-                    // window.location.href = "dashboard.html"; 
-                }, 2000);
-            } else {
-                msg.style.color = "#ff4d4d";
-                msg.innerText = "Please enter email and password.";
+        // শিট থেকে সার্ভিস ডাটা নিয়ে আসা
+        async function fetchServices() {
+            const list = document.getElementById('service-list');
+            try {
+                const res = await fetch(SCRIPT_URL);
+                const data = await res.json();
+                list.innerHTML = '';
+                data.forEach(item => {
+                    list.innerHTML += `
+                        <tr class="hover:bg-indigo-50 transition">
+                            <td class="p-4 font-semibold text-gray-700">${item.name}</td>
+                            <td class="p-4 text-center font-bold text-orange-600">৳ ${item.price}</td>
+                            <td class="p-4 text-right">
+                                <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-indigo-700 shadow-md transition">অর্ডার</button>
+                            </td>
+                        </tr>`;
+                });
+            } catch (e) {
+                list.innerHTML = '<tr><td colspan="3" class="p-10 text-center text-red-500">ডাটা লোড করা যায়নি। URL চেক করুন।</td></tr>';
             }
         }
+
+        function logout() { location.reload(); }
     </script>
 </body>
 </html>
-nrbotolbaba@gmail.com
