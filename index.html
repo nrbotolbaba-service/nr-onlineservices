@@ -3,112 +3,301 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NR অনলাইন সেবা - রেজিস্ট্রেশন ও লগইন</title>
+    <title>NR BOTOLBABA SERVICES</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600&display=swap');
-        body { font-family: 'Hind Siliguri', sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-        .hidden { display: none; }
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+        .brand-color { color: #008bf5; }
+        .brand-bg { background-color: #008bf5; }
+        .brand-border { border-color: #008bf5; }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-4">
+<body class="bg-gray-50 text-gray-800 scroll-smooth">
 
-    <div id="auth-container" class="bg-white p-8 rounded-3xl shadow-2xl w-full max-w-md">
-        <div class="text-center mb-8">
-            <h1 class="text-3xl font-bold text-indigo-700">NR Service</h1>
-            <p id="form-subtitle" class="text-gray-500 mt-2">অ্যাকাউন্টে প্রবেশ করুন</p>
+    <nav class="bg-white shadow-md sticky top-0 z-40">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-gray-900 tracking-wider">
+                NR <span class="brand-color">BOTOLBABA</span> SERVICES
+            </div>
+            <div class="hidden md:flex space-x-6 font-semibold">
+                <a href="#home" class="hover:text-[#008bf5] transition">হোম</a>
+                <a href="#features" class="hover:text-[#008bf5] transition">ফিচার</a>
+                <a href="#products" class="hover:text-[#008bf5] transition">প্রোডাক্ট</a>
+            </div>
+            <button onclick="openModal('স্মার্ট গ্যাজেট প্রিমিয়াম')" class="brand-bg text-white px-6 py-2 rounded-full font-semibold hover:bg-blue-600 transition shadow-lg transform hover:scale-105">
+                অর্ডার করুন
+            </button>
         </div>
+    </nav>
 
-        <form id="login-form" class="space-y-4">
-            <div class="relative">
-                <i class="fas fa-envelope absolute left-4 top-4 text-gray-400"></i>
-                <input type="email" id="l-email" placeholder="আপনার জিমেইল" class="w-full pl-12 pr-4 py-3 border rounded-xl outline-none focus:ring-2 focus:ring-indigo-500" required>
+    <section id="home" class="container mx-auto px-4 py-12 md:py-24 flex flex-col md:flex-row items-center gap-12">
+        <div class="flex-1 space-y-6 text-center md:text-left">
+            <span class="brand-bg text-white px-4 py-1 rounded-full text-sm font-semibold tracking-wide">নতুন অফার ২০% ছাড়</span>
+            <h1 class="text-4xl md:text-6xl font-bold leading-tight text-gray-900">
+                ভবিষ্যতের স্মার্ট গ্যাজেট এখন আপনার হাতের মুঠোয়!
+            </h1>
+            <p class="text-gray-600 text-lg">
+                NR BOTOLBABA SERVICES নিয়ে এলো প্রিমিয়াম কোয়ালিটির সব আধুনিক গ্যাজেট আইটেম। যা আপনার জীবনকে করবে আরও সহজ ও স্মার্ট।
+            </p>
+            <div class="pt-4">
+                <button onclick="openModal('স্মার্ট গ্যাজেট প্রিমিয়াম')" class="brand-bg text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-600 transition shadow-xl transform hover:-translate-y-1">
+                    <i class="fas fa-shopping-cart mr-2"></i> Buy Now (এখনই কিনুন)
+                </button>
             </div>
-            <div class="relative">
-                <i class="fas fa-lock absolute left-4 top-4 text-gray-400"></i>
-                <input type="password" id="l-pass" placeholder="পাসওয়ার্ড" class="w-full pl-12 pr-4 py-3 border rounded-xl outline-none focus:ring-2 focus:ring-indigo-500" required>
+        </div>
+        <div class="flex-1 flex justify-center">
+            <div class="w-72 h-72 md:w-96 md:h-96 brand-bg rounded-3xl opacity-20 absolute blur-3xl"></div>
+            <div class="relative bg-white p-8 rounded-2xl shadow-2xl border brand-border w-80 h-80 md:w-96 md:h-96 flex flex-col justify-center items-center">
+                <i class="fas fa-robot text-8xl brand-color animate-bounce mb-4"></i>
+                <span class="text-xl font-bold text-gray-700">Premium Tech Gadget</span>
             </div>
-            <button type="submit" class="w-full bg-indigo-600 text-white py-3 rounded-xl font-bold hover:bg-indigo-700 transition shadow-lg">লগইন</button>
-            <p class="text-center text-sm text-red-500 font-bold" id="msg"></p>
-            <p class="text-center text-sm">নতুন ইউজার? <a href="#" onclick="toggleAuth()" class="text-indigo-600 font-bold">রেজিস্ট্রেশন করুন</a></p>
-        </form>
+        </div>
+    </section>
 
-        <form id="reg-form" class="hidden space-y-4">
-            <input type="text" id="r-name" placeholder="পুরো নাম" class="w-full p-3 border rounded-xl outline-none focus:ring-2 focus:ring-indigo-500" required>
-            <input type="email" id="r-email" placeholder="আসল জিমেইল আইডি" class="w-full p-3 border rounded-xl outline-none focus:ring-2 focus:ring-indigo-500" required>
-            <input type="password" id="r-pass" placeholder="নতুন পাসওয়ার্ড" class="w-full p-3 border rounded-xl outline-none focus:ring-2 focus:ring-indigo-500" required>
-            <input type="text" id="r-wa" placeholder="হোয়াটসঅ্যাপ নম্বর" class="w-full p-3 border rounded-xl outline-none focus:ring-2 focus:ring-indigo-500" required>
-            <button type="submit" class="w-full bg-green-600 text-white py-3 rounded-xl font-bold hover:bg-green-700 transition">আবেদন জমা দিন</button>
-            <p class="text-center text-sm">ইতিমধ্যেই অ্যাকাউন্ট আছে? <a href="#" onclick="toggleAuth()" class="text-indigo-600 font-bold">লগইন করুন</a></p>
-        </form>
+    <section id="features" class="bg-white py-16">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <h2 class="text-3xl font-bold mb-4">কেন আমাদের গ্যাজেট সেরা?</h2>
+                <p class="text-gray-500">আমরা পণ্যের গুণগত মান এবং কাস্টমার সন্তুষ্টিকে সবচেয়ে বেশি প্রাধান্য দিয়ে থাকি।</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-6 bg-gray-50 rounded-xl text-center shadow-sm hover:shadow-md transition border-t-4 brand-border">
+                    <i class="fas fa-shield-alt text-4xl brand-color mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">১০০% অরিজিনাল প্রোডাক্ট</h3>
+                    <p class="text-gray-600 text-sm">সরাসরি ব্র্যান্ড থেকে আমদানিকৃত আসল পণ্যের নিশ্চয়তা।</p>
+                </div>
+                <div class="p-6 bg-gray-50 rounded-xl text-center shadow-sm hover:shadow-md transition border-t-4 brand-border">
+                    <i class="fas fa-truck text-4xl brand-color mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">দ্রুত ডেলিভারি</h3>
+                    <p class="text-gray-600 text-sm">সারাদেশে অত্যন্ত দ্রুততম সময়ে ক্যাশ অন ডেলিভারি সুবিধা।</p>
+                </div>
+                <div class="p-6 bg-gray-50 rounded-xl text-center shadow-sm hover:shadow-md transition border-t-4 brand-border">
+                    <i class="fas fa-headset text-4xl brand-color mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">২৪/৭ কাস্টমার সাপোর্ট</h3>
+                    <p class="text-gray-600 text-sm">যেকোনো সমস্যায় আমাদের সাপোর্ট টিম সবসময় আপনার পাশে আছে।</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <h2 class="text-3xl font-bold mb-4">আমাদের ট্রেন্ডিং গ্যাজেট সমূহ</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+                
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 max-w-sm w-full">
+                    <div class="h-48 bg-gray-100 flex items-center justify-center">
+                        <i class="fas fa-headphones text-6xl brand-color"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Wireless Pro Headphones</h3>
+                        <p class="text-gray-500 text-sm mb-4">ক্রিস্টাল ক্লিয়ার সাউন্ড এবং দীর্ঘস্থায়ী ব্যাটারি লাইফ।</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold brand-color">৳ ২৪৯৯</span>
+                            <button onclick="openModal('Wireless Pro Headphones')" class="brand-bg text-white px-4 py-2 rounded-lg font-semibold text-sm hover:bg-blue-600 transition">
+                                Buy Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 max-w-sm w-full">
+                    <div class="h-48 bg-gray-100 flex items-center justify-center">
+                        <i class="fas fa-clock text-6xl brand-color"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Smart Watch Edition 7</h3>
+                        <p class="text-gray-500 text-sm mb-4">হার্ট রেট মনিটর এবং চমৎকার ডিসপ্লে নোটিফিকেশন সহ।</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold brand-color">৳ ৩৪৯৯</span>
+                            <button onclick="openModal('Smart Watch Edition 7')" class="brand-bg text-white px-4 py-2 rounded-lg font-semibold text-sm hover:bg-blue-600 transition">
+                                Buy Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-8 text-center border-t brand-border">
+        <p>&copy; 2026 <span class="brand-color font-bold">NR BOTOLBABA SERVICES</span>. All Rights Reserved.</p>
+    </footer>
+
+
+    <div id="orderModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50 p-4 overflow-y-auto">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 relative animate-fade-in">
+            
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-500 hover:text-red-500 text-xl font-bold">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <h3 class="text-2xl font-bold text-center mb-6 text-gray-800 border-b pb-3 brand-border">
+                অর্ডার কনফার্ম করুন
+            </h3>
+
+            <form id="orderForm" class="space-y-4">
+                
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">প্রোডাক্ট এর নাম</label>
+                    <input type="text" id="productName" name="productName" readonly class="w-full bg-gray-100 border border-gray-300 rounded-lg p-2.5 font-bold brand-color focus:outline-none">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">পরিমাণ (Quantity)</label>
+                    <select id="quantity" name="quantity" class="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-[#008bf5] focus:outline-none">
+                        <option value="1">1টি</option>
+                        <option value="2">2টি</option>
+                        <option value="3">3টি</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">কালার / সাইজ</label>
+                    <select id="variant" name="variant" class="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-[#008bf5] focus:outline-none">
+                        <option value="Black - Standard">Black - Standard</option>
+                        <option value="Blue - Standard">Blue - Standard</option>
+                        <option value="Silver - Premium">Silver - Premium</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">আপনার নাম</label>
+                    <input type="text" id="customerName" name="customerName" required placeholder="সম্পূর্ণ নাম লিখুন" class="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-[#008bf5] focus:outline-none">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">মোবাইল নম্বর</label>
+                    <input type="tel" id="customerPhone" name="customerPhone" required placeholder="01XXXXXXXXX" class="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-[#008bf5] focus:outline-none">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">সম্পূর্ণ ঠিকানা</label>
+                    <textarea id="customerAddress" name="customerAddress" rows="2" required placeholder="জেলা, থানা, গ্রাম/রোড নম্বর" class="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-[#008bf5] focus:outline-none"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">পেমেন্ট মেথড</label>
+                    <div class="grid grid-cols-3 gap-3">
+                        <label class="border p-2.5 rounded-lg flex flex-col items-center justify-center cursor-pointer hover:bg-blue-50 transition border-gray-300">
+                            <input type="radio" name="paymentMethod" value="COD" checked class="mb-1 accent-[#008bf5]">
+                            <span class="text-xs font-bold">COD</span>
+                        </label>
+                        <label class="border p-2.5 rounded-lg flex flex-col items-center justify-center cursor-pointer hover:bg-blue-50 transition border-gray-300">
+                            <input type="radio" name="paymentMethod" value="Bkash" class="mb-1 accent-[#008bf5]">
+                            <span class="text-xs font-bold text-pink-600">bKash</span>
+                        </label>
+                        <label class="border p-2.5 rounded-lg flex flex-col items-center justify-center cursor-pointer hover:bg-blue-50 transition border-gray-300">
+                            <input type="radio" name="paymentMethod" value="Nagad" class="mb-1 accent-[#008bf5]">
+                            <span class="text-xs font-bold text-orange-600">Nagad</span>
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full brand-bg text-white py-3 rounded-lg font-bold text-lg hover:bg-blue-600 transition shadow-lg mt-4 flex items-center justify-center">
+                    <i class="fas fa-check-circle mr-2"></i> অর্ডার সাবমিট করুন
+                </button>
+
+            </form>
+        </div>
     </div>
 
-    <script>
-        // আপনার কপি করা লিঙ্কটি নিচে উদ্ধৃতি চিহ্নের ভেতর দিন
-        const SCRIPT_URL = 'আপনার_কপি_করা_লিঙ্ক_এখানে_বসান';
 
-        function toggleAuth() {
-            document.getElementById('login-form').classList.toggle('hidden');
-            document.getElementById('reg-form').classList.toggle('hidden');
-            document.getElementById('form-subtitle').innerText = 
-                document.getElementById('reg-form').classList.contains('hidden') ? 'অ্যাকাউন্টে প্রবেশ করুন' : 'নতুন আবেদন জমা দিন';
+    <script>
+        // পপআপ ওপেন ও ক্লোজ করার ফাংশন
+        function openModal(prodName) {
+            document.getElementById('productName').value = prodName;
+            document.getElementById('orderModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // ব্যাকগ্রাউন্ড স্ক্রল বন্ধ
         }
 
-        // রেজিস্ট্রেশন লজিক
-        document.getElementById('reg-form').onsubmit = async (e) => {
+        function closeModal() {
+            document.getElementById('orderModal').classList.add('hidden');
+            document.body.style.overflow = 'auto'; // ব্যাকগ্রাউন্ড স্ক্রল চালু
+        }
+
+        // ফর্ম সাবমিশন এবং এপিআই ইন্টিগ্রেশন
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            const btn = e.target.querySelector('button');
-            btn.innerText = 'অপেক্ষা করুন...';
-            
-            const data = {
-                action: 'register',
-                name: document.getElementById('r-name').value,
-                email: document.getElementById('r-email').value,
-                password: document.getElementById('r-pass').value,
-                whatsapp: document.getElementById('r-wa').value
-            };
 
-            const res = await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(data) });
-            const result = await res.text();
-            
-            if(result === "Success") {
-                alert('আবেদন সফল! এডমিন অনুমোদন দিলে আপনি লগইন করতে পারবেন।');
-                toggleAuth();
-            } else {
-                alert('এই ইমেইল দিয়ে আগেই অ্যাকাউন্ট খোলা হয়েছে।');
-            }
-            btn.innerText = 'আবেদন জমা দিন';
-        };
+            // ফর্ম ডেটা সংগ্রহ
+            const pName = document.getElementById('productName').value;
+            const qty = document.getElementById('quantity').value;
+            const variant = document.getElementById('variant').value;
+            const cName = document.getElementById('customerName').value;
+            const cPhone = document.getElementById('customerPhone').value;
+            const cAddress = document.getElementById('customerAddress').value;
+            const pMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
 
-        // লগইন লজিক
-        document.getElementById('login-form').onsubmit = async (e) => {
-            e.preventDefault();
-            const msg = document.getElementById('msg');
-            msg.innerText = "যাচাই করা হচ্ছে...";
+            // ================= ১. গুগল ফর্ম ইন্টিগ্রেশন =================
+            // আপনার Google Form এর 'Form Response URL' এবং Entry ID গুলো এখানে বসাবেন।
+            const googleFormURL = "https://docs.google.com/forms/u/0/d/e/YOUR_FORM_ID/formResponse";
             
-            const data = {
-                action: 'login',
-                email: document.getElementById('l-email').value,
-                password: document.getElementById('l-pass').value
-            };
+            const formData = new FormData();
+            formData.append('entry.111111111', pName);    // প্রোডাক্ট নাম entry ID
+            formData.append('entry.222222222', qty);      // কোয়ান্টিটি entry ID
+            formData.append('entry.333333333', variant);  // কালার/সাইজ entry ID
+            formData.append('entry.444444444', cName);    // নাম entry ID
+            formData.append('entry.555555555', cPhone);   // ফোন entry ID
+            formData.append('entry.666666666', cAddress); // এড্রেস entry ID
+            formData.append('entry.777777777', pMethod);  // পেমেন্ট মেথড entry ID
 
-            const res = await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(data) });
-            const result = await res.text();
-            
-            if(result === "Login Success") {
-                alert('লগইন সফল!');
-                // এখানে আপনার আসল ড্যাশবোর্ডের লিঙ্ক দিতে পারেন
-                window.location.href = 'https://আপনার_ড্যাশবোর্ড_লিঙ্ক.com'; 
-            } else if(result === "Not Approved") {
-                msg.innerText = "আপনার অ্যাকাউন্ট এখনো অনুমোদিত হয়নি!";
-            } else {
-                msg.innerText = "ভুল ইমেইল অথবা পাসওয়ার্ড!";
-            }
-        };
+            // ব্যাকগ্রাউন্ডে গুগল ফর্মে সাবমিট করা
+            fetch(googleFormURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: formData
+            }).then(() => {
+                console.log("Data submitted to Google Sheets successfully!");
+            }).catch(err => console.error("Error submitting to Google Form:", err));
+
+
+            // ================= ২. টেলিগ্রাম বট ইন্টিগ্রেশন =================
+            // আপনার আসল Bot Token এবং Chat ID নিচে বসাবেন।
+            const telegramBotToken = "YOUR_TELEGRAM_BOT_TOKEN"; 
+            const telegramChatId = "YOUR_TELEGRAM_CHAT_ID"; 
+
+            // টেলিগ্রাম মেসেজ ফরম্যাট
+            const telegramMessage = `🛍️ *নতুন অর্ডার এসেছে!* \n\n` +
+                                    `📦 *প্রোডাক্ট:* ${pName}\n` +
+                                    `🔢 *পরিমাণ:* ${qty}\n` +
+                                    `🎨 *সাইজ/কালার:* ${variant}\n` +
+                                    `👤 *কাস্টমার:* ${cName}\n` +
+                                    `📞 *ফোন:* ${cPhone}\n` +
+                                    `🏠 *ঠিকানা:* ${cAddress}\n` +
+                                    `💳 *পেমেন্ট মেথড:* ${pMethod}`;
+
+            const telegramURL = `https://api.telegram.org/bot${telegramBotToken}/sendMessage`;
+
+            fetch(telegramURL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: telegramChatId,
+                    text: telegramMessage,
+                    parse_mode: 'Markdown'
+                })
+            })
+            .then(response => {
+                alert("ধন্যবাদ! আপনার অর্ডারটি সফলভাবে গ্রহণ করা হয়েছে।");
+                document.getElementById('orderForm').reset();
+                closeModal();
+            })
+            .catch(err => {
+                alert("অর্ডার সম্পন্ন হয়েছে (টেলিগ্রাম নোটিফিকেশন পাঠাতে সমস্যা হয়েছে)।");
+                closeModal();
+            });
+        });
     </script>
 </body>
 </html>
-// আপনার কপি করা নতুন Web App URL টি এখানে দিন
-const SCRIPT_URL = 'https://script.google.com/macros/s/XXXXXXXXX/exec'; 
-
