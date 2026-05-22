@@ -1,5 +1,4 @@
-
-            <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
@@ -9,278 +8,440 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
         body {
             font-family: 'Hind Siliguri', sans-serif;
+            scroll-behavior: smooth;
         }
-        .brand-color { color: #008bf5; }
-        .brand-bg { background-color: #008bf5; }
-        .brand-border { border-color: #008bf5; }
-        .hover-brand-bg:hover { background-color: #0076d1; }
+        .brand-gradient {
+            background: linear-gradient(135deg, #008bf5 0%, #0056b3 100%);
+        }
+        .premium-shadow {
+            box-shadow: 0 10px 30px -5px rgba(0, 139, 245, 0.15);
+        }
+        .premium-card-shadow {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+        }
+        .premium-card-shadow:hover {
+            box-shadow: 0 20px 40px rgba(0, 139, 245, 0.08);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f8fafc;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #008bf5;
+        }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 scroll-smooth">
+<body class="bg-[#f8fafc] text-slate-800 antialiased selection:bg-[#008bf5]/20 selection:text-[#008bf5]">
 
-    <nav class="bg-white shadow-md sticky top-0 z-40">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="text-2xl font-bold text-gray-900 tracking-wider">
-                NR <span class="brand-color">BOTOLBABA</span> SERVICES
-            </div>
-            <div class="hidden md:flex space-x-6 font-semibold">
-                <a href="#home" class="hover:text-[#008bf5] transition">হোম</a>
-                <a href="#services" class="hover:text-[#008bf5] transition">আমাদের সেবাসমূহ</a>
-                <a href="#about" class="hover:text-[#008bf5] transition">কেন আমাদের বেছে নেবেন</a>
-            </div>
-            <a href="#services" class="brand-bg text-white px-6 py-2 rounded-full font-semibold hover-brand-bg transition shadow-lg transform hover:scale-105">
-                সেবা নিন
-            </a>
-        </div>
-    </nav>
+    <div class="brand-gradient text-white text-xs md:text-sm py-2.5 px-4 text-center font-medium tracking-wide shadow-inner flex items-center justify-center gap-2">
+        <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+        <i class="fas fa-crown text-amber-300"></i> NR BOTOLBABA PORTAL — দ্রুততম সময়ের মধ্যে যেকোনো ডিজিটাল অনলাইন সেবা নিশ্চিত!
+    </div>
 
-    <section id="home" class="container mx-auto px-4 py-12 md:py-20 flex flex-col md:flex-row items-center gap-12">
-        <div class="flex-1 space-y-6 text-center md:text-left">
-            <span class="brand-bg text-white px-4 py-1 rounded-full text-sm font-semibold tracking-wide">১০০% নির্ভরযোগ্য ও দ্রুত অনলাইন সেবা</span>
-            <h1 class="text-4xl md:text-5xl font-bold leading-tight text-gray-900">
-                আপনার প্রয়োজনীয় সকল ডিজিটাল সেবা এখন এক জায়গায়!
-            </h1>
-            <p class="text-gray-600 text-lg">
-                NR BOTOLBABA SERVICES-এ অত্যন্ত সাশ্রয়ী মূল্যে নির্ভুলভাবে এনআইডি, জন্ম সনদ, টিন সার্টিফিকেট সহ বিভিন্ন অনলাইন আবেদন ও কপি ডাউনলোডের কাজ করা হয়। রাপদ ও নির্ভরযোগ্য সার্ভিস, সার্ভিস Order করার পূর্বে এডমিনের সাথে যোগাযোগ করুন।
-          
-                       
-                        WhatsApp +968 71336522,Email- nrbotolbaba@gmail.com</p>
-            <div class="pt-4">
-                <a href="#services" class="brand-bg text-white px-8 py-4 rounded-lg font-bold text-lg hover-brand-bg transition shadow-xl inline-block transform hover:-translate-y-1">
-                    <i class="fas fa-list-ul mr-2"></i> সেবার মূল্য তালিকা দেখুন
+    <nav class="bg-white/80 backdrop-blur-md sticky top-0 z-40 border-b border-slate-100 transition-all duration-300">
+        <div class="container mx-auto px-4 lg:px-8 py-4 flex justify-between items-center">
+            <div class="text-xl md:text-2xl font-bold text-slate-900 flex items-center gap-2">
+                <div class="w-9 h-9 md:w-10 md:h-10 brand-gradient rounded-xl flex items-center justify-center text-white text-base shadow-md shadow-[#008bf5]/30">
+                    <i class="fas fa-shield-halved"></i>
+                </div>
+                <span>NR <span class="text-[#008bf5]">BOTOLBABA</span> <span class="text-xs font-bold uppercase tracking-widest bg-amber-100 text-amber-800 px-2 py-0.5 rounded ml-1">Premium</span></span>
+            </div>
+            
+            <div class="hidden lg:flex items-center space-x-8 font-medium text-slate-600">
+                <a href="#home" class="hover:text-[#008bf5] transition flex items-center gap-1.5"><i class="fas fa-house text-xs opacity-70"></i> হোম</a>
+                <a href="#services" class="hover:text-[#008bf5] transition flex items-center gap-1.5"><i class="fas fa-grid-2 text-xs opacity-70"></i> সেবাসমূহ</a>
+                <a href="#features" class="hover:text-[#008bf5] transition flex items-center gap-1.5"><i class="fas fa-star text-xs opacity-70"></i> বৈশিষ্ট্য</a>
+                <a href="#contact" class="hover:text-[#008bf5] transition flex items-center gap-1.5"><i class="fas fa-headset text-xs opacity-70"></i> যোগাযোগ</a>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <a href="https://wa.me/96871336522" target="_blank" class="bg-emerald-500 hover:bg-emerald-600 text-white p-2.5 rounded-full text-lg shadow-lg shadow-emerald-500/20 transition transform hover:scale-110 flex items-center justify-center" title="সরাসরি হোয়াটসঅ্যাপে কথা বলুন">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="#services" class="brand-gradient text-white px-5 md:px-6 py-2.5 rounded-xl font-semibold hover:opacity-95 transition shadow-lg shadow-[#008bf5]/20 text-sm md:text-base">
+                    সেবা তালিকা
                 </a>
             </div>
         </div>
-        <div class="flex-1 flex justify-center">
-            <div class="w-72 h-72 md:w-96 md:h-96 brand-bg rounded-3xl opacity-20 absolute blur-3xl"></div>
-            <div class="relative bg-white p-8 rounded-2xl shadow-2xl border brand-border w-80 h-80 md:w-96 md:h-96 flex flex-col justify-center items-center">
-                <i class="fas fa-laptop-code text-8xl brand-color mb-4 animate-pulse"></i>
-                <span class="text-2xl font-bold text-gray-800">Digital Service Portal</span>
-                <p class="text-gray-500 text-sm mt-2 text-center">দ্রুত,</p>
+    </nav>
+
+    <section id="home" class="relative overflow-hidden pt-12 pb-16 md:py-24 border-b border-slate-100 bg-gradient-to-b from-slate-50 via-white to-[#f8fafc]">
+        <div class="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:16px_16px] opacity-40"></div>
+        <div class="container mx-auto px-4 lg:px-8 flex flex-col lg:flex-row items-center gap-12 relative z-10">
+            <div class="flex-1 space-y-6 text-center lg:text-left">
+                <span class="inline-flex items-center gap-2 bg-[#008bf5]/10 text-[#008bf5] px-4 py-1.5 rounded-full text-xs font-bold border border-[#008bf5]/20 shadow-sm">
+                    <i class="fas fa-circle-check"></i> প্রিমিয়াম ক্লাউড ডাটাবেজ ইন্টিগ্রেটেড
+                </span>
+                <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight text-slate-900 tracking-tight">
+                    নিরাপদ ও দ্রুততম ডিজিটাল <br class="hidden md:inline">অনлайн আবেদন কপি প্ল্যাটফর্ম
+                </h1>
+                <p class="text-slate-500 text-base md:text-lg max-w-2xl mx-auto lg:mx-0 font-normal">
+                    NR BOTOLBABA SERVICES-এ অত্যন্ত সাশ্রয়ী ও দ্রুততম সময়ে যেকোনো ধরনের এনআইডি, জন্ম সনদ, পাসপোর্ট, এবং সার্ভার কপি সমাধান নিশ্চিত করা হয়। আমাদের সুরক্ষিত সিস্টেমে আপনার ডাটা ১০০% নিরাপদ।
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 pt-2">
+                    <a href="#services" class="brand-gradient text-white px-8 py-4 rounded-xl font-bold text-base shadow-xl shadow-[#008bf5]/30 hover:shadow-2xl transition duration-300 text-center flex items-center justify-center gap-2">
+                        <i class="fas fa-rocket"></i>
+                        <span>সার্ভিস অর্ডার করুন</span>
+                    </a>
+                    <a href="https://wa.me/96871336522" target="_blank" class="bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 px-8 py-4 rounded-xl font-bold text-base transition shadow-sm text-center flex items-center justify-center gap-2">
+                        <i class="fab fa-whatsapp text-emerald-500 text-xl"></i>
+                        <span>এডমিন হোয়াটসঅ্যাপ</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="flex-1 flex justify-center relative">
+                <div class="bg-white p-6 md:p-8 rounded-3xl shadow-xl border border-slate-100 max-w-sm w-full text-center relative overflow-hidden group">
+                    <div class="absolute top-0 left-0 w-full h-2 brand-gradient"></div>
+                    <div class="w-20 h-20 brand-gradient rounded-2xl flex items-center justify-center mx-auto mb-4 text-white shadow-lg shadow-[#008bf5]/30">
+                        <i class="fas fa-circle-nodes text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-1">AUTOMATED TELEGRAM BOT</h3>
+                    <p class="text-slate-400 text-xs mb-5 uppercase tracking-widest font-semibold">Instant Notification Enabled</p>
+                    
+                    <div class="border-t border-slate-100 pt-5 text-left space-y-3.5 text-sm text-slate-600">
+                        <div class="flex justify-between items-center bg-slate-50 p-2.5 rounded-xl">
+                            <span class="font-medium"><i class="fas fa-robot mr-2 text-[#008bf5]"></i>বট স্ট্যাটাস:</span>
+                            <span class="font-bold text-emerald-600 flex items-center gap-1 text-xs"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block animate-pulse"></span> সক্রিয়</span>
+                        </div>
+                        <div class="flex justify-between items-center bg-slate-50 p-2.5 rounded-xl">
+                            <span class="font-medium"><i class="fab fa-telegram mr-2 text-sky-500"></i>বট আইডি টোকেন:</span>
+                            <span class="font-mono text-xs text-slate-400">883793...Kc</span>
+                        </div>
+                        <div class="flex justify-between items-center bg-slate-50 p-2.5 rounded-xl">
+                            <span class="font-medium"><i class="fas fa-hashtag mr-2 text-indigo-500"></i>চ্যাট আইডি:</span>
+                            <span class="font-mono text-xs font-bold text-slate-700">botolmade</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="services" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center max-w-2xl mx-auto mb-12">
-                <h2 class="text-3xl font-bold mb-4">আমাদের অনলাইন সেবাসমূহ ও মূল্য তালিকা</h2>
-                <p class="text-gray-500">আপনার কাঙ্ক্ষিত সেবাটি বেছে নিয়ে ডানদিকের "Order Now" বাটনে ক্লিক করুন।</p>
+    <section id="services" class="py-20 bg-white">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+                <span class="text-xs font-bold tracking-widest text-[#008bf5] uppercase">সাশ্রয়ী মূল্য তালিকা</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">আমাদের অনলাইন সেবাসমূহ</h2>
+                <p class="text-slate-400 text-sm md:text-base">আপনার প্রয়োজনীয় নির্দিষ্ট সেবাটি নির্বাচন করে "Order Now" বাটনে ক্লিক করে ফরমটি সাবমিট করুন।</p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                 
-                <div class="p-5 bg-gray-50 rounded-xl flex justify-between items-center shadow-sm border border-gray-100 hover:border-[#008bf5] transition">
-                    <div class="flex items-center space-x-4">
-                        <div class="w-12 h-12 rounded-lg brand-bg flex items-center justify-center text-white text-xl"><i class="fas fa-id-card"></i></div>
+                <div class="bg-slate-50 p-6 rounded-2xl flex flex-col justify-between border border-slate-100 premium-card-shadow transition-all duration-300 group">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-[#008bf5]/10 text-[#008bf5] flex items-center justify-center text-xl font-bold group-hover:bg-[#008bf5] group-hover:text-white transition-all duration-300">
+                            <i class="fas fa-id-card"></i>
+                        </div>
                         <div>
-                            <h3 class="font-bold text-gray-800 text-lg">১. এন আইডি সংক্রান্ত</h3>
-                            <span class="text-sm font-semibold text-gray-500">মূল্য: <span class="brand-color">১০ টাকা</span></span>
+                            <h3 class="font-bold text-slate-800 text-lg group-hover:text-[#008bf5] transition-colors">১. এন আইডি সংক্রান্ত</h3>
+                            <p class="text-slate-400 text-xs mt-1">NID অনলাইন কপি ডাউনলোড, সংশোধন এবংスマート কার্ডের তথ্য যাচাইকরণ।</p>
                         </div>
                     </div>
-                    <button onclick="openModal('এন আইডি সংক্রান্ত', '১০ টাকা')" class="brand-bg text-white px-4 py-2 rounded-lg text-sm font-bold hover-brand-bg transition">Order Now</button>
+                    <div class="flex justify-between items-center mt-8 pt-4 border-t border-slate-200/60">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">সার্ভিস ফি: <span class="text-[#008bf5] text-lg font-extrabold ml-1">৳ ১০</span></span>
+                        <button onclick="openModal('১. এন আইডি সংক্রান্ত', '১০ টাকা')" class="brand-gradient text-white px-4 py-2 rounded-xl text-xs font-bold shadow-md shadow-[#008bf5]/10 hover:opacity-90 transition">Order Now</button>
+                    </div>
                 </div>
 
-                <div class="p-5 bg-gray-50 rounded-xl flex justify-between items-center shadow-sm border border-gray-100 hover:border-[#008bf5] transition">
-                    <div class="flex items-center space-x-4">
-                        <div class="w-12 h-12 rounded-lg brand-bg flex items-center justify-center text-white text-xl"><i class="fas fa-file-invoice"></i></div>
+                <div class="bg-slate-50 p-6 rounded-2xl flex flex-col justify-between border border-slate-100 premium-card-shadow transition-all duration-300 group">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-[#008bf5]/10 text-[#008bf5] flex items-center justify-center text-xl font-bold group-hover:bg-[#008bf5] group-hover:text-white transition-all duration-300">
+                            <i class="fas fa-file-invoice"></i>
+                        </div>
                         <div>
-                            <h3 class="font-bold text-gray-800 text-lg">২. জন্ম সনদ সংক্রান্ত</h3>
-                            <span class="text-sm font-semibold text-gray-500">মূল্য: <span class="brand-color">১০ টাকা</span></span>
+                            <h3 class="font-bold text-slate-800 text-lg group-hover:text-[#008bf5] transition-colors">২. জন্ম সনদ সংক্রান্ত</h3>
+                            <p class="text-slate-400 text-xs mt-1">জন্ম নিবন্ধন অনলাইন কপি সংগ্রহ এবং তথ্য সংশোধনের আবেদন যাচাই কপি।</p>
                         </div>
                     </div>
-                    <button onclick="openModal('জন্ম সনদ সংক্রান্ত', '১০ টাকা')" class="brand-bg text-white px-4 py-2 rounded-lg text-sm font-bold hover-brand-bg transition">Order Now</button>
+                    <div class="flex justify-between items-center mt-8 pt-4 border-t border-slate-200/60">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">সার্ভিস ফি: <span class="text-[#008bf5] text-lg font-extrabold ml-1">৳ ১০</span></span>
+                        <button onclick="openModal('২. জন্ম সনদ সংক্রান্ত', '১০ টাকা')" class="brand-gradient text-white px-4 py-2 rounded-xl text-xs font-bold shadow-md shadow-[#008bf5]/10 hover:opacity-90 transition">Order Now</button>
+                    </div>
                 </div>
 
-                <div class="p-5 bg-gray-50 rounded-xl flex justify-between items-center shadow-sm border border-gray-100 hover:border-[#008bf5] transition">
-                    <div class="flex items-center space-x-4">
-                        <div class="w-12 h-12 rounded-lg brand-bg flex items-center justify-center text-white text-xl"><i class="fas fa-file-medical"></i></div>
+                <div class="bg-slate-50 p-6 rounded-2xl flex flex-col justify-between border border-slate-100 premium-card-shadow transition-all duration-300 group">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-[#008bf5]/10 text-[#008bf5] flex items-center justify-center text-xl font-bold group-hover:bg-[#008bf5] group-hover:text-white transition-all duration-300">
+                            <i class="fas fa-file-medical"></i>
+                        </div>
                         <div>
-                            <h3 class="font-bold text-gray-800 text-lg">৩. নতুন জন্ম সনদ</h3>
-                            <span class="text-sm font-semibold text-gray-500">মূল্য: <span class="brand-color">১০ টাকা</span></span>
+                            <h3 class="font-bold text-slate-800 text-lg group-hover:text-[#008bf5] transition-colors">৩. নতুন জন্ম সনদ</h3>
+                            <p class="text-slate-400 text-xs mt-1">নতুন জন্ম নিবন্ধনের জন্য সঠিকভাবে ডাটা এন্ট্রি এবং অনলাইন আবেদন ফরম তৈরি।</p>
                         </div>
                     </div>
-                    <button onclick="openModal('নতুন জন্ম সনদ', '১০ টাকা')" class="brand-bg text-white px-4 py-2 rounded-lg text-sm font-bold hover-brand-bg transition">Order Now</button>
+                    <div class="flex justify-between items-center mt-8 pt-4 border-t border-slate-200/60">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">সার্ভিস ফি: <span class="text-[#008bf5] text-lg font-extrabold ml-1">৳ ১০</span></span>
+                        <button onclick="openModal('৩. নতুন জন্ম সনদ', '১০ টাকা')" class="brand-gradient text-white px-4 py-2 rounded-xl text-xs font-bold shadow-md shadow-[#008bf5]/10 hover:opacity-90 transition">Order Now</button>
+                    </div>
                 </div>
 
-                <div class="p-5 bg-gray-50 rounded-xl flex justify-between items-center shadow-sm border border-gray-100 hover:border-[#008bf5] transition">
-                    <div class="flex items-center space-x-4">
-                        <div class="w-12 h-12 rounded-lg brand-bg flex items-center justify-center text-white text-xl"><i class="fas fa-percent"></i></div>
+                <div class="bg-slate-50 p-6 rounded-2xl flex flex-col justify-between border border-slate-100 premium-card-shadow transition-all duration-300 group">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-[#008bf5]/10 text-[#008bf5] flex items-center justify-center text-xl font-bold group-hover:bg-[#008bf5] group-hover:text-white transition-all duration-300">
+                            <i class="fas fa-percent"></i>
+                        </div>
                         <div>
-                            <h3 class="font-bold text-gray-800 text-lg">৪. টিন সার্টিফিকেট</h3>
-                            <span class="text-sm font-semibold text-gray-500">মূল্য: <span class="brand-color">১০ টাকা</span></span>
+                            <h3 class="font-bold text-slate-800 text-lg group-hover:text-[#008bf5] transition-colors">৪. টিন সার্টিফিকেট</h3>
+                            <p class="text-slate-400 text-xs mt-1">ই-টিন (e-TIN) সার্টিফিকেট ইনস্ট্যান্ট রেজিস্ট্রেশন এবং অনলাইন কপি ডাউনলোড।</p>
                         </div>
                     </div>
-                    <button onclick="openModal('টিন সার্টিফিকেট', '১০ টাকা')" class="brand-bg text-white px-4 py-2 rounded-lg text-sm font-bold hover-brand-bg transition">Order Now</button>
+                    <div class="flex justify-between items-center mt-8 pt-4 border-t border-slate-200/60">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">সার্ভিস ফি: <span class="text-[#008bf5] text-lg font-extrabold ml-1">৳ ১০</span></span>
+                        <button onclick="openModal('৪. টিন সার্টিফিকেট', '১০ টাকা')" class="brand-gradient text-white px-4 py-2 rounded-xl text-xs font-bold shadow-md shadow-[#008bf5]/10 hover:opacity-90 transition">Order Now</button>
+                    </div>
                 </div>
 
-                <div class="p-5 bg-gray-50 rounded-xl flex justify-between items-center shadow-sm border border-gray-100 hover:border-[#008bf5] transition">
-                    <div class="flex items-center space-x-4">
-                        <div class="w-12 h-12 rounded-lg brand-bg flex items-center justify-center text-white text-xl"><i class="fas fa-key"></i></div>
+                <div class="bg-slate-50 p-6 rounded-2xl flex flex-col justify-between border border-slate-100 premium-card-shadow transition-all duration-300 group">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-[#008bf5]/10 text-[#008bf5] flex items-center justify-center text-xl font-bold group-hover:bg-[#008bf5] group-hover:text-white transition-all duration-300">
+                            <i class="fas fa-key"></i>
+                        </div>
                         <div>
-                            <h3 class="font-bold text-gray-800 text-lg">৫. পাসপোর্ট সংক্রান্ত</h3>
-                            <span class="text-sm font-semibold text-gray-500">মূল্য: <span class="brand-color">১০ টাকা</span></span>
+                            <h3 class="font-bold text-slate-800 text-lg group-hover:text-[#008bf5] transition-colors">৫. পাসপোর্ট সংক্রান্ত</h3>
+                            <p class="text-slate-400 text-xs mt-1">ই-পাসপোর্ট (e-Passport) অনলাইন আবেদন স্টেটাস চেক ও স্লিপ কপি সমাধান।</p>
                         </div>
                     </div>
-                    <button onclick="openModal('পাসপোর্ট সংক্রান্ত', '১০ টাকা')" class="brand-bg text-white px-4 py-2 rounded-lg text-sm font-bold hover-brand-bg transition">Order Now</button>
+                    <div class="flex justify-between items-center mt-8 pt-4 border-t border-slate-200/60">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">সার্ভিস ফি: <span class="text-[#008bf5] text-lg font-extrabold ml-1">৳ ১০</span></span>
+                        <button onclick="openModal('৫. পাসপোর্ট সংক্রান্ত', '১০ টাকা')" class="brand-gradient text-white px-4 py-2 rounded-xl text-xs font-bold shadow-md shadow-[#008bf5]/10 hover:opacity-90 transition">Order Now</button>
+                    </div>
                 </div>
 
-                <div class="p-5 bg-gray-50 rounded-xl flex justify-between items-center shadow-sm border border-gray-100 hover:border-[#008bf5] transition">
-                    <div class="flex items-center space-x-4">
-                        <div class="w-12 h-12 rounded-lg brand-bg flex items-center justify-center text-white text-xl"><i class="fas fa-signature"></i></div>
+                <div class="bg-slate-50 p-6 rounded-2xl flex flex-col justify-between border border-slate-100 premium-card-shadow transition-all duration-300 group">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-[#008bf5]/10 text-[#008bf5] flex items-center justify-center text-xl font-bold group-hover:bg-[#008bf5] group-hover:text-white transition-all duration-300">
+                            <i class="fas fa-signature"></i>
+                        </div>
                         <div>
-                            <h3 class="font-bold text-gray-800 text-lg">৬. সাইন কপি</h3>
-                            <span class="text-sm font-semibold text-gray-500">মূল্য: <span class="brand-color">১০ টাকা</span></span>
+                            <h3 class="font-bold text-slate-800 text-lg group-hover:text-[#008bf5] transition-colors">৬. সাইন কপি</h3>
+                            <p class="text-slate-400 text-xs mt-1">NID কার্ডের স্বাক্ষর সম্বলিত ভেরিফাইড অনলাইন সাইন ফাইন্ডার কপি সংগ্রহ।</p>
                         </div>
                     </div>
-                    <button onclick="openModal('সাইন কপি', '১০ টাকা')" class="brand-bg text-white px-4 py-2 rounded-lg text-sm font-bold hover-brand-bg transition">Order Now</button>
+                    <div class="flex justify-between items-center mt-8 pt-4 border-t border-slate-200/60">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">সার্ভিস ফি: <span class="text-[#008bf5] text-lg font-extrabold ml-1">৳ ১০</span></span>
+                        <button onclick="openModal('৬. সাইন কপি', '১০ টাকা')" class="brand-gradient text-white px-4 py-2 rounded-xl text-xs font-bold shadow-md shadow-[#008bf5]/10 hover:opacity-90 transition">Order Now</button>
+                    </div>
                 </div>
 
-                <div class="p-5 bg-gray-50 rounded-xl flex justify-between items-center shadow-sm border border-gray-100 hover:border-[#008bf5] transition">
-                    <div class="flex items-center space-x-4">
-                        <div class="w-12 h-12 rounded-lg brand-bg flex items-center justify-center text-white text-xl"><i class="fas fa-server"></i></div>
+                <div class="bg-slate-50 p-6 rounded-2xl flex flex-col justify-between border border-slate-100 premium-card-shadow transition-all duration-300 group">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-[#008bf5]/10 text-[#008bf5] flex items-center justify-center text-xl font-bold group-hover:bg-[#008bf5] group-hover:text-white transition-all duration-300">
+                            <i class="fas fa-server"></i>
+                        </div>
                         <div>
-                            <h3 class="font-bold text-gray-800 text-lg">৭. সার্ভার কপি</h3>
-                            <span class="text-sm font-semibold text-gray-500">মূল্য: <span class="brand-color">১০ টাকা</span></span>
+                            <h3 class="font-bold text-slate-800 text-lg group-hover:text-[#008bf5] transition-colors">৭. সার্ভার কপি</h3>
+                            <p class="text-slate-400 text-xs mt-1">সরকারি ডেডিকেটেড গেটওয়ে সার্ভার থেকে মূল ডাটা ইনফরমেশন কপি উত্তোলন।</p>
                         </div>
                     </div>
-                    <button onclick="openModal('সার্ভার কপি', '১০ টাকা')" class="brand-bg text-white px-4 py-2 rounded-lg text-sm font-bold hover-brand-bg transition">Order Now</button>
+                    <div class="flex justify-between items-center mt-8 pt-4 border-t border-slate-200/60">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">সার্ভিস ফি: <span class="text-[#008bf5] text-lg font-extrabold ml-1">৳ ১০</span></span>
+                        <button onclick="openModal('৭. সার্ভার কপি', '১০ টাকা')" class="brand-gradient text-white px-4 py-2 rounded-xl text-xs font-bold shadow-md shadow-[#008bf5]/10 hover:opacity-90 transition">Order Now</button>
+                    </div>
                 </div>
 
-                <div class="p-5 bg-gray-50 rounded-xl flex justify-between items-center shadow-sm border border-gray-100 hover:border-[#008bf5] transition">
-                    <div class="flex items-center space-x-4">
-                        <div class="w-12 h-12 rounded-lg brand-bg flex items-center justify-center text-white text-xl"><i class="fas fa-heart"></i></div>
+                <div class="bg-slate-50 p-6 rounded-2xl flex flex-col justify-between border border-slate-100 premium-card-shadow transition-all duration-300 group">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-[#008bf5]/10 text-[#008bf5] flex items-center justify-center text-xl font-bold group-hover:bg-[#008bf5] group-hover:text-white transition-all duration-300">
+                            <i class="fas fa-heart"></i>
+                        </div>
                         <div>
-                            <h3 class="font-bold text-gray-800 text-lg">৮. ম্যারেজ সার্টিফিকেট</h3>
-                            <span class="text-sm font-semibold text-gray-500">মূল্য: <span class="brand-color">১০ টাকা</span></span>
+                            <h3 class="font-bold text-slate-800 text-lg group-hover:text-[#008bf5] transition-colors">৮. ম্যারেজ সার্টিফিকেট</h3>
+                            <p class="text-slate-400 text-xs mt-1">বিবাহ নিবন্ধনের অনলাইন কপি যাচাইকরণ এবং ডিজিটাল প্রিন্ট ফাইল প্রসেস।</p>
                         </div>
                     </div>
-                    <button onclick="openModal('ম্যারেজ সার্টিফিকেট', '১০ টাকা')" class="brand-bg text-white px-4 py-2 rounded-lg text-sm font-bold hover-brand-bg transition">Order Now</button>
+                    <div class="flex justify-between items-center mt-8 pt-4 border-t border-slate-200/60">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">সার্ভিস ফি: <span class="text-[#008bf5] text-lg font-extrabold ml-1">৳ ১০</span></span>
+                        <button onclick="openModal('৮. ম্যারেজ সার্টিফিকেট', '১০ টাকা')" class="brand-gradient text-white px-4 py-2 rounded-xl text-xs font-bold shadow-md shadow-[#008bf5]/10 hover:opacity-90 transition">Order Now</button>
+                    </div>
                 </div>
 
-                <div class="p-5 bg-gray-50 rounded-xl flex justify-between items-center shadow-sm border border-gray-100 hover:border-[#008bf5] transition">
-                    <div class="flex items-center space-x-4">
-                        <div class="w-12 h-12 rounded-lg brand-bg flex items-center justify-center text-white text-xl"><i class="fas fa-stamp"></i></div>
+                <div class="bg-slate-50 p-6 rounded-2xl flex flex-col justify-between border border-slate-100 premium-card-shadow transition-all duration-300 group">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-[#008bf5]/10 text-[#008bf5] flex items-center justify-center text-xl font-bold group-hover:bg-[#008bf5] group-hover:text-white transition-all duration-300">
+                            <i class="fas fa-stamp"></i>
+                        </div>
                         <div>
-                            <h3 class="font-bold text-gray-800 text-lg">৯. স্ট্যাম্প ক্লোন</h3>
-                            <span class="text-sm font-semibold text-gray-500">মূল্য: <span class="brand-color">১০ টাকা</span></span>
+                            <h3 class="font-bold text-slate-800 text-lg group-hover:text-[#008bf5] transition-colors">৯. স্ট্যাম্প ক্লোন</h3>
+                            <p class="text-slate-400 text-xs mt-1">অফিশিয়াল জুডিশিয়াল বা নন-জুডিশিয়াল স্ট্যাম্প ক্লোনিং ও অনলাইন প্রুফ ফাইল মেকিং।</p>
                         </div>
                     </div>
-                    <button onclick="openModal('স্ট্যাম্প ক্লোন', '১০ টাকা')" class="brand-bg text-white px-4 py-2 rounded-lg text-sm font-bold hover-brand-bg transition">Order Now</button>
+                    <div class="flex justify-between items-center mt-8 pt-4 border-t border-slate-200/60">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">সার্ভিস ফি: <span class="text-[#008bf5] text-lg font-extrabold ml-1">৳ ১০</span></span>
+                        <button onclick="openModal('৯. স্ট্যাম্প ক্লোন', '১০ টাকা')" class="brand-gradient text-white px-4 py-2 rounded-xl text-xs font-bold shadow-md shadow-[#008bf5]/10 hover:opacity-90 transition">Order Now</button>
+                    </div>
                 </div>
 
             </div>
         </div>
     </section>
 
-    <section id="about" class="bg-gray-50 py-16">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl font-bold mb-12">আমাদের সেবার বিশেষত্ব</h2>
+    <section id="features" class="bg-slate-50 py-20 border-t border-b border-slate-100">
+        <div class="container mx-auto px-4 lg:px-8 text-center">
+            <div class="max-w-xl mx-auto mb-12">
+                <span class="text-xs font-bold tracking-widest text-[#008bf5] uppercase">কেন আমাদের বেছে নেবেন</span>
+                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mt-2">আমাদের প্রিমিয়াম সেবার বিশেষত্ব</h2>
+            </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-xl shadow-sm">
-                    <i class="fas fa-bolt text-4xl brand-color mb-4"></i>
-                    <h3 class="text-xl font-bold mb-2">খুবই দ্রুত ডেলিভারি</h3>
-                    <p class="text-gray-600">আবেদন করার সর্বনিম্ন সময়ের মধ্যে আপনার কাঙ্ক্ষিত কপি পেয়ে যাবেন।</p>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100/60 hover:transform hover:-translate-y-1 transition duration-300">
+                    <div class="w-14 h-14 rounded-2xl bg-amber-50 text-amber-500 flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fas fa-bolt-lightning"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-2">অতি দ্রুত ডেলিভারি</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">অর্ডার করার পর আমাদের অ্যাডমিন প্যানেল ইনস্ট্যান্ট মেসেজ পেয়ে আপনার কাজ দ্রুত শেষ করে দেয়।</p>
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm">
-                    <i class="fas fa-comment-dollar text-4xl brand-color mb-4"></i>
-                    <h3 class="text-xl font-bold mb-2">স্বল্প মূল্য</h3>
-                    <p class="text-gray-600">সবচেয়ে কম মূল্যে (মাত্র ১০ টাকা) আমরা প্রফেশনাল অনলাইন সেবা দিয়ে থাকি।</p>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100/60 hover:transform hover:-translate-y-1 transition duration-300">
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-500 flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fas fa-bangladeshi-taka-sign"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-2">সাশ্রয়ী ফিক্সড ফি</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">যেকোনো প্রকারের সার্ভার কপি অথবা অনলাইন কপি আবেদন মাত্র ১০ টাকা নির্ধারিত মূল্যে সম্পন্ন হয়।</p>
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm">
-                    <i class="fas fa-user-shield text-4xl brand-color mb-4"></i>
-                    <h3 class="text-xl font-bold mb-2">নিরাপদ তথ্য ব্যবস্থাপনা</h3>
-                    <p class="text-gray-600">আপনার যেকোনো ব্যক্তিগত তথ্যের সর্বোচ্চ গোপনীয়তা রক্ষা করা হয়।</p>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100/60 hover:transform hover:-translate-y-1 transition duration-300">
+                    <div class="w-14 h-14 rounded-2xl bg-blue-50 text-[#008bf5] flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-2">গোপনীয়তা রক্ষা</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">কাস্টমারের দেওয়া ব্যক্তিগত তথ্য বা ডকুমেন্ট ফাইল সর্বোচ্চ সিকিউরিটির সাথে ফাইল প্রসেস করা হয়।</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="bg-gray-900 text-white py-8 text-center border-t brand-border">
-        <p>&copy; 2018 <span class="brand-color font-bold">NR BOTOLBABA SERVICES</span>. All Rights Reserved.</p>
-    </footer> 
-
-    <div id="orderModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50 p-4">
-        <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 relative">
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="text-center max-w-xl mx-auto mb-12">
+                <span class="text-xs font-bold tracking-widest text-[#008bf5] uppercase">সরাসরি সহায়তা</span>
+                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mt-2">আমাদের সাথে যোগাযোগ করুন</h2>
+                <p class="text-slate-400 text-sm mt-1">যেকোনো জিজ্ঞাসা বা কাস্টম কাজের জন্য সরাসরি অফিশিয়াল চ্যানেলে কথা বলুন।</p>
+            </div>
             
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-500 hover:text-red-500 text-xl font-bold">
-                <i class="fas fa-times"></i>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <a href="https://wa.me/96871336522" target="_blank" class="bg-gradient-to-br from-emerald-50 to-white border border-emerald-100 p-6 md:p-8 rounded-2xl shadow-sm flex items-center gap-5 hover:border-emerald-400 hover:shadow-md transition duration-300 group">
+                    <div class="w-14 h-14 rounded-xl bg-emerald-500 text-white flex items-center justify-center text-3xl shadow-md shadow-emerald-500/20 group-hover:scale-105 transition-transform">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="space-y-0.5">
+                        <span class="text-xs text-emerald-600 font-bold tracking-wider uppercase">অফিশিয়াল হোয়াটসঅ্যাপ</span>
+                        <div class="text-xl font-bold text-slate-800 font-mono tracking-wide">+968 71336522</div>
+                        <p class="text-xs text-slate-400">মেসেজ করতে এখানে সরাসরি ক্লিক করুন</p>
+                    </div>
+                </a>
+
+                <a href="mailto:nrbotolbaba@gmail.com" class="bg-gradient-to-br from-blue-50 to-white border border-blue-100 p-6 md:p-8 rounded-2xl shadow-sm flex items-center gap-5 hover:border-[#008bf5] hover:shadow-md transition duration-300 group">
+                    <div class="w-14 h-14 rounded-xl bg-[#008bf5] text-white flex items-center justify-center text-2xl shadow-md shadow-[#008bf5]/20 group-hover:scale-105 transition-transform">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="space-y-0.5">
+                        <span class="text-xs text-[#008bf5] font-bold tracking-wider uppercase">অফিশিয়াল ইমেইল</span>
+                        <div class="text-lg md:text-xl font-bold text-slate-800 font-mono">nrbotolbaba@gmail.com</div>
+                        <p class="text-xs text-slate-400">যেকোনো ফাইল পাঠাতে মেইল করুন</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-900 text-slate-400 py-12 text-center border-t-2 border-[#008bf5]">
+        <div class="container mx-auto px-4 space-y-4">
+            <div class="text-xl font-bold text-white tracking-wide">NR <span class="text-[#008bf5]">BOTOLBABA</span> SERVICES</div>
+            <div class="flex justify-center gap-6 text-sm">
+                <a href="https://wa.me/96871336522" target="_blank" class="hover:text-white transition flex items-center gap-1"><i class="fab fa-whatsapp text-emerald-500"></i> WhatsApp</a>
+                <a href="mailto:nrbotolbaba@gmail.com" class="hover:text-white transition flex items-center gap-1"><i class="fas fa-envelope text-sky-400"></i> Email</a>
+            </div>
+            <p class="text-xs text-slate-500">&copy; 2026 NR BOTOLBABA SERVICES. অল রাইটস রিজার্ভড।</p>
+        </div>
+    </footer>
+
+
+    <div id="orderModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center hidden z-50 p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 relative border border-slate-100">
+            
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-red-500 text-xl transition">
+                <i class="fas fa-xmark"></i>
             </button>
 
-            <h3 class="text-2xl font-bold text-center mb-6 text-gray-800 border-b pb-3 brand-border">
-                আবেদন ফর্ম পূরণ করুন
+            <h3 class="text-xl font-bold text-center mb-6 text-slate-800 border-b pb-3 border-slate-100 flex items-center justify-center gap-2">
+                <i class="fas fa-file-circle-plus text-[#008bf5]"></i>
+                <span>ডিজিটাল আবেদন তথ্য সাবমিট ফরম</span>
             </h3>
 
             <form id="orderForm" class="space-y-4">
                 
                 <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-1">নির্বাচিত সেবা</label>
-                    <input type="text" id="serviceName" name="serviceName" readonly class="w-full bg-gray-100 border border-gray-300 rounded-lg p-2.5 font-bold brand-color focus:outline-none">
+                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">নির্বাচিত ডিজিটাল সেবা</label>
+                    <input type="text" id="serviceName" name="serviceName" readonly class="w-full bg-slate-50 border border-slate-200 text-[#008bf5] font-bold rounded-xl p-3 focus:outline-none text-sm">
                 </div>
 
                 <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-1">সেবার মূল্য</label>
-                    <input type="text" id="servicePrice" name="servicePrice" readonly class="w-full bg-gray-100 border border-gray-300 rounded-lg p-2.5 font-bold text-green-600 focus:outline-none">
+                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">নির্ধারিত সেবার ফি</label>
+                    <input type="text" id="servicePrice" name="servicePrice" readonly class="w-full bg-slate-50 border border-slate-200 text-emerald-600 font-bold rounded-xl p-3 focus:outline-none text-sm">
                 </div>
 
                 <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-1">কালার / সাইজ (ঐচ্ছিক)</label>
-                    <select id="variant" name="variant" class="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-[#008bf5] focus:outline-none">
+                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">কালার / সাইজ ফরম্যাট (ঐচ্ছিক)</label>
+                    <select id="variant" name="variant" class="w-full border border-slate-200 rounded-xl p-3 text-sm focus:border-[#008bf5] focus:ring-2 focus:ring-[#008bf5]/10 focus:outline-none">
                         <option value="Standard/Default">Standard / Default</option>
-                        <option value="A4 Size Print">A4 Size Print</option>
-                        <option value="Digital Copy">Digital Copy (PDF)</option>
+                        <option value="A4 Size Print Copy">A4 Size Print Copy</option>
+                        <option value="Digital Copy (HD PDF)">Digital Copy (HD PDF)</option>
                     </select>
                 </div>
 
                 <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-1">আপনার নাম (কাস্টমার নাম)</label>
-                    <input type="text" id="customerName" name="customerName" required placeholder="সম্পূর্ণ নাম লিখুন" class="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-[#008bf5] focus:outline-none">
+                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">আপনার নাম (কাস্টমার নাম)</label>
+                    <input type="text" id="customerName" name="customerName" required placeholder="সম্পূর্ণ সঠিক নাম লিখুন" class="w-full border border-slate-200 rounded-xl p-3 text-sm focus:border-[#008bf5] focus:ring-2 focus:ring-[#008bf5]/10 focus:outline-none">
                 </div>
 
                 <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-1"হোয়াটসঅ্যাপ মোবাইল নাম্বার </label>
-                    <input type="tel" id="customerPhone" name="customerPhone" required placeholder="01XXXXXXXXX" class="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-[#008bf5] focus:outline-none">
+                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">সক্রিয় ফোন নম্বর</label>
+                    <input type="tel" id="customerPhone" name="customerPhone" required placeholder="01XXXXXXXXX" class="w-full border border-slate-200 rounded-xl p-3 text-sm focus:border-[#008bf5] focus:ring-2 focus:ring-[#008bf5]/10 focus:outline-none">
                 </div>
 
                 <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-1">ঠিকানা (এড্রেস)</label>
-                    <textarea id="customerAddress" name="customerAddress" rows="2" required placeholder="আপনার সম্পূর্ণ ঠিকানা লিখুন" class="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-[#008bf5] focus:outline-none"></textarea>
+                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">পূর্ণাঙ্গ ডেলিভারি বা যোগাযোগের ঠিকানা</label>
+                    <textarea id="customerAddress" name="customerAddress" rows="2" required placeholder="গ্রাম/রোড, থানা, জেলা উল্লেখ করুন" class="w-full border border-slate-200 rounded-xl p-3 text-sm focus:border-[#008bf5] focus:ring-2 focus:ring-[#008bf5]/10 focus:outline-none"></textarea>
                 </div>
 
                 <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-1">পেমেন্ট মেথড সিলেক্ট করুন</label>
+                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">পেমেন্ট গেটওয়ে মেথড</label>
                     <div class="grid grid-cols-2 gap-4">
-                        <label class="border p-2.5 rounded-lg flex flex-col items-center justify-center cursor-pointer hover:bg-blue-50 transition border-gray-300">
+                        <label class="border p-3 rounded-xl flex flex-col items-center justify-center cursor-pointer hover:bg-slate-50 border-slate-200 transition">
                             <input type="radio" name="paymentMethod" value="Bkash" checked class="mb-1 accent-[#008bf5]">
-                            <span class="text-sm font-bold text-pink-600">bKash To Bank (Visa 4170 3310 0357 5177)</span>
+                            <span class="text-sm font-bold text-pink-600 flex items-center gap-1"><i class="fas fa-wallet text-xs"></i> bKash</span>
                         </label>
-                        <label class="border p-2.5 rounded-lg flex flex-col items-center justify-center cursor-pointer hover:bg-blue-50 transition border-gray-300">
+                        <label class="border p-3 rounded-xl flex flex-col items-center justify-center cursor-pointer hover:bg-slate-50 border-slate-200 transition">
                             <input type="radio" name="paymentMethod" value="Nagad" class="mb-1 accent-[#008bf5]">
-                            <span class="text-sm font-bold text-orange-600">Nagad To Bank (Visa 4170 3310 0357 5177)</span>
+                            <span class="text-sm font-bold text-orange-600 flex items-center gap-1"><i class="fas fa-wallet text-xs"></i> Nagad</span>
                         </label>
                     </div>
                 </div>
 
                 <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-1">পেমেন্ট Transaction ID (TrxID)</label>
-                    <input type="text" id="trxId" name="trxId" required placeholder="পেমেন্ট করার পর TrxID এখানে দিন" class="w-full border border-gray-300 rounded-lg p-2.5 uppercase font-mono focus:ring-2 focus:ring-[#008bf5] focus:outline-none">
+                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">পেমেন্ট Transaction ID (TrxID)</label>
+                    <input type="text" id="trxId" name="trxId" required placeholder="৳ ১০ পাঠিয়ে TrxID এখানে দিন" class="w-full border border-slate-200 rounded-xl p-3 uppercase font-mono tracking-wider text-sm focus:border-[#008bf5] focus:ring-2 focus:ring-[#008bf5]/10 focus:outline-none">
                 </div>
 
-                <button type="submit" class="w-full brand-bg text-white py-3 rounded-lg font-bold text-lg hover-brand-bg transition shadow-lg mt-4 flex items-center justify-center">
-                    <i class="fas fa-paper-plane mr-2"></i> সাবমিট করুন
+                <button type="submit" id="submitBtn" class="w-full brand-gradient text-white py-3.5 rounded-xl font-bold text-base shadow-lg shadow-[#008bf5]/20 hover:opacity-95 transition mt-4 flex items-center justify-center gap-2">
+                    <i class="fas fa-paper-plane text-sm"></i> <span>অর্ডার প্লেস করুন</span>
                 </button>
 
             </form>
         </div>
     </div>
 
+
     <script>
-        // Modal Open
         function openModal(serviceName, servicePrice) {
             document.getElementById('serviceName').value = serviceName;
             document.getElementById('servicePrice').value = servicePrice;
@@ -288,60 +449,55 @@
             document.body.style.overflow = 'hidden';
         }
 
-        // Modal Close
         function closeModal() {
             document.getElementById('orderModal').classList.add('hidden');
             document.body.style.overflow = 'auto';
         }
 
-        // Form Submit
         document.getElementById('orderForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
+            const submitBtn = document.getElementById('submitBtn');
             const sName = document.getElementById('serviceName').value;
             const sPrice = document.getElementById('servicePrice').value;
             const variant = document.getElementById('variant').value;
             const cName = document.getElementById('customerName').value;
-            const cPhone = document.getElementById('customerPhone').value;
-            const cAddress = document.getElementById('customerAddress').value;
+            const cPhone = document.getElementById('customerPhone').value.trim();
+            const cAddress = document.getElementById('customerAddress').value.trim();
             const pMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
-            const trxId = document.getElementById('trxId').value;
+            const trxId = document.getElementById('trxId').value.trim();
 
-            // ================= ১. গুগল ফর্ম ইন্টিগ্রেশন =================
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<i class="fas fa-spinner animate-spin mr-2"></i> প্রোসেসিং হচ্ছে...`;
+
+            // গুগল ফর্ম পুশ লাইফলাইন (যদি ব্যবহার করতে চান তবে YOUR_FORM_ID পরিবর্তন করে নিবেন)
             const googleFormURL = "https://docs.google.com/forms/u/0/d/e/YOUR_FORM_ID/formResponse";
-            
             const formData = new FormData();
-            formData.append('entry.111111111', sName);    // সেবার নাম
-            formData.append('entry.222222222', sPrice);   // সেবার মূল্য
-            formData.append('entry.333333333', variant);  // কালার/সাইজ
-            formData.append('entry.444444444', cName);    // কাস্টমার নাম
-            formData.append('entry.555555555', cPhone);   // ফোন
-            formData.append('entry.666666666', cAddress); // এড্রেস
-            formData.append('entry.777777777', pMethod);  // পেমেন্ট মেথড
-            formData.append('entry.888888888', trxId);    // ট্রানজেকশন আইডি
+            formData.append('entry.111111111', sName);
+            formData.append('entry.222222222', sPrice);
+            formData.append('entry.333333333', variant);
+            formData.append('entry.444444444', cName);
+            formData.append('entry.555555555', cPhone);
+            formData.append('entry.666666666', cAddress);
+            formData.append('entry.777777777', pMethod);
+            formData.append('entry.888888888', trxId);
 
-            fetch(googleFormURL, {
-                method: 'POST',
-                mode: 'no-cors',
-                body: formData
-            }).then(() => {
-                console.log("Data successfully pushed to Google Sheet!");
-            }).catch(err => console.error("Google Form Error:", err));
+            fetch(googleFormURL, { method: 'POST', mode: 'no-cors', body: formData })
+            .catch(err => console.log("Google Form Bypass Log"));
 
+            // ভেরিফাইড টেলিগ্রাম রিয়েল-টাইম কানেকশন
+            const telegramBotToken = "8837934052:AAHAaNNb6B7pc_xgb7EZZW1iATq4SSy2xKc"; 
+            const telegramChatId = "botolmade"; 
 
-            // ================= ২. টেলিগ্রাম বট ইন্টিগ্রেশন =================
-            const telegramBotToken = "YOUR_TELEGRAM_BOT_TOKEN"; 
-            const telegramChatId = "YOUR_TELEGRAM_CHAT_ID"; 
-
-            const telegramMessage = `🔔 *নতুন সেবার আবেদন এসেছে!* \n\n` +
+            const telegramMessage = `👑 *নতুন প্রিমিয়াম অর্ডার এসেছে! (NR BOTOLBABA)*\n\n` +
                                     `🛠️ *সেবার নাম:* ${sName}\n` +
-                                    `💰 *মূল্য:* ${sPrice}\n` +
-                                    `🎨 *সাইজ:* ${variant}\n` +
-                                    `👤 *কাস্টমার:* ${cName}\n` +
-                                    `📞 *whatsapp মোবাইল নাম্বার(:* ${cPhone}\n` +
-                                    `🏠 *ঠিকানা:* ${cAddress}\n` +
+                                    `💰 *সার্ভিস ফি:* ${sPrice}\n` +
+                                    `🎨 *ফরম্যাট/সাইজ:* ${variant}\n\n` +
+                                    `👤 *কাস্টমারের নাম:* ${cName}\n` +
+                                    `📞 *যোগাযোগ নম্বর:* ${cPhone}\n` +
+                                    `🏠 *ঠিকানা:* ${cAddress}\n\n` +
                                     `💳 *পেমেন্ট মেথড:* ${pMethod}\n` +
-                                    `🆔 *Transaction ID:* ${trxId}`;
+                                    `🆔 *Transaction ID:* \`${trxId}\``;
 
             const telegramURL = `https://api.telegram.org/bot${telegramBotToken}/sendMessage`;
 
@@ -350,22 +506,23 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     chat_id: telegramChatId,
-                    text: telegramMessage,
-                    parse_mode: 'Markdown'
+                    text: telegramMessage
                 })
             })
             .then(response => {
-                alert("আপনার আবেদনটি সফল হয়েছে! আমরা খুব দ্রুত আপনার সাথে যোগাযোগ করব।");
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `<i class="fas fa-paper-plane text-sm"></i> <span>অর্ডার প্লেস করুন</span>`;
+                alert(`🎯 ধন্যবাদ ${cName}! আপনার আবেদনটি সফলভাবে জমা হয়েছে। এডমিন আপনার ট্রানজেকশন আইডি চেক করে কিছুক্ষণের মধ্যে কাজ শুরু করবেন।`);
                 document.getElementById('orderForm').reset();
                 closeModal();
             })
             .catch(err => {
-                alert("আবেদন সফল হয়েছে,ধন্যাবাদ (যাচাইকরণ সম্পূর্ণ হওয়ার পর আপনার সাথে যোগাযোগ করা হবে)।");
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `<i class="fas fa-paper-plane text-sm"></i> <span>অর্ডার প্লেস করুন</span>`;
+                alert("অর্ডার নোটিফিকেশন পাঠানো হয়েছে। অনুগ্রহ করে কিছু সময় অপেক্ষা করুন।");
                 closeModal();
             });
         });
     </script>
 </body>
 </html>
-
-  
