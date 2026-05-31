@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tom Cartoon Login & Sign Up</title>
+    <title>Tom Cartoon Animated Login & Sign Up</title>
+    <!-- GSAP Core Library (ভিডিওর মতো অ্যানিমেশনের জন্য) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    
     <style>
         * {
             margin: 0;
@@ -19,6 +22,18 @@
             align-items: center;
             height: 100vh;
             overflow: hidden;
+            position: relative;
+        }
+
+        /* অ্যানিমেটেড টম ক্যারেক্টার */
+        .tom-character {
+            position: absolute;
+            width: 150px;
+            height: auto;
+            z-index: 10;
+            bottom: 20px; /* শুরুর পজিশন স্ক্রিনের নিচে ও বামে */
+            left: -200px; 
+            pointer-events: none;
         }
 
         .container {
@@ -27,32 +42,36 @@
             border: 2px solid rgba(255, 255, 255, 0.2);
             padding: 30px;
             border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
             width: 400px;
             text-align: center;
             position: relative;
             color: #fff;
+            opacity: 0; /* শুরুতে প্যানেলটি অদৃশ্য থাকবে, টম আসার পর শো করবে */
+            transform: translateY(30px);
         }
 
-        /* Tom কার্টুন ইমেজের স্টাইল */
-        .character-box {
-            width: 150px;
-            height: 150px;
+        /* টম প্যানেলে বসার জন্য নির্দিষ্ট জায়গা */
+        .character-holder {
+            width: 120px;
+            height: 120px;
             margin: 0 auto 20px;
-            overflow: hidden;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.2);
             border: 3px solid #fff;
+            position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        .character-box img {
-            width: 110%;
+        /* প্যানেলে সেট হওয়া টম ইমেজ */
+        .character-holder img {
+            width: 100%;
             height: auto;
-            object-fit: cover;
-            transform: translateY(5px);
+            opacity: 0; /* শুরুতে এটি ফাঁকা থাকবে */
+            transform: scale(0.5);
+            transition: opacity 0.3s, transform 0.5s ease;
         }
 
         h2 {
@@ -69,7 +88,6 @@
 
         .input-group {
             margin-bottom: 20px;
-            text-align: left;
         }
 
         .input-group input {
@@ -126,38 +144,32 @@
             cursor: pointer;
         }
 
-        /* ফর্ম স্যুইচিং অ্যানিমেশন ও হাইড করার জন্য */
         .form-panel {
             display: none;
         }
 
         .form-panel.active {
             display: block;
-            animation: fadeIn 0.5s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- Tom কার্টুন এর ইমেজ এরিয়া -->
-        <div class="character-box">
-            <!-- এখানে একটি চমৎকার Tom এর স্বচ্ছ (PNG) ইমেজ ব্যবহার করা হয়েছে -->
-            <img src="https://i.ibb.co/vYm6gPq/tom-transparent.png" alt="Tom Cartoon" id="cartoon-tom">
+    <!-- ১. অ্যানিমেটেড এন্ট্রি করার জন্য আলাদা টম ইমেজ -->
+    <img src="https://i.ibb.co/vYm6gPq/tom-transparent.png" class="tom-character" id="moving-tom" alt="Walking Tom">
+
+    <div class="container" id="login-container">
+        <!-- ২. টমের ফাইনাল ডেস্টিনেশন হোল্ডার -->
+        <div class="character-holder">
+            <img src="https://i.ibb.co/vYm6gPq/tom-transparent.png" id="final-tom" alt="Tom Frame">
         </div>
 
-        <!-- ================= SIGN UP / REGISTER FORM ================= -->
+        <!-- REGISTER FORM -->
         <div id="register-panel" class="form-panel active">
             <h2>Register Now</h2>
-            <p>Fill up this form to participate in our online session</p>
+            <p>Please enter your details to sign up</p>
             
             <form id="reg-form" onsubmit="event.preventDefault();">
-                <!-- প্রথম ধাপ: নাম ইনপুট -->
                 <div id="step-1">
                     <div class="input-group">
                         <input type="text" placeholder="First Name" required>
@@ -168,7 +180,6 @@
                     <button type="button" class="btn" onclick="nextStep()">NEXT</button>
                 </div>
 
-                <!-- দ্বিতীয় ধাপ: ইমেইল ও পাসওয়ার্ড (Next বাটনে ক্লিক করলে আসবে) -->
                 <div id="step-2" style="display: none;">
                     <div class="input-group">
                         <input type="email" placeholder="Email Address" required>
@@ -185,7 +196,7 @@
             </div>
         </div>
 
-        <!-- ================= LOGIN FORM ================= -->
+        <!-- LOGIN FORM -->
         <div id="login-panel" class="form-panel">
             <h2>Welcome Back</h2>
             <p>Please log in to your account</p>
@@ -206,39 +217,64 @@
         </div>
     </div>
 
-    <!-- JavaScript - ফর্মের গতিবিধি নিয়ন্ত্রণ করার জন্য -->
+    <!-- GSAP Entry Animation Script -->
     <script>
-        // Sign Up ফর্মের "Next" বাটনের কাজ
+        window.addEventListener('DOMContentLoaded', () => {
+            const tl = gsap.timeline();
+
+            // ধাপ ১: টম বাম পাশ থেকে হেঁটে স্ক্রিনের মাঝখানে (প্যানেলের পেছনে) আসবে
+            tl.to("#moving-tom", {
+                left: "calc(50% - 75px)", // স্ক্রিনের ঠিক মাঝখানে আসবে
+                bottom: "calc(50% + 40px)", // প্যানেলের বৃত্তের পজিশন অনুযায়ী উপরে উঠবে
+                duration: 2,
+                ease: "power2.out"
+            });
+
+            // ধাপ ২: টম গোল ফ্রেমে ঢোকার সাথে সাথে মেইন লগইন প্যানেলটি শো করবে (Fade In)
+            tl.to("#login-container", {
+                opacity: 1,
+                y: 0,
+                duration: 0.5,
+                ease: "power1.out"
+            }, "-=0.3"); // টম পৌঁছানোর সামান্য আগে প্যানেল আসবে
+
+            // ধাপ ৩: চলন্ত টমটি অদৃশ্য হয়ে যাবে এবং ফ্রেমের ভেতরের স্থায়ী টমটি পপ-আপ হবে
+            tl.to("#moving-tom", {
+                opacity: 0,
+                duration: 0.1,
+                onComplete: () => {
+                    const finalTom = document.getElementById('final-tom');
+                    finalTom.style.opacity = '1';
+                    finalTom.style.transform = 'scale(1)';
+                }
+            });
+        });
+
+        // Next বাটনের কাজ
         function nextStep() {
-            const step1 = document.getElementById('step-1');
-            const step2 = document.getElementById('step-2');
-            
-            // অ্যানিমেশনসহ প্রথম স্টেপ লুকিয়ে দ্বিতীয় স্টেপ দেখাবে
-            step1.style.display = 'none';
-            step2.style.display = 'block';
-            step2.style.animation = 'fadeIn 0.5s ease-in-out';
-            
-            // আপনি চাইলে এখানে টম-এর ইমেজ পরিবর্তন বা রিল্যাক্সিং কোনো এক্সপ্রেশন দিতে পারেন
-            document.getElementById('cartoon-tom').style.transform = 'scale(1.1) translateY(5px)';
+            gsap.to("#step-1", {opacity: 0, duration: 0.2, onComplete: () => {
+                document.getElementById('step-1').style.display = 'none';
+                const step2 = document.getElementById('step-2');
+                step2.style.display = 'block';
+                gsap.fromTo(step2, {opacity: 0, y: 10}, {opacity: 1, y: 0, duration: 0.3});
+            }});
         }
 
-        // Login এবং Register প্যানেলের মধ্যে স্যুইচ করার কাজ
+        // ফর্ম স্যুইচিং (Login / Register)
         function toggleForm(formType) {
-            const registerPanel = document.getElementById('register-panel');
-            const loginPanel = document.getElementById('login-panel');
-            const step1 = document.getElementById('step-1');
-            const step2 = document.getElementById('step-2');
+            const regPanel = document.getElementById('register-panel');
+            const logPanel = document.getElementById('login-panel');
 
             if (formType === 'login') {
-                registerPanel.classList.remove('active');
-                loginPanel.classList.add('active');
+                regPanel.classList.remove('active');
+                logPanel.classList.add('active');
+                gsap.fromTo(logPanel, {opacity: 0}, {opacity: 1, duration: 0.4});
             } else {
-                loginPanel.classList.remove('active');
-                registerPanel.classList.add('active');
-                // রেজিস্টার ফর্মে ফিরে গেলে আবার প্রথম স্টেপ থেকে শুরু হবে
-                step1.style.display = 'block';
-                step2.style.display = 'none';
-                document.getElementById('cartoon-tom').style.transform = 'scale(1) translateY(5px)';
+                logPanel.classList.remove('active');
+                regPanel.classList.add('active');
+                document.getElementById('step-1').style.display = 'block';
+                document.getElementById('step-2').style.style.display = 'none';
+                gsap.fromTo(regPanel, {opacity: 0}, {opacity: 1, duration: 0.4});
             }
         }
     </script>
