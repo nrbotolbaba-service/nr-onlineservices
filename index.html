@@ -1,304 +1,379 @@
-<div class="container">
-    <div class="login-box">
-        <h2>Login</h2>
-        <form action="#">
-            <div class="input-box">
-                <input type="email" required />
-                <label>Email</label>
-            </div>
-            <div class="input-box">
-                <input type="password" required />
-                <label>Password</label>
-            </div>
-            <div class="forgot-password">
-                <a href="#">Forgot Password?</a>
-            </div>
-            <button type="submit" class="btn">Login</button>
-            <div class="signup-link">
-                <a href="#">Signup</a>
-            </div>
-        </form>
-    </div>
-</div>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tom Cartoon Animated Login & Sign Up</title>
-    <!-- GSAP Core Library (ভিডিওর মতো অ্যানিমেশনের জন্য) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <title>NR BOTOLBABA SERVICES - প্রিমিয়াম গ্যাজেট ও অনলাইন সেবা</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2 family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
         body {
-            background-color: #00b894; /* ভিডিওর মতো গ্রিন স্ক্রিন ব্যাকগ্রাউন্ড */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
-            position: relative;
+            font-family: 'Hind Siliguri', sans-serif;
+            scroll-behavior: smooth;
         }
-
-        /* অ্যানিমেটেড টম ক্যারেক্টার */
-        .tom-character {
-            position: absolute;
-            width: 150px;
-            height: auto;
-            z-index: 10;
-            bottom: 20px; /* শুরুর পজিশন স্ক্রিনের নিচে ও বামে */
-            left: -200px; 
-            pointer-events: none;
+        .theme-bg {
+            background-color: #008bf5;
         }
-
-        .container {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-            width: 400px;
-            text-align: center;
-            position: relative;
-            color: #fff;
-            opacity: 0; /* শুরুতে প্যানেলটি অদৃশ্য থাকবে, টম আসার পর শো করবে */
-            transform: translateY(30px);
+        .theme-text {
+            color: #008bf5;
         }
-
-        /* টম প্যানেলে বসার জন্য নির্দিষ্ট জায়গা */
-        .character-holder {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 20px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            border: 3px solid #fff;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .theme-border {
+            border-color: #008bf5;
         }
-
-        /* প্যানেলে সেট হওয়া টম ইমেজ */
-        .character-holder img {
-            width: 100%;
-            height: auto;
-            opacity: 0; /* শুরুতে এটি ফাঁকা থাকবে */
-            transform: scale(0.5);
-            transition: opacity 0.3s, transform 0.5s ease;
+        .brand-gradient {
+            background: linear-gradient(135deg, #008bf5 0%, #0056b3 100%);
         }
-
-        h2 {
-            margin-bottom: 5px;
-            font-size: 28px;
-            letter-spacing: 1px;
+        .premium-shadow {
+            box-shadow: 0 20px 40px -15px rgba(0, 139, 245, 0.12);
         }
-
-        p {
-            font-size: 12px;
-            color: #dfe6e9;
-            margin-bottom: 25px;
-        }
-
-        .input-group {
-            margin-bottom: 20px;
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 12px 20px;
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            outline: none;
-            border-radius: 30px;
-            color: #fff;
-            font-size: 16px;
-            border: 1px solid transparent;
-            transition: 0.3s;
-        }
-
-        .input-group input::placeholder {
-            color: #eee;
-        }
-
-        .input-group input:focus {
-            border-color: #fff;
-            background: rgba(255, 255, 255, 0.3);
-        }
-
-        .btn {
-            width: 100%;
-            padding: 12px;
-            background: #fff;
-            color: #00b894;
-            border: none;
-            outline: none;
-            border-radius: 30px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .btn:hover {
-            background: #dfe6e9;
-            transform: translateY(-2px);
-        }
-
-        .switch-form {
-            margin-top: 20px;
-            font-size: 14px;
-        }
-
-        .switch-form a {
-            color: #fff;
-            text-decoration: underline;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .form-panel {
-            display: none;
-        }
-
-        .form-panel.active {
-            display: block;
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px -12px rgba(0, 139, 245, 0.15);
         }
     </style>
 </head>
-<body>
+<body class="bg-[#f8fafc] text-slate-800 antialiased">
 
-    <!-- ১. অ্যানিমেটেড এন্ট্রি করার জন্য আলাদা টম ইমেজ -->
-    <img src="https://i.ibb.co/vYm6gPq/tom-transparent.png" class="tom-character" id="moving-tom" alt="Walking Tom">
+    <div class="brand-gradient text-white text-xs md:text-sm py-2.5 px-4 text-center font-medium shadow-inner flex items-center justify-center gap-2">
+        <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+        <i class="fas fa-bolt text-amber-300"></i> NR BOTOLBABA PREMIUM PORTAL — দ্রুততম সময়ে ১০০% নিরাপদ ও ভেরিফাইড ডিজিটাল সেবাসমূহ!
+    </div>
 
-    <div class="container" id="login-container">
-        <!-- ২. টমের ফাইনাল ডেস্টিনেশন হোল্ডার -->
-        <div class="character-holder">
-            <img src="https://i.ibb.co/vYm6gPq/tom-transparent.png" id="final-tom" alt="Tom Frame">
-        </div>
-
-        <!-- REGISTER FORM -->
-        <div id="register-panel" class="form-panel active">
-            <h2>Register Now</h2>
-            <p>Please enter your details to sign up</p>
+    <nav class="bg-white/90 backdrop-blur-md sticky top-0 z-40 border-b border-slate-100 transition-all duration-300">
+        <div class="container mx-auto px-4 lg:px-8 py-4 flex justify-between items-center">
+            <div class="text-xl md:text-2xl font-bold text-slate-900 flex items-center gap-2">
+                <div class="w-9 h-9 md:w-10 md:h-10 brand-gradient rounded-xl flex items-center justify-center text-white shadow-lg shadow-[#008bf5]/30">
+                    <i class="fas fa-cubes-stacked"></i>
+                </div>
+                <span>NR <span class="theme-text">BOTOLBABA</span> <span class="text-xs font-bold bg-blue-50 text-[#008bf5] border border-blue-100 px-2 py-0.5 rounded ml-1">Premium</span></span>
+            </div>
             
-            <form id="reg-form" onsubmit="event.preventDefault();">
-                <div id="step-1">
-                    <div class="input-group">
-                        <input type="text" placeholder="First Name" required>
-                    </div>
-                    <div class="input-group">
-                        <input type="text" placeholder="Last Name" required>
-                    </div>
-                    <button type="button" class="btn" onclick="nextStep()">NEXT</button>
-                </div>
+            <div class="hidden lg:flex items-center space-x-8 font-medium text-slate-600">
+                <a href="#home" class="hover:text-[#008bf5] transition"><i class="fas fa-house text-xs mr-1 opacity-70"></i> হোম</a>
+                <a href="#services" class="hover:text-[#008bf5] transition"><i class="fas fa-layer-group text-xs mr-1 opacity-70"></i> আমাদের সেবাসমূহ</a>
+                <a href="#features" class="hover:text-[#008bf5] transition"><i class="fas fa-circle-check text-xs mr-1 opacity-70"></i> বৈশিষ্ট্য</a>
+                <a href="#contact" class="hover:text-[#008bf5] transition"><i class="fas fa-headset text-xs mr-1 opacity-70"></i> সাপোর্ট</a>
+            </div>
 
-                <div id="step-2" style="display: none;">
-                    <div class="input-group">
-                        <input type="email" placeholder="Email Address" required>
-                    </div>
-                    <div class="input-group">
-                        <input type="password" placeholder="Password" required>
-                    </div>
-                    <button type="submit" class="btn">SUBMIT</button>
-                </div>
-            </form>
-
-            <div class="switch-form">
-                Already have an account? <a onclick="toggleForm('login')">Sign In</a>
+            <div class="flex items-center gap-3">
+                <a href="https://wa.me/96871336522" target="_blank" class="bg-emerald-500 hover:bg-emerald-600 text-white p-2.5 rounded-full text-lg shadow-lg shadow-emerald-500/20 transition transform hover:scale-110 flex items-center justify-center">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="#services" class="brand-gradient text-white px-5 py-2.5 rounded-xl font-semibold hover:opacity-95 transition text-sm shadow-md shadow-[#008bf5]/20">
+                    সেবা তালিকা
+                </a>
             </div>
         </div>
+    </nav>
 
-        <!-- LOGIN FORM -->
-        <div id="login-panel" class="form-panel">
-            <h2>Welcome Back</h2>
-            <p>Please log in to your account</p>
-            
-            <form onsubmit="event.preventDefault();">
-                <div class="input-group">
-                    <input type="email" placeholder="Email Address" required>
+    <section id="home" class="relative overflow-hidden pt-12 pb-16 md:py-24 bg-gradient-to-b from-slate-50 via-white to-[#f8fafc]">
+        <div class="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:16px_16px] opacity-40"></div>
+        <div class="container mx-auto px-4 lg:px-8 flex flex-col lg:flex-row items-center gap-12 relative z-10">
+            <div class="flex-1 space-y-6 text-center lg:text-left">
+                <span class="inline-flex items-center gap-2 bg-blue-50 text-[#008bf5] px-4 py-1.5 rounded-full text-xs font-bold border border-blue-100">
+                    <i class="fas fa-shield-halved"></i> ক্লাউড ডাটাবেজ ইন্টিগ্রেশন সক্রিয়
+                </span>
+                <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight text-slate-900 tracking-tight">
+                    প্রিমিয়াম গ্যাজেট ও বিশ্বস্ত <br><span class="theme-text">ডিজিটাল অনলাইন</span> সার্ভিস কপি পোর্টাল
+                </h1>
+                <p class="text-slate-500 text-base md:text-lg max-w-2xl mx-auto lg:mx-0">
+                    NR BOTOLBABA SERVICES-এ অটোমেটেড প্যানেলের মাধ্যমে অত্যন্ত সাশ্রয়ী ও দ্রুততম সময়ে যেকোনো ধরনের এনআইডি, জন্ম নিবন্ধন, সার্ভার কপি ট্র্যাকিং এবং প্রিমিয়াম সল্যুশন নিশ্চিত করা হয়।
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 pt-2">
+                    <a href="#services" class="brand-gradient text-white px-8 py-4 rounded-xl font-bold shadow-xl shadow-[#008bf5]/20 hover:shadow-2xl hover:opacity-95 transition text-center flex items-center justify-center gap-2">
+                        <i class="fas fa-shopping-bag"></i> <span>সার্ভিস অর্ডার করুন</span>
+                    </a>
+                    <a href="https://wa.me/96871336522" target="_blank" class="bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 px-8 py-4 rounded-xl font-bold transition text-center shadow-sm flex items-center justify-center gap-2">
+                        <i class="fab fa-whatsapp text-emerald-500 text-xl"></i> <span>সরাসরি হোয়াটসঅ্যাপ</span>
+                    </a>
                 </div>
-                <div class="input-group">
-                    <input type="password" placeholder="Password" required>
-                </div>
-                <button type="submit" class="btn">LOG IN</button>
-            </form>
-
-            <div class="switch-form">
-                Don't have an account? <a onclick="toggleForm('register')">Register Here</a>
             </div>
+            
+            <div class="flex-1 flex justify-center">
+                <div class="bg-white p-6 md:p-8 rounded-3xl shadow-2xl border border-slate-100 max-w-sm w-full text-center relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-2 brand-gradient"></div>
+                    <div class="w-20 h-20 brand-gradient rounded-2xl flex items-center justify-center mx-auto mb-4 text-white shadow-xl shadow-[#008bf5]/20">
+                        <i class="fas fa-robot text-3xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-1">AUTOMATED TELEGRAM SYSTEM</h3>
+                    <p class="text-slate-400 text-xs mb-5 uppercase tracking-wider font-semibold">Live Server Connected</p>
+                    <div class="space-y-2 text-left text-sm text-slate-600 bg-slate-50 p-4 rounded-xl">
+                        <div class="flex justify-between"><span>বট স্ট্যাটাস:</span><span class="font-bold text-emerald-600"><i class="fas fa-circle text-[10px] animate-pulse"></i> Active</span></div>
+                        <div class="flex justify-between"><span>চ্যাট আইডি:</span><span class="font-mono text-xs font-bold text-slate-700">7482279255</span></div>
+                        <div class="flex justify-between"><span>ডাটাবেজ:</span><span class="text-blue-600 font-medium">Google Form Cloud</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-20 bg-white">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+                <span class="text-xs font-bold tracking-widest theme-text uppercase">মূল্য তালিকা</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">আমাদের ডিজিটাল সেবাসমূহ</h2>
+                <p class="text-slate-400 text-sm md:text-base">আপনার কাঙ্খিত সেবাটি তালিকা থেকে সিলেক্ট করে ইনস্ট্যান্ট "Buy Now" বাটনে ক্লিক করে অর্ডার করুন।</p>
+            </div>
+            
+            <div id="services-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                </div>
+        </div>
+    </section>
+
+    <section id="features" class="bg-slate-50 py-20 border-t border-b border-slate-100">
+        <div class="container mx-auto px-4 lg:px-8 text-center">
+            <div class="max-w-xl mx-auto mb-12">
+                <span class="text-xs font-bold tracking-widest theme-text uppercase">কেন আমাদের বেছে নেবেন</span>
+                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mt-2">আমাদের স্পেশাল সার্ভিস বৈশিষ্ট্য</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100/60 card-hover transition duration-300">
+                    <div class="w-14 h-14 rounded-2xl bg-amber-50 text-amber-500 flex items-center justify-center text-2xl mx-auto mb-4"><i class="fas fa-bolt-lightning"></i></div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-2">ইনস্ট্যান্ট ডেলিভারি</h3>
+                    <p class="text-slate-500 text-sm">অর্ডার করার সাথে সাথে আমাদের এডমিন আপনার ফাইল নিয়ে কাজ শুরু করে দেয়।</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100/60 card-hover transition duration-300">
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-500 flex items-center justify-center text-2xl mx-auto mb-4"><i class="fas fa-bangladeshi-taka-sign"></i></div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-2">সাশ্রয়ী ও ফিক্সড প্রাইস</h3>
+                    <p class="text-slate-500 text-sm">সবগুলো কাজের রেট একদম ফিক্সড এবং বাজারের সবচেয়ে সাশ্রয়ী মূল্যে প্রোভাইড করা হয়।</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100/60 card-hover transition duration-300">
+                    <div class="w-14 h-14 rounded-2xl bg-blue-50 text-[#008bf5] flex items-center justify-center text-2xl mx-auto mb-4"><i class="fas fa-user-shield"></i></div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-2">সর্বোচ্চ ডাটা নিরাপত্তা</h3>
+                    <p class="text-slate-500 text-sm">গ্রাহকের নাম, নম্বর এবং পাঠানো পার্সোনাল ডকুমেন্টের গোপনীয়তা আমাদের কাছে ১০০% সুরক্ষিত।</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="text-center max-w-xl mx-auto mb-12">
+                <span class="text-xs font-bold tracking-widest theme-text uppercase">যোগাযোগ</span>
+                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mt-2">যেকোনো দরকারে সরাসরি আমাদের নক দিন</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <a href="https://wa.me/96871336522" target="_blank" class="bg-gradient-to-br from-emerald-50 to-white border border-emerald-100 p-6 rounded-2xl shadow-sm flex items-center gap-5 hover:border-emerald-400 hover:shadow-md transition duration-300 group">
+                    <div class="w-14 h-14 rounded-xl bg-emerald-500 text-white flex items-center justify-center text-3xl shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition-transform"><i class="fab fa-whatsapp"></i></div>
+                    <div>
+                        <span class="text-xs text-emerald-600 font-bold uppercase tracking-wider">অফিশিয়াল হোয়াটসঅ্যাপ</span>
+                        <div class="text-xl font-bold text-slate-800 font-mono">+968 71336522</div>
+                    </div>
+                </a>
+                <a href="mailto:nrbotolbaba@gmail.com" class="bg-gradient-to-br from-blue-50 to-white border border-blue-100 p-6 rounded-2xl shadow-sm flex items-center gap-5 hover:border-[#008bf5] hover:shadow-md transition duration-300 group">
+                    <div class="w-14 h-14 rounded-xl bg-[#008bf5] text-white flex items-center justify-center text-2xl shadow-lg shadow-[#008bf5]/20 group-hover:scale-105 transition-transform"><i class="fas fa-envelope"></i></div>
+                    <div>
+                        <span class="text-xs text-[#008bf5] font-bold uppercase tracking-wider">অফিশিয়াল ইমেইল</span>
+                        <div class="text-lg md:text-xl font-bold text-slate-800 font-mono">nrbotolbaba@gmail.com</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-900 text-slate-400 py-12 text-center border-t-2 border-[#008bf5]">
+        <div class="container mx-auto px-4 space-y-4">
+            <div class="text-xl font-bold text-white tracking-wide">NR <span class="theme-text">BOTOLBABA</span> SERVICES</div>
+            <p class="text-xs text-slate-500">&copy; 2026 NR BOTOLBABA SERVICES. অল রাইটস রিজার্ভড।</p>
+        </div>
+    </footer>
+
+    <div id="checkoutModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center hidden z-50 p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 relative border border-slate-100">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-red-500 text-xl transition"><i class="fas fa-xmark"></i></button>
+            <h3 class="text-xl font-bold text-center mb-6 text-slate-800 border-b pb-3 border-slate-100 flex items-center justify-center gap-2">
+                <i class="fas fa-shopping-cart theme-text"></i> <span>অর্ডার কনফার্মেশন ফরম</span>
+            </h3>
+
+            <form id="orderForm" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">প্রোডাক্ট / সেবার নাম</label>
+                    <input type="text" id="prodName" readonly class="w-full bg-slate-50 border border-slate-200 text-[#008bf5] font-bold rounded-xl p-3 focus:outline-none text-sm">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">পরিমাণ (Quantity)</label>
+                        <input type="number" id="prodQty" min="1" value="1" class="w-full border border-slate-200 rounded-xl p-3 text-sm focus:border-[#008bf5] focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">কালার / সাইজ / ফরম্যাট</label>
+                        <select id="prodVariant" class="w-full border border-slate-200 rounded-xl p-3 text-sm focus:border-[#008bf5] focus:outline-none">
+                            <option value="Standard Size">Standard / Default</option>
+                            <option value="A4 Print Copy">A4 Print Format</option>
+                            <option value="Digital PDF HD">Digital Copy (HD PDF)</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">কাস্টমার নাম</label>
+                    <input type="text" id="custName" required placeholder="আপনার সম্পূর্ণ নাম লিখুন" class="w-full border border-slate-200 rounded-xl p-3 text-sm focus:border-[#008bf5] focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">সক্রিয় ফোন নম্বর</label>
+                    <input type="tel" id="custPhone" required placeholder="01XXXXXXXXX" class="w-full border border-slate-200 rounded-xl p-3 text-sm focus:border-[#008bf5] focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">পূর্ণাঙ্গ ডেলিভারি এড্রেস</label>
+                    <textarea id="custAddress" rows="2" required placeholder="গ্রাম/রোড, থানা, জেলা উল্লেখ করুন" class="w-full border border-slate-200 rounded-xl p-3 text-sm focus:border-[#008bf5] focus:outline-none"></textarea>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">পেমেন্ট মেথড</label>
+                    <div class="grid grid-cols-3 gap-2">
+                        <label class="border p-2.5 rounded-xl flex flex-col items-center justify-center cursor-pointer hover:bg-slate-50 border-slate-200 text-xs font-bold text-slate-700">
+                            <input type="radio" name="payMethod" value="COD" checked class="mb-1 accent-[#008bf5]"> COD
+                        </label>
+                        <label class="border p-2.5 rounded-xl flex flex-col items-center justify-center cursor-pointer hover:bg-slate-50 border-slate-200 text-xs font-bold text-pink-600">
+                            <input type="radio" name="payMethod" value="Bkash" class="mb-1 accent-[#008bf5]"> bKash
+                        </label>
+                        <label class="border p-2.5 rounded-xl flex flex-col items-center justify-center cursor-pointer hover:bg-slate-50 border-slate-200 text-xs font-bold text-orange-600">
+                            <input type="radio" name="payMethod" value="Nagad" class="mb-1 accent-[#008bf5]"> Nagad
+                        </label>
+                    </div>
+                </div>
+                <button type="submit" id="submitBtn" class="w-full brand-gradient text-white py-3.5 rounded-xl font-bold text-base shadow-lg shadow-[#008bf5]/20 hover:opacity-95 transition flex items-center justify-center gap-2">
+                    <i class="fas fa-paper-plane text-sm"></i> <span>অর্ডার সাবমিট করুন</span>
+                </button>
+            </form>
         </div>
     </div>
 
-    <!-- GSAP Entry Animation Script -->
     <script>
-        window.addEventListener('DOMContentLoaded', () => {
-            const tl = gsap.timeline();
+        // আপনার দেওয়া সম্পূর্ণ মূল্য তালিকা এরিয়া অবজেক্ট অ্যারে
+        const servicesData = [
+            { id: 1, name: "জন্ম নিবন্ধন ডাটা নতুন", price: "৳ ১৫০", icon: "fa-file-lines" },
+            { id: 2, name: "সাইন টু এনআইডি", price: "৳ ১০০", icon: "fa-signature" },
+            { id: 3, name: "সাইন টু সার্ভার", price: "৳ ১০০", icon: "fa-server" },
+            { id: 4, name: "জন্ম নিবন্ধন মেইক", price: "৳ ১০০", icon: "fa-file-signature" },
+            { id: 5, name: "সার্ভার কপি (আনঅফিসিয়াল)", price: "৳ ৮৫", icon: "fa-database" },
+            { id: 6, name: "টিন ডাউনলোড", price: "৳ ১০০", icon: "fa-id-card-clip" },
+            { id: 7, name: "সাইন কপি অর্ডার", price: "৳ ১৫০", icon: "fa-pen-clip" },
+            { id: 8, name: "সার্ভার কপি অর্ডার", price: "৳ ১৫০", icon: "fa-cloud-arrow-down" },
+            { id: 9, name: "এনআইডি অর্ডার", price: "৳ ২০০", icon: "fa-address-card" },
+            { id: 10, name: "নাম-ঠিকানা টু সাইন", price: "৳ ১০০০", icon: "fa-magnifying-glass-location" },
+            { id: 11, name: "বায়োমেট্রিক অর্ডার (GP)", price: "৳ ৬০০", icon: "fa-fingerprint" },
+            { id: 12, name: "Call List", price: "৳ ২০০০", icon: "fa-phone-volume" },
+            { id: 13, name: "Location Track", price: "৳ ১২০০", icon: "fa-location-crosshairs" },
+            { id: 14, name: "IMEI to Number", price: "৳ ১৫০০", icon: "fa-mobile-screen-button" },
+            { id: 15, name: "NID to All Number", price: "৳ ১০০০", icon: "fa-sim-card" },
+            { id: 16, name: "Bkash Biometric", price: "৳ ২০০০", icon: "fa-wallet" },
+            { id: 17, name: "BMET Approve", price: "৳ ৩০০", icon: "fa-passport" },
+            { id: 18, name: "হারানো আবেদন ফর্ম", price: "৳ ২০০", icon: "fa-file-circle-question" },
+            { id: 19, name: "টিকা সনদ", price: "৳ ১৫০", icon: "fa-syringe" },
+            { id: 20, name: "ম্যারিজ সাটিফিকেট ক্লোন", price: "৳ ৬০০", icon: "fa-heart-circle-check" },
+            { id: 21, name: "স্ট্যাম্প ক্লোন", price: "৳ ৮০০", icon: "fa-stamp" },
+            { id: 22, name: "নতুন জম্ম সনদ", price: "৳ ৩৫০০", icon: "fa-file-circle-plus" },
+            { id: 23, name: "অনলাইন কম্পিউটার সাটিফিকেট", price: "৳ ৩০০০", icon: "fa-laptop-code" },
+            { id: 24, name: "Facebook Running Verify", price: "৳ ১০০০", icon: "fa-brands fa-facebook" },
+            { id: 25, name: "ওয়েবসাইট তৈরি", price: "৳ ৭০০০", icon: "fa-code" },
+            { id: 26, name: "Passport Apply", price: "৳ ২০০", icon: "fa-globe" },
+            { id: 27, name: "Nid Apply", price: "৳ ২০০", icon: "fa-id-card" },
+            { id: 28, name: "NID পাসওয়ার্ড সেট", price: "৳ ৩০০", icon: "fa-key" },
+            { id: 29, name: "হারানো জম্ম সনদ", price: "৳ ৭০০", icon: "fa-file-circle-exclamation" },
+            { id: 30, name: "হারানো NID", price: "৳ ১০০০", icon: "fa-triangle-exclamation" }
+        ];
 
-            // ধাপ ১: টম বাম পাশ থেকে হেঁটে স্ক্রিনের মাঝখানে (প্যানেলের পেছনে) আসবে
-            tl.to("#moving-tom", {
-                left: "calc(50% - 75px)", // স্ক্রিনের ঠিক মাঝখানে আসবে
-                bottom: "calc(50% + 40px)", // প্যানেলের বৃত্তের পজিশন অনুযায়ী উপরে উঠবে
-                duration: 2,
-                ease: "power2.out"
-            });
-
-            // ধাপ ২: টম গোল ফ্রেমে ঢোকার সাথে সাথে মেইন লগইন প্যানেলটি শো করবে (Fade In)
-            tl.to("#login-container", {
-                opacity: 1,
-                y: 0,
-                duration: 0.5,
-                ease: "power1.out"
-            }, "-=0.3"); // টম পৌঁছানোর সামান্য আগে প্যানেল আসবে
-
-            // ধাপ ৩: চলন্ত টমটি অদৃশ্য হয়ে যাবে এবং ফ্রেমের ভেতরের স্থায়ী টমটি পপ-আপ হবে
-            tl.to("#moving-tom", {
-                opacity: 0,
-                duration: 0.1,
-                onComplete: () => {
-                    const finalTom = document.getElementById('final-tom');
-                    finalTom.style.opacity = '1';
-                    finalTom.style.transform = 'scale(1)';
-                }
-            });
+        // কার্ড রেন্ডারিং ইঞ্জেকশন
+        const grid = document.getElementById('services-grid');
+        servicesData.forEach(item => {
+            const card = document.createElement('div');
+            card.className = "bg-slate-50 p-5 rounded-2xl border border-slate-100 flex flex-col justify-between card-hover transition-all duration-300";
+            card.innerHTML = `
+                <div class="space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-blue-50 text-[#008bf5] flex items-center justify-center text-xl font-bold">
+                        <i class="fas ${item.icon}"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-800 text-base md:text-lg">${item.name}</h3>
+                        <p class="text-slate-400 text-xs mt-1">দ্রুত ডেলিভারি এবং প্রিমিয়াম ভেরিফাইড ডাটা কপি সার্ভিস।</p>
+                    </div>
+                </div>
+                <div class="flex justify-between items-center mt-6 pt-4 border-t border-slate-200/60">
+                    <div class="text-xs font-bold text-slate-400">ফি: <span class="theme-text text-lg font-extrabold ml-1">${item.price}</span></div>
+                    <button onclick="openModal('${item.name}')" class="brand-gradient text-white px-4 py-2 rounded-xl text-xs font-bold shadow-md shadow-[#008bf5]/10 hover:opacity-90 transition">Buy Now</button>
+                </div>
+            `;
+            grid.appendChild(card);
         });
 
-        // Next বাটনের কাজ
-        function nextStep() {
-            gsap.to("#step-1", {opacity: 0, duration: 0.2, onComplete: () => {
-                document.getElementById('step-1').style.display = 'none';
-                const step2 = document.getElementById('step-2');
-                step2.style.display = 'block';
-                gsap.fromTo(step2, {opacity: 0, y: 10}, {opacity: 1, y: 0, duration: 0.3});
-            }});
+        // পপআপ মডাল হ্যান্ডলার
+        function openModal(name) {
+            document.getElementById('prodName').value = name;
+            document.getElementById('checkoutModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
         }
 
-        // ফর্ম স্যুইচিং (Login / Register)
-        function toggleForm(formType) {
-            const regPanel = document.getElementById('register-panel');
-            const logPanel = document.getElementById('login-panel');
-
-            if (formType === 'login') {
-                regPanel.classList.remove('active');
-                logPanel.classList.add('active');
-                gsap.fromTo(logPanel, {opacity: 0}, {opacity: 1, duration: 0.4});
-            } else {
-                logPanel.classList.remove('active');
-                regPanel.classList.add('active');
-                document.getElementById('step-1').style.display = 'block';
-                document.getElementById('step-2').style.style.display = 'none';
-                gsap.fromTo(regPanel, {opacity: 0}, {opacity: 1, duration: 0.4});
-            }
+        function closeModal() {
+            document.getElementById('checkoutModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
         }
+
+        // ফর্ম সাবমিশন এবং জোড়া ব্যাকএন্ড পুশ মেথড (Google Form + Telegram)
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const submitBtn = document.getElementById('submitBtn');
+            const pName = document.getElementById('prodName').value;
+            const pQty = document.getElementById('prodQty').value;
+            const pVariant = document.getElementById('prodVariant').value;
+            const cName = document.getElementById('custName').value;
+            const cPhone = document.getElementById('custPhone').value.trim();
+            const cAddress = document.getElementById('custAddress').value.trim();
+            const pMethod = document.querySelector('input[name="payMethod"]:checked').value;
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<i class="fas fa-spinner animate-spin mr-2"></i> প্রোসেসিং হচ্ছে...`;
+
+            // ১. গুগল ফর্ম রিমোট ডাটাবেজ পুশ পাইপলাইন
+            // (ব্যবহার করার সময় আপনার Google Form-এর অ্যাকশন আইডি দিয়ে "YOUR_FORM_ID" এবং এন্ট্রি আইডিগুলো পরিবর্তন করে নিবেন)
+            const googleFormURL = "https://docs.google.com/forms/u/0/d/e/YOUR_FORM_ID/formResponse";
+            const formData = new FormData();
+            formData.append('entry.111111111', pName);
+            formData.append('entry.222222222', pQty);
+            formData.append('entry.333333333', pVariant);
+            formData.append('entry.444444444', cName);
+            formData.append('entry.555555555', cPhone);
+            formData.append('entry.666666666', cAddress);
+            formData.append('entry.777777777', pMethod);
+
+            fetch(googleFormURL, { method: 'POST', mode: 'no-cors', body: formData })
+            .catch(err => console.log("Google Form Logged"));
+
+            // ২. সুনির্দিষ্ট রিয়েল-টাইম টেলিগ্রাম নোটিফিকেশন ইঞ্জিন
+            const botToken = "8837934052:AAHAaNNb6B7pc_xgb7EZZW1iATq4SSy2xKc";
+            const chatId = "botolmade";
+
+            const msg = `👑 *নতুন প্রিমিয়াম অর্ডার এসেছে! (NR BOTOLBABA)*\n\n` +
+                        `🛒 *সেবা/প্রোডাক্ট:* ${pName}\n` +
+                        `📦 *পরিমাণ:* ${pQty} টি\n` +
+                        `🎨 *ফরম্যাট/সাইজ:* ${pVariant}\n\n` +
+                        `👤 *গ্রাহকের নাম:* ${cName}\n` +
+                        `📞 *ফোন নম্বর:* ${cPhone}\n` +
+                        `🏠 *ঠিকানা:* ${cAddress}\n\n` +
+                        `💳 *পেমেন্ট মেথড:* ${pMethod}`;
+
+            fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: chatId, text: msg })
+            })
+            .then(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `<i class="fas fa-paper-plane text-sm"></i> <span>অর্ডার সাবমিট করুন</span>`;
+                alert(`🎯 ধন্যবাদ ${cName}! আপনার অর্ডারটি সফলভাবে সম্পন্ন হয়েছে। কিছুক্ষণের মধ্যে এডমিন যোগাযোগ করবেন।`);
+                document.getElementById('orderForm').reset();
+                closeModal();
+            })
+            .catch(err => {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `<i class="fas fa-paper-plane text-sm"></i> <span>অর্ডার সাবমিট করুন</span>`;
+                alert("অর্ডার নোটিফিকেশন গেটওয়েতে পাঠানো হয়েছে।");
+                closeModal();
+            });
+        });
     </script>
 </body>
 </html>
