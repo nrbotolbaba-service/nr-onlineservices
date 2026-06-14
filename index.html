@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NR BOTOLBABA SERVICES</title>
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts for Bengali -->
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
@@ -27,7 +29,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 20px;
+            padding: 15px 20px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             position: sticky;
             top: 0;
@@ -37,43 +39,19 @@
         .brand-name {
             font-weight: 700;
             color: #1e293b;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
 
         .brand-name span {
             color: #059669;
         }
 
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
         .bismillah {
             border: 1px solid #10b981;
             color: #10b981;
-            padding: 4px 12px;
+            padding: 4px 14px;
             border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: bold;
-        }
-
-        .time-badge {
-            background-color: #f1f5f9;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            color: #475569;
-            font-weight: 600;
-        }
-
-        .balance-badge {
-            background-color: #06b6d4;
-            color: white;
-            padding: 6px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             font-weight: bold;
         }
 
@@ -84,7 +62,7 @@
             padding: 15px;
         }
 
-        /* Top Feature Grid */
+        /* Top Main Shortcut Grid */
         .feature-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -156,11 +134,38 @@
         .notice {
             font-size: 0.85rem;
             color: #e11d48;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             background-color: #ffe4e6;
             padding: 8px 12px;
             border-radius: 8px;
             font-weight: 600;
+        }
+
+        /* WhatsApp Admin Button */
+        .whatsapp-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background-color: #25d366;
+            color: white;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(37, 211, 102, 0.2);
+            transition: background-color 0.2s, transform 0.2s;
+        }
+
+        .whatsapp-btn:active {
+            transform: scale(0.98);
+            background-color: #1ebd58;
+        }
+
+        .whatsapp-btn i {
+            font-size: 1.4rem;
         }
 
         /* Price List Grid */
@@ -211,7 +216,7 @@
             width: fit-content;
         }
 
-        /* Dynamic Background Colors matching the vibe */
+        /* Dynamic Background Colors */
         .bg-green { background-color: #059669; }
         .bg-blue { background-color: #2563eb; }
         .bg-purple { background-color: #7c3aed; }
@@ -224,17 +229,16 @@
 </head>
 <body>
 
+    <!-- Top Header -->
     <div class="header">
-        <div class="brand-name">NR <span>BOTOLBABA</span></div>
-        <div class="header-right">
-            <div class="bismillah">بِسْمِ اللّٰهِ</div>
-            <div class="time-badge">04:29 AM</div>
-            <div class="balance-badge">৳ 0.00</div>
-        </div>
+        <div class="brand-name">NR <span>BOTOLBABA SERVICES</span></div>
+        <div class="bismillah">بِسْمِ اللّٰهِ</div>
     </div>
 
+    <!-- Main Container -->
     <div class="container">
 
+        <!-- Top Main Shortcuts -->
         <div class="feature-grid">
             <a href="#" class="feature-card">
                 <i class="fa-solid fa-pen-nib"></i>
@@ -256,9 +260,16 @@
             </a>
         </div>
 
+        <!-- Section Title -->
         <div class="section-title">সেবা মূল্য তালিকা</div>
-        <div class="notice">বি:দ্র: সেবা মূল্য তালিকা পরিবর্তনশীল, তাই অর্ডার এর আগে এডমিন এর সাথে যোগাযোগ করুন।</div>
+        <div class="notice">বি:দ্র: সেবা মূল্য পরিবর্তনশীল, তাই অর্ডার এর আগে এডমিন এর সাথে যোগাযোগ করুন।</div>
+        
+        <!-- Contact Admin WhatsApp Button -->
+        <a href="https://wa.me/96871336522" target="_blank" class="whatsapp-btn">
+            <i class="fa-brands fa-whatsapp"></i> Contact Admin via WhatsApp
+        </a>
 
+        <!-- Service Price List Grid -->
         <div class="price-grid">
             
             <div class="price-card bg-green">
