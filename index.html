@@ -3,21 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NR BOTOLBABA SERVICES</title>
-    <!-- Google Fonts for Premium Look -->
+    <title>NR BOTOLBABA SERVICES - Premium User Portal</title>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --bg-dark: #0a1128;
-            --card-bg: #121e40;
-            --accent-blue: #007bff;
+            --bg-dark: #070b19;
+            --card-bg: #111827;
             --accent-teal: #00f2fe;
+            --accent-blue: #3b82f6;
             --text-light: #ffffff;
-            --text-muted: #a0aec0;
-            --success-green: #2ecc71;
+            --text-muted: #9ca3af;
+            --gradient-primary: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+            --gradient-card: linear-gradient(145deg, #1f2937, #111827);
         }
 
         * {
@@ -30,310 +29,569 @@
         body {
             background-color: var(--bg-dark);
             color: var(--text-light);
-            padding-bottom: 40px;
+            padding-bottom: 60px;
         }
 
-        /* Top Header Navigation */
+        /* Top Navbar */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 15px 20px;
-            background: rgba(18, 30, 64, 0.8);
-            backdrop-filter: blur(10px);
+            background: rgba(17, 24, 39, 0.85);
+            backdrop-filter: blur(12px);
             position: sticky;
             top: 0;
             z-index: 100;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .brand-name {
-            font-size: 1.2rem;
+        .brand-logo {
+            font-size: 1.3rem;
             font-weight: 700;
-            background: linear-gradient(45deg, #00f2fe, #4facfe);
+            background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .balance-badge {
-            background: linear-gradient(135deg, #11998e, #38ef7d);
-            padding: 6px 15px;
-            border-radius: 20px;
+        .recharge-btn {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 25px;
             font-size: 0.9rem;
             font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
-        /* Main Container */
+        /* Container */
         .container {
-            max-width: 600px;
+            max-width: 700px;
             margin: 20px auto;
             padding: 0 15px;
         }
 
-        /* Live Clock Banner */
-        .live-clock-card {
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
-            border-radius: 15px;
+        /* Live Status Banner */
+        .status-banner {
+            background: linear-gradient(135deg, #1e3a8a, #0f172a);
+            border-radius: 16px;
             padding: 20px;
             text-align: center;
             margin-bottom: 25px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
         }
 
-        .live-clock-card h3 {
+        .status-banner h3 {
             font-size: 1.1rem;
-            margin-bottom: 5px;
             color: var(--accent-teal);
+            margin-bottom: 8px;
         }
 
-        #clock {
-            font-size: 2.2rem;
+        #live-clock {
+            font-size: 2.4rem;
             font-weight: 700;
-            letter-spacing: 2px;
-            margin: 10px 0;
-            text-shadow: 0 0 10px rgba(0,242,254,0.5);
+            letter-spacing: 1px;
+            text-shadow: 0 0 12px rgba(0, 242, 254, 0.4);
+            margin-bottom: 5px;
         }
 
-        /* Section Title */
-        .section-title {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
+        /* Search/Filter Bar */
+        .search-container {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 14px 20px 14px 45px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: #111827;
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .search-container input:focus {
+            border-color: var(--accent-teal);
+            box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
+        }
+
+        .search-container i {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        /* Section Styling */
+        .section-header {
+            font-size: 1.25rem;
+            margin: 25px 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
             border-left: 4px solid var(--accent-teal);
             padding-left: 10px;
         }
 
-        /* Grid Services Layout */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
+        /* Service Cards Layout List style for full descriptions */
+        .services-list {
+            display: flex;
+            flex-direction: column;
             gap: 15px;
-            margin-bottom: 30px;
         }
 
-        .service-card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 15px;
-            text-align: center;
-            transition: transform 0.2s, box-shadow 0.2s;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card:active {
-            transform: scale(0.95);
-        }
-
-        .service-card i {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-            color: var(--accent-teal);
-        }
-
-        .service-card h4 {
-            font-size: 0.95rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-            height: 40px;
+        .service-item {
+            background: var(--gradient-card);
+            border-radius: 14px;
+            padding: 18px;
             display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .price-tag {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 4px 10px;
-            border-radius: 15px;
-            font-size: 0.85rem;
-            color: #ffda79;
-            display: inline-block;
-        }
-
-        /* Special Badge for Premium items */
-        .badge-special {
-            position: absolute;
-            top: 0;
-            right: 0;
-            background: #ff4757;
-            color: #fff;
-            font-size: 0.65rem;
-            padding: 2px 8px;
-            border-bottom-left-radius: 8px;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-
-        /* Quick Action Admin WhatsApp Bar */
-        .whatsapp-bar {
-            background: #075e54;
-            color: white;
-            padding: 15px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
             justify-content: space-between;
-            text-decoration: none;
-            box-shadow: 0 5px 15px rgba(7, 94, 84, 0.3);
-            margin-top: 20px;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.2s, border-color 0.2s;
+            position: relative;
         }
 
-        .whatsapp-bar div {
+        .service-item:hover {
+            transform: translateY(-2px);
+            border-color: rgba(0, 242, 254, 0.3);
+        }
+
+        .service-details {
+            max-width: 75%;
+        }
+
+        .service-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 6px;
             display: flex;
             align-items: center;
+            gap: 8px;
+        }
+
+        .service-desc {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+            margin-bottom: 8px;
+        }
+
+        .service-meta {
+            display: flex;
             gap: 12px;
-        }
-
-        .whatsapp-bar i {
-            font-size: 1.8rem;
-        }
-
-        .whatsapp-bar h4 {
-            font-size: 1rem;
-            font-weight: 600;
-        }
-
-        .whatsapp-bar p {
             font-size: 0.8rem;
+        }
+
+        .meta-time {
+            color: #ffa502;
+            background: rgba(255, 165, 2, 0.1);
+            padding: 2px 8px;
+            border-radius: 6px;
+        }
+
+        .meta-status {
+            color: #2ed573;
+            background: rgba(46, 213, 115, 0.1);
+            padding: 2px 8px;
+            border-radius: 6px;
+        }
+
+        .service-action {
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
+        }
+
+        .service-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ffda79;
+        }
+
+        .order-btn {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: opacity 0.2s;
+        }
+
+        .order-btn:active {
             opacity: 0.8;
         }
 
-        .btn-contact {
-            background: #fff;
-            color: #075e54;
-            padding: 6px 12px;
+        /* Fixed Footer WhatsApp Sticky Bar */
+        .whatsapp-sticky {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #25d366;
+            color: #000;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+
+        .wa-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #ffffff;
+        }
+
+        .wa-info i {
+            font-size: 1.8rem;
+        }
+
+        .wa-info .text-container h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+        .wa-info .text-container p {
+            font-size: 0.75rem;
+            opacity: 0.9;
+        }
+
+        .wa-action-btn {
+            background: white;
+            color: #128c7e;
+            padding: 6px 15px;
             border-radius: 20px;
             font-size: 0.85rem;
-            font-weight: bold;
         }
-
-        /* Footer Info */
-        .footer-note {
-            text-align: center;
-            margin-top: 30px;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        /* Colors Varients for Cards to make it attractive like video */
-        .card-v1 { border-top: 3px solid #ff4757; }
-        .card-v2 { border-top: 3px solid #2ed573; }
-        .card-v3 { border-top: 3px solid #1e90ff; }
-        .card-v4 { border-top: 3px solid #ffa502; }
     </style>
 </head>
 <body>
 
-    <!-- Top Navigation -->
     <nav class="navbar">
-        <div class="brand-name">
-            <i class="fa-solid fa-robot"></i> NR BOTOLBABA
+        <div class="brand-logo">
+            <i class="fa-solid fa-server"></i> NR BOTOLBABA SERVICES
         </div>
-        <div class="balance-badge">
-            ৳ 230.00
-        </div>
+        <a href="https://wa.me/96871336522?text=আমি%20অ্যাকাউন্ট%20রিচার্জ%20করতে%20চাই।" class="recharge-btn" target="_blank">
+            <i class="fa-solid fa-wallet"></i> রিচার্জ করুন
+        </a>
     </nav>
 
     <div class="container">
 
-        <!-- Live Clock Section -->
-        <div class="live-clock-card">
-            <h3><i class="fa-solid fa-circle-dot" style="color: #2ecc71;"></i> বাংলাদেশ সময় (LIVE)</h3>
-            <div id="clock">00:00:00 PM</div>
-            <p style="font-size: 0.9rem; opacity: 0.7;" id="current-date">লোড হচ্ছে...</p>
+        <div class="status-banner">
+            <h3><i class="fa-solid fa-bolt" style="color: #ecc94b;"></i> আমাদের সকল অটো সার্ভার সচল আছে</h3>
+            <div id="live-clock">00:00:00 PM</div>
+            <p id="live-date" style="font-size: 0.9rem; opacity: 0.8;"></p>
         </div>
 
-        <!-- Services Section -->
-        <h3 class="section-title">আমাদের সেবা মূল্য তালিকা</h3>
+        <div class="search-container">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="searchService" onkeyup="filterServices()" placeholder="আপনার কাঙ্খিত সেবাটি সার্চ করুন...">
+        </div>
+
+        <h3 class="section-header"><i class="fa-solid fa-list-check"></i> একটিভ সার্ভিস তালিকা</h3>
         
-        <div class="services-grid">
-            <!-- Service 1 -->
-            <div class="service-card card-v1" onclick="orderService('NID Sign Copy')">
-                <span class="badge-special">Special</span>
-                <i class="fa-solid fa-id-card"></i>
-                <h4>NID Sign Copy / সার্ভার কপি</h4>
-                <div class="price-tag">৳ ৫০ টাকা</div>
-            </div>
-
-            <!-- Service 2 -->
-            <div class="service-card card-v2" onclick="orderService('NID Photo Copy')">
-                <i class="fa-solid fa-file-pdf"></i>
-                <h4>১০-১০-১৯ ভিজিট আইডি কার্ড</h4>
-                <div class="price-tag">৳ ১০০ টাকা</div>
-            </div>
-
-            <!-- Service 3 -->
-            <div class="service-card card-v3" onclick="orderService('Biometric Server')">
-                <i class="fa-solid fa-fingerprint"></i>
-                <h4>অফিসিয়াল বায়োমেট্রিক ফাইল</h4>
-                <div class="price-tag">৳ ২০০ টাকা</div>
-            </div>
-
-            <!-- Service 4 -->
-            <div class="service-card card-v4" onclick="orderService('Tin Certificate')">
-                <i class="fa-solid fa-file-invoice-dollar"></i>
-                <h4>টিন সার্টিফিকেট নিউ</h4>
-                <div class="price-tag">৳ ৩০০ টাকা</div>
-            </div>
-
-            <!-- Service 5 -->
-            <div class="service-card card-v1" onclick="orderService('Number Details')">
-                <i class="fa-solid fa-mobile-screen-button"></i>
-                <h4>নাম্বার টু লোকেশন ট্র্যাক</h4>
-                <div class="price-tag">৳ ৩০০ টাকা</div>
-            </div>
-
-            <!-- Service 6 -->
-            <div class="service-card card-v2" onclick="orderService('Birth Certificate')">
-                <i class="fa-solid fa-cake-candles"></i>
-                <h4>জন্ম নিবন্ধন ওটিপি চেঞ্জ</h4>
-                <div class="price-tag">৳ ৩৫০ টাকা</div>
-            </div>
-        </div>
-
-        <!-- Admin Contact Section -->
-        <h3 class="section-title">জরুরী যোগাযোগ</h3>
-        <a href="https://wa.me/96871336522?text=Hello%20NR%20Botolbaba%20Services,%20I%20need%20help." class="whatsapp-bar" target="_blank">
-            <div>
-                <i class="fa-brands fa-whatsapp"></i>
-                <div>
-                    <h4>এডমিন সাপোর্ট (WhatsApp)</h4>
-                    <p>যেকোনো সমস্যায় সরাসরি নক করুন</p>
+        <div class="services-list" id="servicesContainer">
+            
+            <div class="service-item">
+                <div class="service-details">
+                    <div class="service-title">ডিজিটাল জন্ম নিবন্ধন বের করুন</div>
+                    <div class="service-desc">শুধুমাত্র জন্ম নিবন্ধন নাম্বার দিয়ে অর্ডার করুন।</div>
+                    <div class="service-meta">
+                        <span class="meta-time"><i class="fa-regular fa-clock"></i> ১ ঘন্টা</span>
+                        <span class="meta-status">চালু আছে</span>
+                    </div>
+                </div>
+                <div class="service-action">
+                    <div class="service-price">৳৫০০</div>
+                    <button class="order-btn" onclick="triggerOrder('ডিজিটাল জন্ম নিবন্ধন বের করুন')">অর্ডার দিন</button>
                 </div>
             </div>
-            <div class="btn-contact">নক দিন</div>
-        </a>
 
-        <!-- Footer -->
-        <div class="footer-note">
-            <p>&copy; 2026 NR BOTOLBABA SERVICES. All Rights Reserved.</p>
+            <div class="service-item">
+                <div class="service-details">
+                    <div class="service-title">দলিল উত্তোলন (সারা বাংলাদেশ)</div>
+                    <div class="service-desc">শুধুমাত্র দাগ নাম্বার দিয়ে দলিল উত্তোলন করুন।</div>
+                    <div class="service-meta">
+                        <span class="meta-time"><i class="fa-regular fa-clock"></i> ৫ দিন</span>
+                        <span class="meta-status">চালু আছে</span>
+                    </div>
+                </div>
+                <div class="service-action">
+                    <div class="service-price">৳১০,২০০</div>
+                    <button class="order-btn" onclick="triggerOrder('দলিল উত্তোলন')">অর্ডার দিন</button>
+                </div>
+            </div>
+
+            <div class="service-item">
+                <div class="service-details">
+                    <div class="service-title">জন্ম নিবন্ধন ওটিপি ও মোবাইল চেঞ্জ</div>
+                    <div class="service-desc">সারা বাংলাদেশের জন্ম নিবন্ধন এর মোবাইল নাম্বার পরিবর্তন করে দেওয়া হয়।</div>
+                    <div class="service-meta">
+                        <span class="meta-time"><i class="fa-regular fa-clock"></i> ১ ঘন্টা</span>
+                        <span class="meta-status">চালু আছে</span>
+                    </div>
+                </div>
+                <div class="service-action">
+                    <div class="service-price">৳৩,২৫0</div>
+                    <button class="order-btn" onclick="triggerOrder('জন্ম নিবন্ধন ওটিপি চেঞ্জ')">অর্ডার দিন</button>
+                </div>
+            </div>
+
+            <div class="service-item">
+                <div class="service-details">
+                    <div class="service-title">কম্পিউটার ট্রেনিং সার্টিফিকেট</div>
+                    <div class="service-desc">অরিজিনাল কম্পিউটার ট্রেনিং সার্টিফিকেট পাবেন।</div>
+                    <div class="service-meta">
+                        <span class="meta-time"><i class="fa-regular fa-clock"></i> ৩ দিন</span>
+                        <span class="meta-status">চালু আছে</span>
+                    </div>
+                </div>
+                <div class="service-action">
+                    <div class="service-price">৳৬,৫০০</div>
+                    <button class="order-btn" onclick="triggerOrder('কম্পিউটার ট্রেনিং সার্টিফিকেট')">অর্ডার দিন</button>
+                </div>
+            </div>
+
+            <div class="service-item">
+                <div class="service-details">
+                    <div class="service-title">NID টু অল মোবাইল নাম্বার</div>
+                    <div class="service-desc">এনআইডি কার্ডে যা মোবাইল নাম্বার আছে সব মোবাইল নাম্বার পাবেন।</div>
+                    <div class="service-meta">
+                        <span class="meta-time"><i class="fa-regular fa-clock"></i> ইনস্ট্যান্ট</span>
+                        <span class="meta-status">চালু আছে</span>
+                    </div>
+                </div>
+                <div class="service-action">
+                    <div class="service-price">৳৪৫০</div>
+                    <button class="order-btn" onclick="triggerOrder('NID টু অল মোবাইল নাম্বার')">অর্ডার দিন</button>
+                </div>
+            </div>
+
+            <div class="service-item">
+                <div class="service-details">
+                    <div class="service-title">জন্ম নিবন্ধন সাধারণ কারেকশন</div>
+                    <div class="service-desc">শুধুমাত্র নিজের নাম, পিতার নাম, মাতার নাম, জন্মস্থান এবং ঠিকানা কারেকশন হবে।</div>
+                    <div class="service-meta">
+                        <span class="meta-time"><i class="fa-regular fa-clock"></i> ৩ দিন</span>
+                        <span class="meta-status">চালু আছে</span>
+                    </div>
+                </div>
+                <div class="service-action">
+                    <div class="service-price">৳৫,২০০</div>
+                    <button class="order-btn" onclick="triggerOrder('জন্ম নিবন্ধন সাধারণ কারেকশন')">অর্ডার দিন</button>
+                </div>
+            </div>
+
+            <div class="service-item">
+                <div class="service-details">
+                    <div class="service-title">ড্রাইভিং লাইসেন্স অরিজিনাল PDF</div>
+                    <div class="service-desc">মোবাইল নাম্বার, এনআইডি, পাসপোর্ট বা ড্রাইভিং লাইসেন্স নাম্বার যেকোনো একটি দিলেই হবে।</div>
+                    <div class="service-meta">
+                        <span class="meta-time"><i class="fa-regular fa-clock"></i> ২৪ ঘন্টা</span>
+                        <span class="meta-status">চালু আছে</span>
+                    </div>
+                </div>
+                <div class="service-action">
+                    <div class="service-price">৳১,৬০০</div>
+                    <button class="order-btn" onclick="triggerOrder('ড্রাইভিং লাইসেন্স বের করুন')">অর্ডার দিন</button>
+                </div>
+            </div>
+
+            <div class="service-item">
+                <div class="service-details">
+                    <div class="service-title">ভোটার তালিকা আপডেট ২০২৫-২০২৬</div>
+                    <div class="service-desc">আসন প্রতি, ছবি ছাড়া পাবেন। শুধু বিভাগ আর আসন লিখে দিন।</div>
+                    <div class="service-meta">
+                        <span class="meta-time"><i class="fa-regular fa-clock"></i> ৩ মিনিট</span>
+                        <span class="meta-status">চালু আছে</span>
+                    </div>
+                </div>
+                <div class="service-action">
+                    <div class="service-price">৳১০০</div>
+                    <button class="order-btn" onclick="triggerOrder('ভোটার তালিকা আপডেট')">অর্ডার দিন</button>
+                </div>
+            </div>
+
+            <div class="service-item">
+                <div class="service-details">
+                    <div class="service-title">বিদেশ থেকে নতুন ভোটার নিবন্ধন</div>
+                    <div class="service-desc">দেশের বাহিরে থেকে বাংলাদেশে ভোটার করে দিব, কাস্টমার আসা ছাড়া (পাসপোর্ট আবশ্যক)।</div>
+                    <div class="service-meta">
+                        <span class="meta-time"><i class="fa-regular fa-clock"></i> ৩ দিন</span>
+                        <span class="meta-status">চালু আছে</span>
+                    </div>
+                </div>
+                <div class="service-action">
+                    <div class="service-price">৳১৫,৫০০</div>
+                    <button class="order-btn" onclick="triggerOrder('বিদেশ থেকে নতুন ভোটার')">অর্ডার দিন</button>
+                </div>
+            </div>
+
+            <div class="service-item">
+                <div class="service-details">
+                    <div class="service-title">অফলাইন জন্ম নিবন্ধন অনলাইনকরণ</div>
+                    <div class="service-desc">যেগুলো জন্ম নিবন্ধন অফলাইন আছে, অনলাইন করে দিব। সারা বাংলাদেশের ৬৩ জেলা।</div>
+                    <div class="service-meta">
+                        <span class="meta-time"><i class="fa-regular fa-clock"></i> ৩ দিন</span>
+                        <span class="meta-status">চালু আছে</span>
+                    </div>
+                </div>
+                <div class="service-action">
+                    <div class="service-price">৳১৫,৪০০</div>
+                    <button class="order-btn" onclick="triggerOrder('অফলাইন জন্ম নিবন্ধন অনলাইন')">অর্ডার দিন</button>
+                </div>
+            </div>
+
+            <div class="service-item">
+                <div class="service-details">
+                    <div class="service-title">বিদেশি ব্যাংক একাউন্ট ইনফরমেশন</div>
+                    <div class="service-desc">শুধু অ্যাকাউন্ট নাম্বার দিয়ে অর্ডার করুন, পাসপোর্ট আইডি কার্ড সহ পাবেন।</div>
+                    <div class="service-meta">
+                        <span class="meta-time"><i class="fa-regular fa-clock"></i> ২ দিন</span>
+                        <span class="meta-status">চালু আছে</span>
+                    </div>
+                </div>
+                <div class="service-action">
+                    <div class="service-price">৳৯,০০০</div>
+                    <button class="order-btn" onclick="triggerOrder('বিদেশি ব্যাংক একাউন্ট ইনফরমেশন')">অর্ডার দিন</button>
+                </div>
+            </div>
+
+            <div class="service-item">
+                <div class="service-details">
+                    <div class="service-title">মোবাইল নাম্বার দিয়ে লাইভ লোকেশন</div>
+                    <div class="service-desc">মোবাইল নাম্বার দিয়ে ৪৭ মিনিটের জন্য নিখুঁত লাইভ লোকেশন ট্র্যাক পাবেন।</div>
+                    <div class="service-meta">
+                        <span class="meta-time"><i class="fa-regular fa-clock"></i> ৯ ঘন্টা</span>
+                        <span class="meta-status">চালু আছে</span>
+                    </div>
+                </div>
+                <div class="service-action">
+                    <div class="service-price">৳৫,৬০০</div>
+                    <button class="order-btn" onclick="triggerOrder('মোবাইল লাইভ লোকেশন')">অর্ডার দিন</button>
+                </div>
+            </div>
+
+            <div class="service-item">
+                <div class="service-details">
+                    <div class="service-title">স্মার্ট কার্ড ও সাইন কপি সার্ভার</div>
+                    <div class="service-desc">এনআইডি নম্বর বা ফর্ম নম্বর দিয়ে অরিজিনাল সাইন কপি বা স্মার্ট কার্ড ইনফো।</div>
+                    <div class="service-meta">
+                        <span class="meta-time"><i class="fa-regular fa-clock"></i> ২ মিনিট</span>
+                        <span class="meta-status">চালু আছে</span>
+                    </div>
+                </div>
+                <div class="service-action">
+                    <div class="service-price">৳৮০</div>
+                    <button class="order-btn" onclick="triggerOrder('স্মার্ট কার্ড সার্ভার কপি')">অর্ডার দিন</button>
+                </div>
+            </div>
+
+            <div class="service-item">
+                <div class="service-details">
+                    <div class="service-title">এনআইডি কার্ড সম্পূর্ণ ডিলিট সেবা</div>
+                    <div class="service-desc">বাংলাদেশের ৬৪ জেলার এন আইডি কার্ড ডাটাবেজ থেকে চিরতরে ডিলিট করে দেয়া হবে।</div>
+                    <div class="service-meta">
+                        <span class="meta-time"><i class="fa-regular fa-clock"></i> ৩ দিন</span>
+                        <span class="meta-status">চালু আছে</span>
+                    </div>
+                </div>
+                <div class="service-action">
+                    <div class="service-price">৳১৬,২০০</div>
+                    <button class="order-btn" onclick="triggerOrder('এনআইডি কার্ড ডিলিট')">অর্ডার দিন</button>
+                </div>
+            </div>
+
+            <div class="service-item">
+                <div class="service-details">
+                    <div class="service-title">বায়োমেট্রিক সিম ইনফরমেশন (সব অপারেটর)</div>
+                    <div class="service-desc">গ্রামীণফোন, রবি, বাংলালিংক, এয়ারটেল বা টেলিটক বায়োমেট্রিক চেক।</div>
+                    <div class="service-meta">
+                        <span class="meta-time"><i class="fa-regular fa-clock"></i> ১৫ মিনিট</span>
+                        <span class="meta-status">চালু আছে</span>
+                    </div>
+                </div>
+                <div class="service-action">
+                    <div class="service-price">৳৯০</div>
+                    <button class="order-btn" onclick="triggerOrder('বায়োমেট্রিক সিম ইনফো')">অর্ডার দিন</button>
+                </div>
+            </div>
+
         </div>
+
+        <p style="text-align:center; color: var(--text-muted); font-size:0.85rem; margin-top:25px;">
+            তালিকায় আপনার কাঙ্খিত সেবাটি না পেলে নিচে এডমিনকে সরাসরি মেসেজ দিন।
+        </p>
 
     </div>
 
-    <!-- Live Time and Action JavaScript -->
+    <a href="https://wa.me/96871336522?text=Hello%20NR%20Botolbaba%20Services,%20I%20need%20custom%20support." class="whatsapp-sticky" target="_blank">
+        <div class="wa-info">
+            <i class="fa-brands fa-whatsapp" style="color: #ffffff;"></i>
+            <div class="text-container">
+                <h4>হোয়াটসঅ্যাপ এডমিন সাপোর্ট</h4>
+                <p>+968 71336522 (ওমান অফিসিয়াল লাইন)</p>
+            </div>
+        </div>
+        <div class="wa-action-btn"><i class="fa-solid fa-headset"></i> নক দিন</div>
+    </a>
+
     <script>
-        // Real-time Bangladesh Clock Function
-        function updateClock() {
-            const now = new Date();
-            // Convert to Bangladesh Time Zone
-            const options = { timeZone: 'Asia/Dhaka', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+        // Clock implementation
+        function updateLiveClock() {
+            const timeOptions = { timeZone: 'Asia/Dhaka', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
             const dateOptions = { timeZone: 'Asia/Dhaka', weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             
-            const timeString = now.toLocaleTimeString('bn-BD', options);
-            const dateString = now.toLocaleDateString('bn-BD', dateOptions);
+            const now = new Date();
+            document.getElementById('live-clock').textContent = now.toLocaleTimeString('bn-BD', timeOptions);
+            document.getElementById('live-date').textContent = now.toLocaleDateString('bn-BD', dateOptions);
+        }
+        setInterval(updateLiveClock, 1000);
+        updateLiveClock();
 
-            document.getElementById('clock').textContent = timeString;
-            document.getElementById('current-date').textContent = dateString;
+        // Search engine filter logic
+        function filterServices() {
+            let input = document.getElementById('searchService').value.toLowerCase();
+            let items = document.getElementsByClassName('service-item');
+            
+            for (let i = 0; i < items.length; i++) {
+                let title = items[i].querySelector('.service-title').innerText.toLowerCase();
+                let desc = items[i].querySelector('.service-desc').innerText.toLowerCase();
+                if (title.includes(input) || desc.includes(input)) {
+                    items[i].style.display = "flex";
+                } else {
+                    items[i].style.display = "none";
+                }
+            }
         }
 
-        setInterval(updateClock, 1000);
-        updateClock(); // Initial Call
-
-        // Simple Order Functionality
-        function orderService(serviceName) {
-            alert("আপনি '" + serviceName + "' অর্ডার করতে চাচ্ছেন। এডমিনের সাথে যোগাযোগ করুন।");
+        // Trigger order button functionality redirecting to WhatsApp
+        function triggerOrder(serviceName) {
+            let encodedText = encodeURIComponent("হ্যালো এডমিন, আমি NR BOTOLBABA SERVICES থেকে '" + serviceName + "' এই সার্ভিসটি অর্ডার করতে চাই। দয়া করে প্রসেসটি জানান।");
+            window.open("https://wa.me/96871336522?text=" + encodedText, "_blank");
         }
     </script>
 </body>
