@@ -4,396 +4,337 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NR BOTOLBABA SERVICES</title>
-    <!-- Font Awesome Icons -->
+    <!-- Google Fonts for Premium Look -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts for Bengali -->
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
+        :root {
+            --bg-dark: #0a1128;
+            --card-bg: #121e40;
+            --accent-blue: #007bff;
+            --accent-teal: #00f2fe;
+            --text-light: #ffffff;
+            --text-muted: #a0aec0;
+            --success-green: #2ecc71;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Hind Siliguri', sans-serif;
+            font-family: 'Hind Siliguri', 'Poppins', sans-serif;
         }
 
         body {
-            background-color: #f5f7fb;
-            color: #333;
-            padding-bottom: 50px;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            padding-bottom: 40px;
         }
 
-        /* Top Header */
-        .header {
-            background-color: #ffffff;
+        /* Top Header Navigation */
+        .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 15px 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            background: rgba(18, 30, 64, 0.8);
+            backdrop-filter: blur(10px);
             position: sticky;
             top: 0;
             z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .brand-name {
-            font-weight: 700;
-            color: #1e293b;
             font-size: 1.2rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #00f2fe, #4facfe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .brand-name span {
-            color: #059669;
-        }
-
-        .bismillah {
-            border: 1px solid #10b981;
-            color: #10b981;
-            padding: 4px 14px;
+        .balance-badge {
+            background: linear-gradient(135deg, #11998e, #38ef7d);
+            padding: 6px 15px;
             border-radius: 20px;
-            font-size: 0.95rem;
-            font-weight: bold;
+            font-size: 0.9rem;
+            font-weight: 600;
         }
 
-        /* Container */
+        /* Main Container */
         .container {
             max-width: 600px;
-            margin: 0 auto;
-            padding: 15px;
+            margin: 20px auto;
+            padding: 0 15px;
         }
 
-        /* Top Main Shortcut Grid */
-        .feature-grid {
+        /* Live Clock Banner */
+        .live-clock-card {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .live-clock-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--accent-teal);
+        }
+
+        #clock {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin: 10px 0;
+            text-shadow: 0 0 10px rgba(0,242,254,0.5);
+        }
+
+        /* Section Title */
+        .section-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--accent-teal);
+            padding-left: 10px;
+        }
+
+        /* Grid Services Layout */
+        .services-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 15px;
             margin-bottom: 30px;
         }
 
-        .feature-card {
-            background-color: #0f172a;
-            color: white;
-            padding: 20px;
-            border-radius: 15px;
+        .service-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 15px;
             text-align: center;
-            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            cursor: pointer;
             position: relative;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-            transition: transform 0.2s;
+            overflow: hidden;
         }
 
-        .feature-card:active {
-            transform: scale(0.98);
+        .service-card:active {
+            transform: scale(0.95);
         }
 
-        .feature-card i {
-            font-size: 2rem;
-            color: #38bdf8;
+        .service-card i {
+            font-size: 1.8rem;
             margin-bottom: 10px;
-            display: block;
+            color: var(--accent-teal);
         }
 
-        .feature-card p {
-            font-size: 1.1rem;
+        .service-card h4 {
+            font-size: 0.95rem;
             font-weight: 600;
+            margin-bottom: 10px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .special-badge {
+        .price-tag {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            color: #ffda79;
+            display: inline-block;
+        }
+
+        /* Special Badge for Premium items */
+        .badge-special {
             position: absolute;
-            top: 8px;
-            right: 8px;
-            background-color: #38bdf8;
-            color: #0f172a;
+            top: 0;
+            right: 0;
+            background: #ff4757;
+            color: #fff;
             font-size: 0.65rem;
             padding: 2px 8px;
-            border-radius: 10px;
+            border-bottom-left-radius: 8px;
             font-weight: bold;
             text-transform: uppercase;
         }
 
-        /* Section Title */
-        .section-title {
-            font-size: 1.3rem;
-            color: #1e293b;
-            margin-bottom: 5px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 700;
-        }
-
-        .section-title::before {
-            content: '';
-            display: inline-block;
-            width: 5px;
-            height: 20px;
-            background-color: #059669;
-            border-radius: 2px;
-        }
-
-        .notice {
-            font-size: 0.85rem;
-            color: #e11d48;
-            margin-bottom: 10px;
-            background-color: #ffe4e6;
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-weight: 600;
-        }
-
-        /* WhatsApp Admin Button */
-        .whatsapp-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            background-color: #25d366;
+        /* Quick Action Admin WhatsApp Bar */
+        .whatsapp-bar {
+            background: #075e54;
             color: white;
+            padding: 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             text-decoration: none;
-            padding: 12px;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 1.05rem;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 6px rgba(37, 211, 102, 0.2);
-            transition: background-color 0.2s, transform 0.2s;
+            box-shadow: 0 5px 15px rgba(7, 94, 84, 0.3);
+            margin-top: 20px;
         }
 
-        .whatsapp-btn:active {
-            transform: scale(0.98);
-            background-color: #1ebd58;
-        }
-
-        .whatsapp-btn i {
-            font-size: 1.4rem;
-        }
-
-        /* Price List Grid */
-        .price-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
+        .whatsapp-bar div {
+            display: flex;
+            align-items: center;
             gap: 12px;
         }
 
-        .price-card {
-            color: white;
-            padding: 15px 10px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            min-height: 140px;
+        .whatsapp-bar i {
+            font-size: 1.8rem;
         }
 
-        .price-card .icon-circle {
-            background-color: rgba(255, 255, 255, 0.2);
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 8px;
-        }
-
-        .price-card h3 {
-            font-size: 0.95rem;
+        .whatsapp-bar h4 {
+            font-size: 1rem;
             font-weight: 600;
-            line-height: 1.4;
-            margin-bottom: 10px;
         }
 
-        .price-badge {
-            background-color: rgba(0, 0, 0, 0.3);
-            padding: 4px 15px;
+        .whatsapp-bar p {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .btn-contact {
+            background: #fff;
+            color: #075e54;
+            padding: 6px 12px;
             border-radius: 20px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: bold;
-            display: inline-block;
-            width: fit-content;
         }
 
-        /* Dynamic Background Colors */
-        .bg-green { background-color: #059669; }
-        .bg-blue { background-color: #2563eb; }
-        .bg-purple { background-color: #7c3aed; }
-        .bg-orange { background-color: #ea580c; }
-        .bg-pink { background-color: #db2777; }
-        .bg-teal { background-color: #0d9488; }
-        .bg-indigo { background-color: #4f46e5; }
-        .bg-red { background-color: #dc2626; }
+        /* Footer Info */
+        .footer-note {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Colors Varients for Cards to make it attractive like video */
+        .card-v1 { border-top: 3px solid #ff4757; }
+        .card-v2 { border-top: 3px solid #2ed573; }
+        .card-v3 { border-top: 3px solid #1e90ff; }
+        .card-v4 { border-top: 3px solid #ffa502; }
     </style>
 </head>
 <body>
 
-    <!-- Top Header -->
-    <div class="header">
-        <div class="brand-name">NR <span>BOTOLBABA SERVICES</span></div>
-        <div class="bismillah">بِسْمِ اللّٰهِ</div>
-    </div>
+    <!-- Top Navigation -->
+    <nav class="navbar">
+        <div class="brand-name">
+            <i class="fa-solid fa-robot"></i> NR BOTOLBABA
+        </div>
+        <div class="balance-badge">
+            ৳ 230.00
+        </div>
+    </nav>
 
-    <!-- Main Container -->
     <div class="container">
 
-        <!-- Top Main Shortcuts -->
-        <div class="feature-grid">
-            <a href="#" class="feature-card">
-                <i class="fa-solid fa-pen-nib"></i>
-                <p>Sign Copy</p>
-            </a>
-            <a href="#" class="feature-card">
-                <i class="fa-solid fa-id-card"></i>
-                <p>NID Copy</p>
-            </a>
-            <a href="#" class="feature-card">
-                <span class="special-badge">Special</span>
-                <i class="fa-solid fa-fingerprint"></i>
-                <p>Bio / Server</p>
-            </a>
-            <a href="#" class="feature-card">
-                <span class="special-badge">Special</span>
-                <i class="fa-solid fa-file-pdf"></i>
-                <p>File Order</p>
-            </a>
+        <!-- Live Clock Section -->
+        <div class="live-clock-card">
+            <h3><i class="fa-solid fa-circle-dot" style="color: #2ecc71;"></i> বাংলাদেশ সময় (LIVE)</h3>
+            <div id="clock">00:00:00 PM</div>
+            <p style="font-size: 0.9rem; opacity: 0.7;" id="current-date">লোড হচ্ছে...</p>
         </div>
 
-        <!-- Section Title -->
-        <div class="section-title">সেবা মূল্য তালিকা</div>
-        <div class="notice">বি:দ্র: সেবা মূল্য পরিবর্তনশীল, তাই অর্ডার এর আগে এডমিন এর সাথে যোগাযোগ করুন।</div>
+        <!-- Services Section -->
+        <h3 class="section-title">আমাদের সেবা মূল্য তালিকা</h3>
         
-        <!-- Contact Admin WhatsApp Button -->
-        <a href="https://wa.me/96871336522" target="_blank" class="whatsapp-btn">
-            <i class="fa-brands fa-whatsapp"></i> Contact Admin via WhatsApp
+        <div class="services-grid">
+            <!-- Service 1 -->
+            <div class="service-card card-v1" onclick="orderService('NID Sign Copy')">
+                <span class="badge-special">Special</span>
+                <i class="fa-solid fa-id-card"></i>
+                <h4>NID Sign Copy / সার্ভার কপি</h4>
+                <div class="price-tag">৳ ৫০ টাকা</div>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="service-card card-v2" onclick="orderService('NID Photo Copy')">
+                <i class="fa-solid fa-file-pdf"></i>
+                <h4>১০-১০-১৯ ভিজিট আইডি কার্ড</h4>
+                <div class="price-tag">৳ ১০০ টাকা</div>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="service-card card-v3" onclick="orderService('Biometric Server')">
+                <i class="fa-solid fa-fingerprint"></i>
+                <h4>অফিসিয়াল বায়োমেট্রিক ফাইল</h4>
+                <div class="price-tag">৳ ২০০ টাকা</div>
+            </div>
+
+            <!-- Service 4 -->
+            <div class="service-card card-v4" onclick="orderService('Tin Certificate')">
+                <i class="fa-solid fa-file-invoice-dollar"></i>
+                <h4>টিন সার্টিফিকেট নিউ</h4>
+                <div class="price-tag">৳ ৩০০ টাকা</div>
+            </div>
+
+            <!-- Service 5 -->
+            <div class="service-card card-v1" onclick="orderService('Number Details')">
+                <i class="fa-solid fa-mobile-screen-button"></i>
+                <h4>নাম্বার টু লোকেশন ট্র্যাক</h4>
+                <div class="price-tag">৳ ৩০০ টাকা</div>
+            </div>
+
+            <!-- Service 6 -->
+            <div class="service-card card-v2" onclick="orderService('Birth Certificate')">
+                <i class="fa-solid fa-cake-candles"></i>
+                <h4>জন্ম নিবন্ধন ওটিপি চেঞ্জ</h4>
+                <div class="price-tag">৳ ৩৫০ টাকা</div>
+            </div>
+        </div>
+
+        <!-- Admin Contact Section -->
+        <h3 class="section-title">জরুরী যোগাযোগ</h3>
+        <a href="https://wa.me/96871336522?text=Hello%20NR%20Botolbaba%20Services,%20I%20need%20help." class="whatsapp-bar" target="_blank">
+            <div>
+                <i class="fa-brands fa-whatsapp"></i>
+                <div>
+                    <h4>এডমিন সাপোর্ট (WhatsApp)</h4>
+                    <p>যেকোনো সমস্যায় সরাসরি নক করুন</p>
+                </div>
+            </div>
+            <div class="btn-contact">নক দিন</div>
         </a>
 
-        <!-- Service Price List Grid -->
-        <div class="price-grid">
-            
-            <div class="price-card bg-green">
-                <div class="icon-circle"><i class="fa-solid fa-database"></i></div>
-                <h3>রবি/এয়ারটেল অফিসিয়াল বায়োমেট্রিক</h3>
-                <div class="price-badge">১০০ টাকা</div>
-            </div>
-
-            <div class="price-card bg-blue">
-                <div class="icon-circle"><i class="fa-solid fa-database"></i></div>
-                <h3>বাংলালিংক অফিসিয়াল বায়োমেট্রিক</h3>
-                <div class="price-badge">৮০ টাকা</div>
-            </div>
-
-            <div class="price-card bg-purple">
-                <div class="icon-circle"><i class="fa-solid fa-database"></i></div>
-                <h3>টেলিটক অফিসিয়াল বায়োমেট্রিক</h3>
-                <div class="price-badge">২০০ টাকা</div>
-            </div>
-
-            <div class="price-card bg-orange">
-                <div class="icon-circle"><i class="fa-solid fa-database"></i></div>
-                <h3>গ্রামীণফোন অফিসিয়াল বায়োমেট্রিক</h3>
-                <div class="price-badge">১০০ টাকা</div>
-            </div>
-
-            <div class="price-card bg-pink">
-                <div class="icon-circle"><i class="fa-solid fa-list-ol"></i></div>
-                <h3>আইডি টু সকল নাম্বার</h3>
-                <div class="price-badge">৫৫০ টাকা</div>
-            </div>
-
-            <div class="price-card bg-teal">
-                <div class="icon-circle"><i class="fa-solid fa-location-dot"></i></div>
-                <h3>নাম্বার টু লোকেশন</h3>
-                <div class="price-badge">৩০০ টাকা</div>
-            </div>
-
-            <div class="price-card bg-indigo">
-                <div class="icon-circle"><i class="fa-solid fa-credit-card"></i></div>
-                <h3>নগদ Nid ইনফরমেশন</h3>
-                <div class="price-badge">৮৫০ টাকা</div>
-            </div>
-
-            <div class="price-card bg-red">
-                <div class="icon-circle"><i class="fa-solid fa-mobile-screen-button"></i></div>
-                <h3>IMEI টু এক্টিভ নাম্বার</h3>
-                <div class="price-badge">৭০০ টাকা</div>
-            </div>
-
-            <div class="price-card bg-green">
-                <div class="icon-circle"><i class="fa-solid fa-key"></i></div>
-                <h3>NID ইউজার আইডি পাসওয়ার্ড সেট</h3>
-                <div class="price-badge">১৬০ টাকা</div>
-            </div>
-
-            <div class="price-card bg-blue">
-                <div class="icon-circle"><i class="fa-solid fa-sim-card"></i></div>
-                <h3>নাম্বার টু লাস্ট আইমি নাম্বার</h3>
-                <div class="price-badge">৩০০ টাকা</div>
-            </div>
-
-            <div class="price-card bg-purple">
-                <div class="icon-circle"><i class="fa-solid fa-lock"></i></div>
-                <h3>জন্ম নিবন্ধনের OTP Change</h3>
-                <div class="price-badge">৩৫০ টাকা</div>
-            </div>
-
-            <div class="price-card bg-orange">
-                <div class="icon-circle"><i class="fa-solid fa-file-lines"></i></div>
-                <h3>জন্ম নিবন্ধন মিনিট্রি ডাটা ১ পিছ</h3>
-                <div class="price-badge">২০০ টাকা</div>
-            </div>
-
-            <div class="price-card bg-pink">
-                <div class="icon-circle"><i class="fa-solid fa-user-gear"></i></div>
-                <h3>টিন সার্টিফিকেট ইউজার পাসওয়ার্ড সেট</h3>
-                <div class="price-badge">২০০ টাকা</div>
-            </div>
-
-            <div class="price-card bg-teal">
-                <div class="icon-circle"><i class="fa-solid fa-shield-halved"></i></div>
-                <h3>NID পাসওয়ার্ড সেট</h3>
-                <div class="price-badge">২৫০ টাকা</div>
-            </div>
-
-            <div class="price-card bg-indigo">
-                <div class="icon-circle"><i class="fa-solid fa-wallet"></i></div>
-                <h3>Bikas info</h3>
-                <div class="price-badge">৮৫০ টাকা</div>
-            </div>
-
-            <div class="price-card bg-green">
-                <div class="icon-circle"><i class="fa-brands fa-whatsapp"></i></div>
-                <h3>বিদেশী নম্বরে Whatsapp একাউন্ট</h3>
-                <div class="price-badge">৩০০ টাকা</div>
-            </div>
-
-            <div class="price-card bg-orange">
-                <div class="icon-circle"><i class="fa-solid fa-money-bill-wave"></i></div>
-                <h3>রকেট ইনফো</h3>
-                <div class="price-badge">৮৫০ টাকা</div>
-            </div>
-
-            <div class="price-card bg-red">
-                <div class="icon-circle"><i class="fa-solid fa-phone-volume"></i></div>
-                <h3>৩ মাসের কল লিস্ট</h3>
-                <div class="price-badge">৭৫০ টাকা</div>
-            </div>
-
-            <div class="price-card bg-blue">
-                <div class="icon-circle"><i class="fa-solid fa-server"></i></div>
-                <h3>অফিসিয়াল সার্ভার কপি</h3>
-                <div class="price-badge">৬০ টাকা</div>
-            </div>
-
-            <div class="price-card bg-purple">
-                <div class="icon-circle"><i class="fa-solid fa-server"></i></div>
-                <h3>আন অফিসিয়াল সার্ভার</h3>
-                <div class="price-badge">৬০ টাকা</div>
-            </div>
-
+        <!-- Footer -->
+        <div class="footer-note">
+            <p>&copy; 2026 NR BOTOLBABA SERVICES. All Rights Reserved.</p>
         </div>
+
     </div>
 
+    <!-- Live Time and Action JavaScript -->
+    <script>
+        // Real-time Bangladesh Clock Function
+        function updateClock() {
+            const now = new Date();
+            // Convert to Bangladesh Time Zone
+            const options = { timeZone: 'Asia/Dhaka', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+            const dateOptions = { timeZone: 'Asia/Dhaka', weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            
+            const timeString = now.toLocaleTimeString('bn-BD', options);
+            const dateString = now.toLocaleDateString('bn-BD', dateOptions);
+
+            document.getElementById('clock').textContent = timeString;
+            document.getElementById('current-date').textContent = dateString;
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock(); // Initial Call
+
+        // Simple Order Functionality
+        function orderService(serviceName) {
+            alert("আপনি '" + serviceName + "' অর্ডার করতে চাচ্ছেন। এডমিনের সাথে যোগাযোগ করুন।");
+        }
+    </script>
 </body>
 </html>
