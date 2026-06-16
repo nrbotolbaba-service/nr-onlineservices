@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NR BOTOLBABA SERVICES - Price List</title>
-    <!-- Fonts -->
+    <title>NR BOTOLBABA SERVICES - Portal</title>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -37,9 +35,9 @@
         /* Navbar Navigation */
         .navbar {
             display: flex;
-            justify-content: space-between;
+            justify-content: center; /* Center aligned since recharge button is removed */
             align-items: center;
-            padding: 15px 20px;
+            padding: 18px 20px;
             background: rgba(17, 24, 39, 0.85);
             backdrop-filter: blur(12px);
             position: sticky;
@@ -49,7 +47,7 @@
         }
 
         .brand-logo {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: 700;
             background: var(--gradient-primary);
             -webkit-background-clip: text;
@@ -57,20 +55,6 @@
             display: flex;
             align-items: center;
             gap: 8px;
-        }
-
-        .recharge-btn {
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
-            padding: 8px 18px;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            text-decoration: none;
-            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
-            display: flex;
-            align-items: center;
-            gap: 6px;
         }
 
         /* Container */
@@ -186,7 +170,7 @@
         }
 
         .service-details {
-            max-width: 70%;
+            max-width: 65%;
         }
 
         .service-title {
@@ -215,85 +199,150 @@
             color: #ffda79;
         }
 
-        .order-btn {
-            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+        .contact-btn {
+            background: linear-gradient(135deg, #25d366, #128c7e);
             color: white;
-            padding: 5px 12px;
+            padding: 6px 14px;
             border-radius: 8px;
             font-size: 0.8rem;
             border: none;
             cursor: pointer;
             font-weight: 600;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
-        /* Fixed Footer WhatsApp Sticky Bar */
-        .whatsapp-sticky {
+        .contact-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Custom WhatsApp Popup Modal */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 2000; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0,0,0,0.7);
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background-color: #111827;
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 16px;
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-icon {
+            font-size: 3.5rem;
+            color: #25d366;
+            margin-bottom: 15px;
+        }
+
+        .modal h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .modal p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .whatsapp-number-display {
+            background: rgba(255,255,255,0.05);
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent-teal);
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            font-size: 0.95rem;
+        }
+
+        .btn-close {
+            background: #374151;
+            color: white;
+        }
+
+        .btn-go-wa {
+            background: #25d366;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            line-height: 1.5;
+        }
+
+        /* Fixed Footer Support Bar */
+        .footer-sticky-bar {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
-            background: #25d366;
-            color: white;
-            padding: 12px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            text-decoration: none;
-            font-weight: bold;
-            box-shadow: 0 -5px 15px rgba(0,0,0,0.3);
-            z-index: 1000;
-        }
-
-        .wa-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .wa-info i {
-            font-size: 1.8rem;
-        }
-
-        .wa-info .text-container h4 {
-            font-size: 0.95rem;
-            font-weight: 700;
-        }
-        .wa-info .text-container p {
-            font-size: 0.75rem;
-            opacity: 0.9;
-        }
-
-        .wa-action-btn {
-            background: white;
-            color: #128c7e;
-            padding: 6px 15px;
-            border-radius: 20px;
+            background: #1f2937;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding: 15px;
+            text-align: center;
             font-size: 0.85rem;
+            color: var(--text-muted);
+            z-index: 999;
         }
     </style>
 </head>
 <body>
 
-    <!-- Navbar Navigation -->
     <nav class="navbar">
         <div class="brand-logo">
             <i class="fa-solid fa-server"></i> NR BOTOLBABA SERVICES
         </div>
-        <a href="https://wa.me/96871336522?text=আমি%20অ্যাকাউন্ট%20রিচার্জ%20করতে%20চাই।" class="recharge-btn" target="_blank">
-            <i class="fa-solid fa-wallet"></i> রিচার্জ করুন
-        </a>
     </nav>
 
     <div class="container">
 
-        <!-- Live Clock Banner -->
         <div class="status-banner">
             <h3><i class="fa-solid fa-bolt" style="color: #ecc94b;"></i> আমাদের সকল অটো সার্ভার সচল আছে</h3>
             <div id="live-clock">00:00:00 PM</div>
             <p id="live-date" style="font-size: 0.9rem; opacity: 0.8;"></p>
         </div>
 
-        <!-- Special Warning Note Provided by User -->
         <div class="note-banner">
             <i class="fa-solid fa-triangle-exclamation" style="margin-top: 3px; font-size: 1.1rem;"></i>
             <div>
@@ -301,18 +350,15 @@
             </div>
         </div>
 
-        <!-- Search Bar -->
         <div class="search-container">
             <i class="fa-solid fa-magnifying-glass"></i>
             <input type="text" id="searchService" onkeyup="filterServices()" placeholder="সেবার নাম লিখে সার্চ করুন...">
         </div>
 
-        <!-- Services Section List -->
         <h3 class="section-header"><i class="fa-solid fa-tags"></i> নতুন আপডেট সেবা মূল্য তালিকা</h3>
         
         <div class="services-list" id="servicesContainer">
             
-            <!-- 1 -->
             <div class="service-item">
                 <div class="service-details">
                     <div class="service-title">NID / FROM / BIRTH / VOTAR / সাইন কপি</div>
@@ -320,23 +366,21 @@
                 </div>
                 <div class="service-action">
                     <div class="service-price">৳২০০</div>
-                    <button class="order-btn" onclick="triggerOrder('NID/FROM/BIRTH/VOTAR/সাইন কপি')">অর্ডার</button>
+                    <button class="contact-btn" onclick="openWhatsAppModal('NID/FROM/BIRTH/VOTAR/সাইন কপি')"><i class="fa-brands fa-whatsapp"></i> এডমিনের সাথে যোগাযোগ করুন</button>
                 </div>
             </div>
 
-            <!-- 2 -->
             <div class="service-item">
                 <div class="service-details">
                     <div class="service-title">১০-১৩-১৭ ডিজিট দিয়ে আইডি কার্ড</div>
-                    <div class="service-desc">সঠিক আইডি কার্ড সলিউশন</div>
+                    <div class="service-desc">সঠিক আইডি কার্ড সリューション</div>
                 </div>
                 <div class="service-action">
                     <div class="service-price">৳২৫০</div>
-                    <button class="order-btn" onclick="triggerOrder('১০-১৩-১৭ ডিজিট দিয়ে আইডি কার্ড')">অর্ডার</button>
+                    <button class="contact-btn" onclick="openWhatsAppModal('১০-১৩-১৭ ডিজিট দিয়ে আইডি কার্ড')"><i class="fa-brands fa-whatsapp"></i>  এডমিনের সাথে যোগাযোগ করুন</button>
                 </div>
             </div>
 
-            <!-- 3 -->
             <div class="service-item">
                 <div class="service-details">
                     <div class="service-title">রবি/এয়ারটেল অফিশিয়াল বায়োমেট্রিকে</div>
@@ -344,11 +388,10 @@
                 </div>
                 <div class="service-action">
                     <div class="service-price">৳২৫০</div>
-                    <button class="order-btn" onclick="triggerOrder('রবি/এয়ারটেল অফিশিয়াল বায়োমেট্রিকে')">অর্ডার</button>
+                    <button class="contact-btn" onclick="openWhatsAppModal('রবি/এয়ারটেল অফিশিয়াল বায়োমেট্রিকে')"><i class="fa-brands fa-whatsapp"></i> এডমিনের সাথে যোগাযোগ করুন</button>
                 </div>
             </div>
 
-            <!-- 4 -->
             <div class="service-item">
                 <div class="service-details">
                     <div class="service-title">বাংলালিংক অফিশিয়াল বায়োমেট্রিকে</div>
@@ -356,23 +399,21 @@
                 </div>
                 <div class="service-action">
                     <div class="service-price">৳২৩০</div>
-                    <button class="order-btn" onclick="triggerOrder('বাংলালিংক অফিশিয়াল বায়োমেট্রিকে')">অর্ডার</button>
+                    <button class="contact-btn" onclick="openWhatsAppModal('বাংলালিংক অফিশিয়াল বায়োমেট্রিকে')"><i class="fa-brands fa-whatsapp"></i> এডমিনের সাথে যোগাযোগ করুন</button>
                 </div>
             </div>
 
-            <!-- 5 -->
             <div class="service-item">
                 <div class="service-details">
-                    <div class="service-title">টেলিটক অফিশিয়াল বায়োমেট্রিকে</div>
+                    <div class="service-title">টলিটক অফিশিয়াল বায়োমেট্রিকে</div>
                     <div class="service-desc">বায়োমেট্রিক সিম ইনফরমেশন</div>
                 </div>
                 <div class="service-action">
                     <div class="service-price">৳৫০০</div>
-                    <button class="order-btn" onclick="triggerOrder('টেলিটক অফিশিয়াল বায়োমেট্রিকে')">অর্ডার</button>
+                    <button class="contact-btn" onclick="openWhatsAppModal('টলিটক অফিশিয়াল বায়োমেট্রিকে')"><i class="fa-brands fa-whatsapp"></i> এডমিনের সাথে যোগাযোগ করুন</button>
                 </div>
             </div>
 
-            <!-- 6 -->
             <div class="service-item">
                 <div class="service-details">
                     <div class="service-title">গ্রামীণফোন অফিশিয়াল বায়োমেট্রিকে</div>
@@ -380,11 +421,10 @@
                 </div>
                 <div class="service-action">
                     <div class="service-price">৳৩০০</div>
-                    <button class="order-btn" onclick="triggerOrder('গ্রামীণফোন অফিশিয়াল বায়োমেট্রিকে')">অর্ডার</button>
+                    <button class="contact-btn" onclick="openWhatsAppModal('গ্রামীণফোন অফিশিয়াল বায়োমেট্রিকে')"><i class="fa-brands fa-whatsapp"></i>  এডমিনের সাথে যোগাযোগ করুন</button>
                 </div>
             </div>
 
-            <!-- 7 -->
             <div class="service-item">
                 <div class="service-details">
                     <div class="service-title">আইডি টু সকল নাম্বার</div>
@@ -392,11 +432,10 @@
                 </div>
                 <div class="service-action">
                     <div class="service-price">৳১,০৫০</div>
-                    <button class="order-btn" onclick="triggerOrder('আইডি টু সকল নাম্বার')">অর্ডার</button>
+                    <button class="contact-btn" onclick="openWhatsAppModal('আইডি টু সকল নাম্বার')"><i class="fa-brands fa-whatsapp"></i>  এডমিনের সাথে যোগাযোগ করুন</button>
                 </div>
             </div>
 
-            <!-- 8 -->
             <div class="service-item">
                 <div class="service-details">
                     <div class="service-title">নাম্বার টু লোকেশন</div>
@@ -404,11 +443,10 @@
                 </div>
                 <div class="service-action">
                     <div class="service-price">৳৭০০</div>
-                    <button class="order-btn" onclick="triggerOrder('নাম্বার টু লোকেশন')">অর্ডার</button>
+                    <button class="contact-btn" onclick="openWhatsAppModal('নাম্বার টু লোকেশন')"><i class="fa-brands fa-whatsapp"></i>  এডমিনের সাথে যোগাযোগ করুন</button>
                 </div>
             </div>
 
-            <!-- 9 -->
             <div class="service-item">
                 <div class="service-details">
                     <div class="service-title">নগদ Nid ইনফরমেশন</div>
@@ -416,11 +454,10 @@
                 </div>
                 <div class="service-action">
                     <div class="service-price">৳২,০০০</div>
-                    <button class="order-btn" onclick="triggerOrder('নগদ Nid ইনফরমেশন')">অর্ডার</button>
+                    <button class="contact-btn" onclick="openWhatsAppModal('নগদ Nid ইনফরমেশন')"><i class="fa-brands fa-whatsapp"></i>  এডমিনের সাথে যোগাযোগ করুন</button>
                 </div>
             </div>
 
-            <!-- 10 -->
             <div class="service-item">
                 <div class="service-details">
                     <div class="service-title">IMEI টু একটিভ নাম্বার</div>
@@ -428,11 +465,10 @@
                 </div>
                 <div class="service-action">
                     <div class="service-price">৳২,৫০০</div>
-                    <button class="order-btn" onclick="triggerOrder('IMEI টু একটিভ নাম্বার')">অর্ডার</button>
+                    <button class="contact-btn" onclick="openWhatsAppModal('IMEI টু একটিভ নাম্বার')"><i class="fa-brands fa-whatsapp"></i>  এডমিনের সাথে যোগাযোগ করুন</button>
                 </div>
             </div>
 
-            <!-- 11 -->
             <div class="service-item">
                 <div class="service-details">
                     <div class="service-title">NID ইউজার আইডি পাসওয়ার্ড সেট</div>
@@ -440,11 +476,10 @@
                 </div>
                 <div class="service-action">
                     <div class="service-price">৳২৫০</div>
-                    <button class="order-btn" onclick="triggerOrder('NID ইউজার আইডি পাসওয়ার্ড সেট')">অর্ডার</button>
+                    <button class="contact-btn" onclick="openWhatsAppModal('NID ইউজার আইডি পাসওয়ার্ড সেট')"><i class="fa-brands fa-whatsapp"></i>  এডমিনের সাথে যোগাযোগ করুন</button>
                 </div>
             </div>
 
-            <!-- 12 -->
             <div class="service-item">
                 <div class="service-details">
                     <div class="service-title">নাম্বার টু লাস্ট আইমি নাম্বার</div>
@@ -452,11 +487,10 @@
                 </div>
                 <div class="service-action">
                     <div class="service-price">৳৯০০</div>
-                    <button class="order-btn" onclick="triggerOrder('নাম্বার টু লাস্ট আইমি নাম্বার')">অর্ডার</button>
+                    <button class="contact-btn" onclick="openWhatsAppModal('নাম্বার টু লাস্ট আইমি নাম্বার')"><i class="fa-brands fa-whatsapp"></i>  এডমিনের সাথে যোগাযোগ করুন</button>
                 </div>
             </div>
 
-            <!-- 13 -->
             <div class="service-item">
                 <div class="service-details">
                     <div class="service-title">জন্ম নিবন্ধনের OTP Change</div>
@@ -464,11 +498,10 @@
                 </div>
                 <div class="service-action">
                     <div class="service-price">৳৮৫০</div>
-                    <button class="order-btn" onclick="triggerOrder('জন্ম নিবন্ধনের OTP Change')">অর্ডার</button>
+                    <button class="contact-btn" onclick="openWhatsAppModal('জন্ম নিবন্ধনের OTP Change')"><i class="fa-brands fa-whatsapp"></i>  এডমিনের সাথে যোগাযোগ করুন</button>
                 </div>
             </div>
 
-            <!-- 14 -->
             <div class="service-item">
                 <div class="service-details">
                     <div class="service-title">জন্ম নিবন্ধন মিনিট্রি ডাটা ১ পিছ</div>
@@ -476,11 +509,10 @@
                 </div>
                 <div class="service-action">
                     <div class="service-price">৳৬৭০</div>
-                    <button class="order-btn" onclick="triggerOrder('জন্ম নিবন্ধন মিনিট্রি ডাটা ১ পিছ')">অর্ডার</button>
+                    <button class="contact-btn" onclick="openWhatsAppModal('জন্ম নিবন্ধন মিনিট্রি ডাটা ১ পিছ')"><i class="fa-brands fa-whatsapp"></i>  এডমিনের সাথে যোগাযোগ করুন</button>
                 </div>
             </div>
 
-            <!-- 15 -->
             <div class="service-item">
                 <div class="service-details">
                     <div class="service-title">টিন সার্টিফিকেট ইউজার পাসওয়ার্ড সেট</div>
@@ -488,11 +520,10 @@
                 </div>
                 <div class="service-action">
                     <div class="service-price">৳৫৮০</div>
-                    <button class="order-btn" onclick="triggerOrder('টিন সার্টিফিকেট ইউজার পাসওয়ার্ড সেট')">অর্ডার</button>
+                    <button class="contact-btn" onclick="openWhatsAppModal('টিন সার্টিফিকেট ইউজার পাসওয়ার্ড সেট')"><i class="fa-brands fa-whatsapp"></i>  এডমিনের সাথে যোগাযোগ করুন</button>
                 </div>
             </div>
 
-            <!-- 16 -->
             <div class="service-item">
                 <div class="service-details">
                     <div class="service-title">NID পাসওয়ার্ড সেট</div>
@@ -500,11 +531,10 @@
                 </div>
                 <div class="service-action">
                     <div class="service-price">৳৪০০</div>
-                    <button class="order-btn" onclick="triggerOrder('NID পাসওয়ার্ড সেট')">অর্ডার</button>
+                    <button class="contact-btn" onclick="openWhatsAppModal('NID পাসওয়ার্ড সেট')"><i class="fa-brands fa-whatsapp"></i>  এডমিনের সাথে যোগাযোগ করুন</button>
                 </div>
             </div>
 
-            <!-- 17 -->
             <div class="service-item">
                 <div class="service-details">
                     <div class="service-title">Bikas info</div>
@@ -512,11 +542,10 @@
                 </div>
                 <div class="service-action">
                     <div class="service-price">৳২,০০০</div>
-                    <button class="order-btn" onclick="triggerOrder('Bikas info')">অর্ডার</button>
+                    <button class="contact-btn" onclick="openWhatsAppModal('Bikas info')"><i class="fa-brands fa-whatsapp"></i>  এডমিনের সাথে যোগাযোগ করুন</button>
                 </div>
             </div>
 
-            <!-- 18 -->
             <div class="service-item">
                 <div class="service-details">
                     <div class="service-title">বিদেশী নম্বরে Whatsapp একাউন্ট</div>
@@ -524,11 +553,10 @@
                 </div>
                 <div class="service-action">
                     <div class="service-price">৳৬০০</div>
-                    <button class="order-btn" onclick="triggerOrder('বিদেশী নম্বরে Whatsapp একাউন্ট')">অর্ডার</button>
+                    <button class="contact-btn" onclick="openWhatsAppModal('বিদেশী নম্বরে Whatsapp একাউন্ট')"><i class="fa-brands fa-whatsapp"></i>  এডমিনের সাথে যোগাযোগ করুন</button>
                 </div>
             </div>
 
-            <!-- 19 -->
             <div class="service-item">
                 <div class="service-details">
                     <div class="service-title">রকেট ইনফো</div>
@@ -536,11 +564,10 @@
                 </div>
                 <div class="service-action">
                     <div class="service-price">৳২,০০০</div>
-                    <button class="order-btn" onclick="triggerOrder('রকেট ইনফো')">অর্ডার</button>
+                    <button class="contact-btn" onclick="openWhatsAppModal('রকেট ইনফো')"><i class="fa-brands fa-whatsapp"></i>  এডমিনের সাথে যোগাযোগ করুন</button>
                 </div>
             </div>
 
-            <!-- 20 -->
             <div class="service-item">
                 <div class="service-details">
                     <div class="service-title">৩ মাসের কল লিস্ট</div>
@@ -548,11 +575,10 @@
                 </div>
                 <div class="service-action">
                     <div class="service-price">৳২,৭০০</div>
-                    <button class="order-btn" onclick="triggerOrder('৩ মাসের কল লিস্ট')">অর্ডার</button>
+                    <button class="contact-btn" onclick="openWhatsAppModal('৩ মাসের কল লিস্ট')"><i class="fa-brands fa-whatsapp"></i>  এডমিনের সাথে যোগাযোগ করুন</button>
                 </div>
             </div>
 
-            <!-- 21 -->
             <div class="service-item">
                 <div class="service-details">
                     <div class="service-title">অফিসিয়াল সার্ভার কপি</div>
@@ -560,11 +586,10 @@
                 </div>
                 <div class="service-action">
                     <div class="service-price">৳২০০</div>
-                    <button class="order-btn" onclick="triggerOrder('অফিসিয়াল সার্ভার কপি')">অর্ডার</button>
+                    <button class="contact-btn" onclick="openWhatsAppModal('অফিসিয়াল সার্ভার কপি')"><i class="fa-brands fa-whatsapp"></i>  এডমিনের সাথে যোগাযোগ করুন</button>
                 </div>
             </div>
 
-            <!-- 22 -->
             <div class="service-item">
                 <div class="service-details">
                     <div class="service-title">আন অফিসিয়াল সার্ভার</div>
@@ -572,11 +597,10 @@
                 </div>
                 <div class="service-action">
                     <div class="service-price">৳২০০</div>
-                    <button class="order-btn" onclick="triggerOrder('আন অফিসিয়াল সার্ভার')">অর্ডার</button>
+                    <button class="contact-btn" onclick="openWhatsAppModal('আন অফিসিয়াল সার্ভার')"><i class="fa-brands fa-whatsapp"></i>  এডমিনের সাথে যোগাযোগ করুন</button>
                 </div>
             </div>
 
-            <!-- 23 -->
             <div class="service-item">
                 <div class="service-details">
                     <div class="service-title">টিন সার্টিফিকেট new</div>
@@ -584,11 +608,10 @@
                 </div>
                 <div class="service-action">
                     <div class="service-price">৳২৫০</div>
-                    <button class="order-btn" onclick="triggerOrder('টিন সার্টিফিকেট new')">অর্ডার</button>
+                    <button class="contact-btn" onclick="openWhatsAppModal('টিন সার্টিফিকেট new')"><i class="fa-brands fa-whatsapp"></i>  এডমিনের সাথে যোগাযোগ করুন</button>
                 </div>
             </div>
 
-            <!-- 24 -->
             <div class="service-item">
                 <div class="service-details">
                     <div class="service-title">নাম ঠিকানা দিয়ে আইডী কার্ড</div>
@@ -596,11 +619,10 @@
                 </div>
                 <div class="service-action">
                     <div class="service-price">৳২,০০০</div>
-                    <button class="order-btn" onclick="triggerOrder('নাম ঠিকানা দিয়ে আইডী কার্ড')">অর্ডার</button>
+                    <button class="contact-btn" onclick="openWhatsAppModal('নাম ঠিকানা দিয়ে আইডী কার্ড')"><i class="fa-brands fa-whatsapp"></i>  এডমিনের সাথে যোগাযোগ করুন</button>
                 </div>
             </div>
 
-            <!-- 25 -->
             <div class="service-item">
                 <div class="service-details">
                     <div class="service-title">সুরক্ষা ক্লোন সাটিফিকেট</div>
@@ -608,11 +630,10 @@
                 </div>
                 <div class="service-action">
                     <div class="service-price">৳২০০</div>
-                    <button class="order-btn" onclick="triggerOrder('সুরক্ষা ক্লোন সাটিফিকেট')">অর্ডার</button>
+                    <button class="contact-btn" onclick="openWhatsAppModal('সুরক্ষা ক্লোন সাটিফিকেট')"><i class="fa-brands fa-whatsapp"></i>  এডমিনের সাথে যোগাযোগ করুন</button>
                 </div>
             </div>
 
-            <!-- 26 -->
             <div class="service-item">
                 <div class="service-details">
                     <div class="service-title">MRP Passport SB Copy</div>
@@ -620,11 +641,10 @@
                 </div>
                 <div class="service-action">
                     <div class="service-price">৳৮৫০</div>
-                    <button class="order-btn" onclick="triggerOrder('MRP Passport SB Copy')">অর্ডার</button>
+                    <button class="contact-btn" onclick="openWhatsAppModal('MRP Passport SB Copy')"><i class="fa-brands fa-whatsapp"></i>  এডমিনের সাথে যোগাযোগ করুন</button>
                 </div>
             </div>
 
-            <!-- 27 -->
             <div class="service-item">
                 <div class="service-details">
                     <div class="service-title">হারানো সংশোধন ফরম উত্তলন</div>
@@ -632,11 +652,10 @@
                 </div>
                 <div class="service-action">
                     <div class="service-price">৳২০০</div>
-                    <button class="order-btn" onclick="triggerOrder('হারানো সংশোধন ফরম উত্তলন')">অর্ডার</button>
+                    <button class="contact-btn" onclick="openWhatsAppModal('হারানো সংশোধন ফরম উত্তলন')"><i class="fa-brands fa-whatsapp"></i>  এডমিনের সাথে যোগাযোগ করুন</button>
                 </div>
             </div>
 
-            <!-- 28 -->
             <div class="service-item">
                 <div class="service-details">
                     <div class="service-title">নাগরিক সনোদ</div>
@@ -644,11 +663,10 @@
                 </div>
                 <div class="service-action">
                     <div class="service-price">৳৩০০</div>
-                    <button class="order-btn" onclick="triggerOrder('নাগরিক সনোদ')">অর্ডার</button>
+                    <button class="contact-btn" onclick="openWhatsAppModal('নাগরিক সনোদ')"><i class="fa-brands fa-whatsapp"></i>  এডমিনের সাথে যোগাযোগ করুন</button>
                 </div>
             </div>
 
-            <!-- 29 -->
             <div class="service-item">
                 <div class="service-details">
                     <div class="service-title">ভূমি উন্নয়ন কর এর দাখিলা</div>
@@ -656,11 +674,10 @@
                 </div>
                 <div class="service-action">
                     <div class="service-price">৳২০০</div>
-                    <button class="order-btn" onclick="triggerOrder('ভূমি উন্নয়ন কর এর দাখিলা')">অর্ডার</button>
+                    <button class="contact-btn" onclick="openWhatsAppModal('ভূমি উন্নয়ন কর এর দাখিলা')"><i class="fa-brands fa-whatsapp"></i>  এডমিনের সাথে যোগাযোগ করুন</button>
                 </div>
             </div>
 
-            <!-- 30 -->
             <div class="service-item">
                 <div class="service-details">
                     <div class="service-title">সার্ভার কপি অফিসিয়াল</div>
@@ -668,11 +685,10 @@
                 </div>
                 <div class="service-action">
                     <div class="service-price">৳২৫০</div>
-                    <button class="order-btn" onclick="triggerOrder('সার্ভার কপি অফিসিয়াল')">অর্ডার</button>
+                    <button class="contact-btn" onclick="openWhatsAppModal('সার্ভার কপি অফিসিয়াল')"><i class="fa-brands fa-whatsapp"></i>  এডমিনের সাথে যোগাযোগ করুন</button>
                 </div>
             </div>
 
-            <!-- 31 -->
             <div class="service-item">
                 <div class="service-details">
                     <div class="service-title">হারানো টিন সারটিফিকেট</div>
@@ -680,11 +696,10 @@
                 </div>
                 <div class="service-action">
                     <div class="service-price">৳২২০</div>
-                    <button class="order-btn" onclick="triggerOrder('হারানো টিন সারটিফিকেট')">অর্ডার</button>
+                    <button class="contact-btn" onclick="openWhatsAppModal('হারানো টিন সারটিফিকেট')"><i class="fa-brands fa-whatsapp"></i>  এডমিনের সাথে যোগাযোগ করুন</button>
                 </div>
             </div>
 
-            <!-- 32 -->
             <div class="service-item">
                 <div class="service-details">
                     <div class="service-title">স্মার্ট কার্ড PDF</div>
@@ -692,11 +707,10 @@
                 </div>
                 <div class="service-action">
                     <div class="service-price">৳৪৫০</div>
-                    <button class="order-btn" onclick="triggerOrder('স্মার্ট কার্ড PDF')">অর্ডার</button>
+                    <button class="contact-btn" onclick="openWhatsAppModal('স্মার্ট কার্ড PDF')"><i class="fa-brands fa-whatsapp"></i>  এডমিনের সাথে যোগাযোগ করুন</button>
                 </div>
             </div>
 
-            <!-- 33 -->
             <div class="service-item">
                 <div class="service-details">
                     <div class="service-title">কল লিস্ট ৩ মাসের</div>
@@ -704,11 +718,10 @@
                 </div>
                 <div class="service-action">
                     <div class="service-price">৳১,১০০</div>
-                    <button class="order-btn" onclick="triggerOrder('কল লিস্ট ৩ মাসের')">অর্ডার</button>
+                    <button class="contact-btn" onclick="openWhatsAppModal('কল লিস্ট ৩ মাসের')"><i class="fa-brands fa-whatsapp"></i>  এডমিনের সাথে যোগাযোগ করুন</button>
                 </div>
             </div>
 
-            <!-- 34 -->
             <div class="service-item">
                 <div class="service-details">
                     <div class="service-title">কল লিস্ট ৬ মাসের</div>
@@ -716,11 +729,10 @@
                 </div>
                 <div class="service-action">
                     <div class="service-price">৳১,৮০০</div>
-                    <button class="order-btn" onclick="triggerOrder('কল লিস্ট ৬ মাসের')">অর্ডার</button>
+                    <button class="contact-btn" onclick="openWhatsAppModal('কল লিস্ট ৬ মাসের')"><i class="fa-brands fa-whatsapp"></i>  এডমিনের সাথে যোগাযোগ করুন</button>
                 </div>
             </div>
 
-            <!-- 35 -->
             <div class="service-item">
                 <div class="service-details">
                     <div class="service-title">টেকনিক্যাল ট্রেনিং সার্টিফিকেট</div>
@@ -728,11 +740,10 @@
                 </div>
                 <div class="service-action">
                     <div class="service-price">৳২,৫০০</div>
-                    <button class="order-btn" onclick="triggerOrder('টেকনিক্যাল ট্রেনিং সার্টিফিকেট')">অর্ডার</button>
+                    <button class="contact-btn" onclick="openWhatsAppModal('টেকনিক্যাল ট্রেনিং সার্টিফিকেট')"><i class="fa-brands fa-whatsapp"></i>  এডমিনের সাথে যোগাযোগ করুন</button>
                 </div>
             </div>
 
-            <!-- 36 -->
             <div class="service-item">
                 <div class="service-details">
                     <div class="service-title">বাংলাদেশের মৌজা ম্যাপ</div>
@@ -740,11 +751,10 @@
                 </div>
                 <div class="service-action">
                     <div class="service-price">৳২২০</div>
-                    <button class="order-btn" onclick="triggerOrder('বাংলাদেশের মৌজা ম্যাপ')">অর্ডার</button>
+                    <button class="contact-btn" onclick="openWhatsAppModal('বাংলাদেশের মৌজা ম্যাপ')"><i class="fa-brands fa-whatsapp"></i>  এডমিনের সাথে যোগাযোগ করুন</button>
                 </div>
             </div>
 
-            <!-- 37 -->
             <div class="service-item">
                 <div class="service-details">
                     <div class="service-title">নতুন নিবন্ধন নরমাল</div>
@@ -752,11 +762,10 @@
                 </div>
                 <div class="service-action">
                     <div class="service-price">৳২,৭০০</div>
-                    <button class="order-btn" onclick="triggerOrder('নতুন নিবন্ধন নরমাল')">অর্ডার</button>
+                    <button class="contact-btn" onclick="openWhatsAppModal('নতুন নিবন্ধন নরমাল')"><i class="fa-brands fa-whatsapp"></i>  এডমিনের সাথে যোগাযোগ করুন</button>
                 </div>
             </div>
 
-            <!-- 38 -->
             <div class="service-item">
                 <div class="service-details">
                     <div class="service-title">জন্ম নিবন্ধন মিনিট্রি</div>
@@ -764,11 +773,10 @@
                 </div>
                 <div class="service-action">
                     <div class="service-price">৳৩,৭০০</div>
-                    <button class="order-btn" onclick="triggerOrder('জন্ম নিবন্ধন মিনিট্রি')">অর্ডার</button>
+                    <button class="contact-btn" onclick="openWhatsAppModal('জন্ম নিবন্ধন মিনিট্রি')"><i class="fa-brands fa-whatsapp"></i>  এডমিনের সাথে যোগাযোগ করুন</button>
                 </div>
             </div>
 
-            <!-- 39 -->
             <div class="service-item">
                 <div class="service-details">
                     <div class="service-title">হারানো জন্ম সনদ উত্তোলন</div>
@@ -776,85 +784,14 @@
                 </div>
                 <div class="service-action">
                     <div class="service-price">৳৬০০</div>
-                    <button class="order-btn" onclick="triggerOrder('হারানো জন্ম সনদ উত্তোলন')">অর্ডার</button>
+                    <button class="contact-btn" onclick="openWhatsAppModal('হারানো জন্ম সনদ উত্তোলন')"><i class="fa-brands fa-whatsapp"></i>  এডমিনের সাথে যোগাযোগ করুন</button>
                 </div>
             </div>
 
-            <!-- 40 -->
             <div class="service-item">
                 <div class="service-details">
                     <div class="service-title">ভূমি সার্ভিস</div>
                     <div class="service-desc">জমি সংক্রান্ত যাবতীয় অনলাইন সেবা</div>
                 </div>
                 <div class="service-action">
-                    <div class="service-price">আলোচনা সাপেক্ষে</div>
-                    <button class="order-btn" onclick="triggerOrder('ভূমি সার্ভিস')">যোগাযোগ</button>
-                </div>
-            </div>
-
-            <!-- 41 -->
-            <div class="service-item">
-                <div class="service-details">
-                    <div class="service-title">ফেসবুক সার্ভিস</div>
-                    <div class="service-desc">পেজ, অ্যাকাউন্ট আনলক ও রিকভারি সেবা</div>
-                </div>
-                <div class="service-action">
-                    <div class="service-price">আলোচনা সাপেক্ষে</div>
-                    <button class="order-btn" onclick="triggerOrder('ফেসবুক সার্ভিস')">যোগাযোগ</button>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- Sticky WhatsApp Footer Contact -->
-    <a href="https://wa.me/96871336522?text=Hello%20NR%20Botolbaba%20Services,%20I%20want%20to%20order%20a%20service." class="whatsapp-sticky" target="_blank">
-        <div class="wa-info">
-            <i class="fa-brands fa-whatsapp"></i>
-            <div class="text-container">
-                <h4>হোয়াটসঅ্যাপ এডমিন সাপোর্ট</h4>
-                <p>+968 71336522 (যোগাযোগ করুন)</p>
-            </div>
-        </div>
-        <div class="wa-action-btn"><i class="fa-solid fa-headset"></i> নক দিন</div>
-    </a>
-
-    <!-- Scripts -->
-    <script>
-        // Bangladesh Real Time Clock
-        function updateLiveClock() {
-            const timeOptions = { timeZone: 'Asia/Dhaka', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
-            const dateOptions = { timeZone: 'Asia/Dhaka', weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            
-            const now = new Date();
-            document.getElementById('live-clock').textContent = now.toLocaleTimeString('bn-BD', timeOptions);
-            document.getElementById('live-date').textContent = now.toLocaleDateString('bn-BD', dateOptions);
-        }
-        setInterval(updateLiveClock, 1000);
-        updateLiveClock();
-
-        // Search Filter Engine
-        function filterServices() {
-            let input = document.getElementById('searchService').value.toLowerCase();
-            let items = document.getElementsByClassName('service-item');
-            
-            for (let i = 0; i < items.length; i++) {
-                let title = items[i].querySelector('.service-title').innerText.toLowerCase();
-                let desc = items[i].querySelector('.service-desc').innerText.toLowerCase();
-                if (title.includes(input) || desc.includes(input)) {
-                    items[i].style.display = "flex";
-                } else {
-                    items[i].style.display = "none";
-                }
-            }
-        }
-
-        // WhatsApp Order Link Generator
-        function triggerOrder(serviceName) {
-            let encodedText = encodeURIComponent("হ্যালো এডমিন, আমি NR BOTOLBABA SERVICES থেকে '" + serviceName + "' এই সার্ভিসটি নিতে চাই। বর্তমান রেট কত এবং কি কি লাগবে দয়া করে জানান।");
-            window.open("https://wa.me/96871336522?text=" + encodedText, "_blank");
-        }
-    </script>
-</body>
-</html>
+                    <div class="service-price">আলো
