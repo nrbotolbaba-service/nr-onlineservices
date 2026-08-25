@@ -1,204 +1,470 @@
-import os, zipfile, textwrap, json
-
-base = "/mnt/data/scaffolder-training-verification"
-os.makedirs(base, exist_ok=True)
-
-index_html = r'''<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scaffolder Training Verification</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TÜV SÜD MIDDLE EAST - Certificate Verification</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #f4f6f8;
+            color: #333;
+        }
+
+        /* Top Cookie Notice */
+        .cookie-banner {
+            background-color: #0b3c5d;
+            color: #ffffff;
+            padding: 10px 15px;
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cookie-banner button {
+            background: #ffffff;
+            color: #0b3c5d;
+            border: none;
+            padding: 5px 12px;
+            font-size: 11px;
+            cursor: pointer;
+            border-radius: 2px;
+            font-weight: bold;
+        }
+
+        /* Header / Navbar */
+        header {
+            background-color: #ffffff;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #00457c;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-box {
+            width: 38px;
+            height: 38px;
+            background-color: #00457c;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            border-radius: 4px;
+            font-size: 10px;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .brand-title {
+            color: #00457c;
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .home-btn {
+            border: 1px solid #ccc;
+            padding: 6px 14px;
+            background: #ffffff;
+            color: #555;
+            font-size: 12px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        /* Search Box Section */
+        .search-container {
+            max-width: 750px;
+            margin: 25px auto 15px auto;
+            padding: 0 15px;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 10px;
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 10px 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .search-box input:focus {
+            border-color: #00457c;
+        }
+
+        .search-box button {
+            padding: 10px 22px;
+            background-color: #00457c;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .search-box button:hover {
+            background-color: #00335e;
+        }
+
+        /* Status Messages */
+        .status-msg {
+            display: none;
+            max-width: 750px;
+            margin: 10px auto;
+            padding: 12px;
+            text-align: center;
+            font-size: 14px;
+            border-radius: 4px;
+        }
+
+        .error-msg {
+            color: #a94442;
+            background-color: #f2dede;
+            border: 1px solid #ebccd1;
+        }
+
+        .loading-msg {
+            color: #31708f;
+            background-color: #d9edf7;
+            border: 1px solid #bce8f1;
+        }
+
+        /* Main Result Card */
+        .cert-card {
+            display: none;
+            max-width: 750px;
+            margin: 20px auto 40px auto;
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            padding: 25px;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 25px;
+        }
+
+        @media (max-width: 600px) {
+            .cert-grid {
+                grid-template-columns: 1fr;
+            }
+            .profile-col {
+                margin-bottom: 10px;
+            }
+        }
+
+        /* Profile Side (Left) */
+        .profile-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 175px;
+            object-fit: cover;
+            border: 1px solid #ccc;
+            background-color: #f0f0f0;
+        }
+
+        .name-banner {
+            width: 150px;
+            background-color: #007bff;
+            color: #ffffff;
+            text-align: center;
+            padding: 8px 5px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: -3px;
+        }
+
+        .date-info {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 11px;
+            color: #555;
+            line-height: 1.4;
+        }
+
+        /* Data Fields Side (Right) */
+        .details-col {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .cert-id {
+            color: #0066cc;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+
+        .field-row {
+            display: flex;
+            align-items: center;
+            font-size: 11px;
+        }
+
+        .field-label {
+            width: 150px;
+            color: #555;
+            text-transform: uppercase;
+            font-weight: bold;
+            padding-right: 10px;
+        }
+
+        .field-value {
+            flex: 1;
+            background-color: #e9ecef;
+            padding: 7px 10px;
+            color: #222;
+            font-size: 11px;
+            border-radius: 2px;
+            min-height: 14px;
+            word-break: break-word;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #efebe8;
+            padding: 20px;
+            text-align: center;
+            font-size: 11px;
+            color: #666;
+            margin-top: 50px;
+        }
+
+        footer .links {
+            margin-top: 8px;
+        }
+
+        footer .links a {
+            color: #0066cc;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+    </style>
 </head>
 <body>
-  <div class="cookie" id="cookie">
-    <span>This website uses cookies to provide the best possible user experience.</span>
-    <button onclick="document.getElementById('cookie').remove()">Accept & Close</button>
-  </div>
 
-  <header>
-    <div class="brand">
-      <div class="logo">STV</div>
-      <div>Scaffolder Training Verification</div>
+    <!-- Cookie Notice -->
+    <div class="cookie-banner">
+        <span>Site uses cookies to give you the best possible user experience. To find out more please view our <b>Cookies Policy</b>.</span>
+        <button onclick="this.parentElement.style.display='none'">Accept & Close</button>
     </div>
-    <a class="home" href="index.html">HOME</a>
-  </header>
 
-  <main class="container">
-    <section class="hero">
-      <h1>Training Certificate Verification</h1>
-      <p>Enter a valid verification number to check training details.</p>
-      <form id="verifyForm">
-        <input id="certNo" type="text" placeholder="Enter verification number" autocomplete="off" required>
-        <button type="submit">VERIFY</button>
-      </form>
-      <p class="hint">Demo number: <strong>STV-OM-250M-2179</strong></p>
-      <div id="message"></div>
-    </section>
-  </main>
+    <!-- Header / Navbar -->
+    <header>
+        <div class="brand-logo">
+            <div class="logo-box">TÜV<br>SÜD</div>
+            <div class="brand-title">TÜV SÜD MIDDLE EAST</div>
+        </div>
+        <button class="home-btn">HOME</button>
+    </header>
 
-  <footer>
-    <div>© 2026 Scaffolder Training Verification. All Rights Reserved.</div>
-    <div><a href="#">About</a> · <a href="#">Privacy Policy</a> · <a href="admin.html">Admin</a></div>
-  </footer>
-
-  <script src="app.js"></script>
-</body>
-</html>'''
-
-verify_html = r'''<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Verification Result - Scaffolder Training Verification</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header>
-    <div class="brand">
-      <div class="logo">STV</div>
-      <div>Scaffolder Training Verification</div>
+    <!-- Search Section -->
+    <div class="search-container">
+        <div class="search-box">
+            <input type="text" id="certInput" placeholder="Enter Verification No. (e.g. 121)">
+            <button onclick="searchCertificate()">VERIFY</button>
+        </div>
     </div>
-    <a class="home" href="index.html">HOME</a>
-  </header>
 
-  <main class="container">
-    <div id="result"></div>
-  </main>
+    <!-- Messages -->
+    <div id="loadingBox" class="status-msg loading-msg">Searching... Please wait.</div>
+    <div id="errorBox" class="status-msg error-msg">Certificate Not Found</div>
 
-  <footer>
-    <div>© 2026 Scaffolder Training Verification. All Rights Reserved.</div>
-    <div><a href="#">About</a> · <a href="#">Privacy Policy</a></div>
-  </footer>
-  <script src="app.js"></script>
-</body>
-</html>'''
+    <!-- Result Display Card -->
+    <div id="certCard" class="cert-card">
+        <div class="cert-grid">
+            
+            <!-- Left Side: Profile Image & Name -->
+            <div class="profile-col">
+                <img id="photoUrl" src="" alt="Candidate Photo" class="profile-img">
+                <div id="candidateName" class="name-banner"></div>
+                
+                <div class="date-info">
+                    <strong>Last Updated/<br>Printed Date:</strong><br>
+                    <span id="printDate"></span>
+                </div>
+            </div>
 
-admin_html = r'''<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin - Scaffolder Training Verification</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header>
-    <div class="brand">
-      <div class="logo">STV</div>
-      <div>Scaffolder Training Verification</div>
+            <!-- Right Side: Details from Apps Script -->
+            <div class="details-col">
+                <div id="certNo" class="cert-id"></div>
+
+                <div class="field-row">
+                    <div class="field-label">TYPE</div>
+                    <div id="type" class="field-value"></div>
+                </div>
+
+                <div class="field-row">
+                    <div class="field-label">COMPANY NAME</div>
+                    <div id="companyName" class="field-value"></div>
+                </div>
+
+                <div class="field-row">
+                    <div class="field-label">LOCATION</div>
+                    <div id="location" class="field-value"></div>
+                </div>
+
+                <div class="field-row">
+                    <div class="field-label">COUNTRY</div>
+                    <div id="country" class="field-value"></div>
+                </div>
+
+                <div class="field-row">
+                    <div class="field-label">CERTIFIED AS</div>
+                    <div id="certifiedAs" class="field-value"></div>
+                </div>
+
+                <div class="field-row">
+                    <div class="field-label">IQAMA NO</div>
+                    <div id="idNo" class="field-value"></div>
+                </div>
+
+                <div class="field-row">
+                    <div class="field-label">TRAINER/ ASSESSOR</div>
+                    <div id="trainer" class="field-value"></div>
+                </div>
+
+                <div class="field-row">
+                    <div class="field-label">TIMESHEET NOS</div>
+                    <div id="timesheetNo" class="field-value"></div>
+                </div>
+
+                <div class="field-row">
+                    <div class="field-label">ISSUE DATE</div>
+                    <div id="issueDate" class="field-value"></div>
+                </div>
+
+                <div class="field-row">
+                    <div class="field-label">EXPIRY DATE</div>
+                    <div id="expiryDate" class="field-value"></div>
+                </div>
+
+                <div class="field-row">
+                    <div class="field-label">CERTIFIED BY BRANCH</div>
+                    <div id="branch" class="field-value"></div>
+                </div>
+
+                <div class="field-row">
+                    <div class="field-label">SCOPE OF WORK</div>
+                    <div id="scope" class="field-value"></div>
+                </div>
+            </div>
+
+        </div>
     </div>
-    <a class="home" href="index.html">HOME</a>
-  </header>
 
-  <main class="container">
-    <section class="admin-card">
-      <h1>Admin Panel</h1>
-      <p class="warning">Demo admin panel: data is stored only in this browser using localStorage. Add a real server/database and authentication before production use.</p>
+    <!-- Footer -->
+    <footer>
+        <div>© 2026 TÜV SÜD Middle East. All Rights Reserved.</div>
+        <div class="links">
+            <a href="#">About</a> • 
+            <a href="#">Imprint</a> • 
+            <a href="#">Privacy Policy</a>
+        </div>
+    </footer>
 
-      <form id="adminForm" class="grid-form">
-        <input name="certNo" placeholder="Verification No." required>
-        <input name="name" placeholder="Candidate Name" required>
-        <input name="type" placeholder="Type" value="TRAINING">
-        <input name="company" placeholder="Company Name" value="INDEPENDENT CANDIDATE">
-        <input name="location" placeholder="Location" value="MUSCAT - SULTANATE OF OMAN">
-        <input name="country" placeholder="Country" value="OMAN">
-        <input name="certifiedAs" placeholder="Certified As" value="BASIC SAFE SCAFFOLDING ERECTION">
-        <input name="idNo" placeholder="ID / Iqama No.">
-        <input name="trainer" placeholder="Trainer / Assessor">
-        <input name="timesheet" placeholder="Timesheet No.">
-        <input name="issueDate" type="date">
-        <input name="expiryDate" type="date">
-        <input name="branch" placeholder="Certified By Branch" value="Muscat - Oman">
-        <textarea name="scope" placeholder="Scope of Work"></textarea>
-        <input name="photo" placeholder="Photo URL (optional)">
-        <button type="submit">SAVE RECORD</button>
-      </form>
+    <script>
+        // ⚠️ আপনার Apps Script Web App URL টি এখানে বসিয়ে দিন
+        const API_URL = "YOUR_APPS_SCRIPT_WEB_APP_URL";
 
-      <h2>Stored Records</h2>
-      <div id="records"></div>
-    </section>
-  </main>
+        async function searchCertificate() {
+            const query = document.getElementById('certInput').value.trim();
+            const certCard = document.getElementById('certCard');
+            const errorBox = document.getElementById('errorBox');
+            const loadingBox = document.getElementById('loadingBox');
 
-  <footer>
-    <div>© 2026 Scaffolder Training Verification.</div>
-    <div><a href="index.html">Back to Verification</a></div>
-  </footer>
-  <script src="app.js"></script>
+            certCard.style.display = 'none';
+            errorBox.style.display = 'none';
+            loadingBox.style.display = 'none';
+
+            if (!query) {
+                alert("Please enter a Verification Number.");
+                return;
+            }
+
+            loadingBox.style.display = 'block';
+
+            try {
+                // আপনার Apps Script-এর দেওয়া parameter (cert) অনুযায়ী রেসপন্স কল করা হচ্ছে
+                const response = await fetch(`${API_URL}?cert=${encodeURIComponent(query)}`);
+                const data = await response.json();
+
+                loadingBox.style.display = 'none';
+
+                if (data.found) {
+                    // Apps Script-এর সঠিক Key অনুযায়ী ডাটা বসানো
+                    document.getElementById('certNo').innerText = data.verificationNo || query;
+                    document.getElementById('candidateName').innerText = data.candidateName || '-';
+                    document.getElementById('photoUrl').src = data.photoUrl || 'https://via.placeholder.com/150?text=No+Photo';
+                    document.getElementById('printDate').innerText = data.issueDate || '-';
+                    
+                    document.getElementById('type').innerText = (data.type || '').toUpperCase();
+                    document.getElementById('companyName').innerText = (data.companyName || '').toUpperCase();
+                    document.getElementById('location').innerText = (data.location || '').toUpperCase();
+                    document.getElementById('country').innerText = (data.country || '').toUpperCase();
+                    document.getElementById('certifiedAs').innerText = (data.certifiedAs || '').toUpperCase();
+                    document.getElementById('idNo').innerText = data.idNo || '-';
+                    document.getElementById('trainer').innerText = (data.trainer || '').toUpperCase();
+                    document.getElementById('timesheetNo').innerText = data.timesheetNo || '-';
+                    document.getElementById('issueDate').innerText = data.issueDate || '-';
+                    document.getElementById('expiryDate').innerText = data.expiryDate || '-';
+                    document.getElementById('branch').innerText = data.branch || '-';
+                    document.getElementById('scope').innerText = data.scope || '-';
+
+                    certCard.style.display = 'block';
+                } else {
+                    errorBox.innerText = data.error || "Certificate Not Found";
+                    errorBox.style.display = 'block';
+                }
+            } catch (err) {
+                loadingBox.style.display = 'none';
+                alert("Server Connection Error! Make sure your Web App URL is correct.");
+            }
+        }
+
+        document.getElementById("certInput").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                searchCertificate();
+            }
+        });
+    </script>
 </body>
-</html>'''
-
-css = r'''*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f5f6f8;color:#333}.cookie{background:#073579;color:#fff;padding:10px 16px;text-align:center;font-size:14px}.cookie button{margin-left:12px;padding:8px 16px;border:0;border-radius:3px;background:#fff;color:#174b88;font-weight:700}header{height:76px;background:#fff;border-bottom:1px solid #ddd;display:flex;align-items:center;justify-content:space-between;padding:0 5%;box-shadow:0 1px 4px #0001}.brand{display:flex;align-items:center;gap:16px;color:#124c8f;font-size:25px;font-weight:700;text-transform:uppercase}.logo{width:48px;height:48px;border:3px solid #1b6bb0;border-radius:50%;display:grid;place-items:center;font-size:13px;color:#07529a;background:#eef7ff}.home{border:1px solid #bbb;border-radius:4px;padding:9px 18px;color:#555;text-decoration:none}.container{max-width:950px;margin:30px auto;padding:0 18px}.hero,.admin-card,.result-card{background:#fff;border:1px solid #ddd;border-radius:5px;padding:34px;box-shadow:0 1px 3px #0000000d}.hero{text-align:center;margin-top:55px}.hero h1{color:#165da5;font-size:30px;margin:0 0 10px}.hero p{color:#666}.hero form{display:flex;max-width:650px;margin:28px auto 10px}.hero input{flex:1;padding:15px;border:1px solid #ccc;border-radius:4px 0 0 4px;font-size:16px}.hero button,.admin-card button{padding:15px 25px;background:#1261a5;color:#fff;border:0;border-radius:0 4px 4px 0;font-weight:700;cursor:pointer}.hint{font-size:13px}.error{color:#b00020;margin-top:15px}.result-card{padding:0;overflow:hidden}.result-title{padding:20px 25px;color:#1772ba;font-size:24px;font-weight:700;border-bottom:1px solid #ddd}.result-body{display:grid;grid-template-columns:180px 1fr;gap:20px;padding:20px}.candidate{text-align:center}.candidate img{width:150px;height:175px;object-fit:cover;border:1px solid #333;background:#e9edf2}.candidate .name{background:#1476d4;color:#fff;padding:12px 5px;font-weight:700;text-transform:uppercase}.datebox{margin-top:35px;font-size:13px}.fields{display:grid;grid-template-columns:145px 1fr;gap:12px 14px}.label{font-size:13px;font-weight:700;align-self:center}.value{background:#e9edf1;border:1px solid #d8dce0;border-radius:4px;padding:10px 12px;min-height:38px}.scope{margin-top:22px}.scope .value{min-height:70px}.valid{display:inline-block;background:#e7f7ed;color:#16713a;border:1px solid #a9ddbc;padding:7px 12px;border-radius:4px;font-size:13px;margin-left:10px}.grid-form{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0 30px}.grid-form input,.grid-form textarea{padding:12px;border:1px solid #ccc;border-radius:4px;font-size:14px}.grid-form textarea{grid-column:1/-1;min-height:90px}.grid-form button{grid-column:1/-1;border-radius:4px}.warning{background:#fff6df;border:1px solid #f0d18b;padding:12px;font-size:13px}.record{border:1px solid #ddd;padding:14px;border-radius:4px;margin:10px 0;display:flex;justify-content:space-between;gap:10px}.record button{padding:8px 12px;border-radius:3px;background:#b42318}footer{margin-top:80px;padding:45px 5%;background:#eee;color:#777;display:flex;justify-content:space-between;font-size:13px}footer a{color:#2776b8;text-decoration:none}@media(max-width:700px){header{height:auto;padding:12px 15px}.brand{font-size:17px}.logo{width:40px;height:40px}.home{padding:7px 11px}.container{margin:15px auto}.hero{margin-top:20px;padding:22px}.hero h1{font-size:23px}.hero form{display:block}.hero input,.hero button{width:100%;border-radius:4px;margin:5px 0}.result-body{grid-template-columns:1fr}.candidate{max-width:180px;margin:auto}.fields{grid-template-columns:1fr}.label{margin-top:4px}.grid-form{grid-template-columns:1fr}.grid-form textarea,.grid-form button{grid-column:auto}.record{display:block}footer{display:block;line-height:2.2}}'''
-
-js = r'''const DEFAULT_RECORD = {
-  certNo:"STV-OM-250M-2179", name:"SHAKAWYAT HOSSAIN", type:"TRAINING",
-  company:"INDEPENDENT CANDIDATE", location:"MUSCAT - SULTANATE OF OMAN",
-  country:"OMAN", certifiedAs:"BASIC SAFE SCAFFOLDING ERECTION", idNo:"126237894",
-  trainer:"ANJITH KARUN KILIYANKANDY", timesheet:"1036669", issueDate:"2025-12-02",
-  expiryDate:"2028-12-01", branch:"Muscat - Oman", scope:"Safe scaffolding erection and related training scope.",
-  photo:""
-};
-function getRecords(){return JSON.parse(localStorage.getItem("stv_records")||"null")||[DEFAULT_RECORD]}
-function saveRecords(r){localStorage.setItem("stv_records",JSON.stringify(r))}
-function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
-function findRecord(no){return getRecords().find(x=>x.certNo.toLowerCase()===no.toLowerCase())}
-const vf=document.getElementById("verifyForm");
-if(vf){vf.addEventListener("submit",e=>{e.preventDefault();let no=document.getElementById("certNo").value.trim();let r=findRecord(no);if(r) location.href="verify.html?no="+encodeURIComponent(r.certNo);else document.getElementById("message").innerHTML='<div class="error">No verification record found for this number.</div>'})}
-const result=document.getElementById("result");
-if(result){
- let no=new URLSearchParams(location.search).get("no"); let r=no&&findRecord(no);
- if(!r){result.innerHTML='<div class="hero"><h1>Verification Not Found</h1><p>The verification number could not be found.</p><a href="index.html">Return to Home</a></div>'}
- else {
-  const today=new Date().toISOString().slice(0,10), valid=r.expiryDate>=today;
-  const photo=r.photo||"https://via.placeholder.com/150x175?text=PHOTO";
-  result.innerHTML=`<div class="result-card"><div class="result-title">${esc(r.certNo)} <span class="${valid?'valid':''}">${valid?'VALID':'EXPIRED'}</span></div><div class="result-body"><div class="candidate"><img src="${esc(photo)}" alt="Candidate photo"><div class="name">${esc(r.name)}</div><div class="datebox"><strong>Last Updated /<br>Printed Date:</strong><br>${esc(r.issueDate)}</div></div><div><div class="fields">
-  ${field("TYPE",r.type)}${field("COMPANY NAME",r.company)}${field("LOCATION",r.location)}${field("COUNTRY",r.country)}${field("CERTIFIED AS",r.certifiedAs)}${field("ID / IQAMA NO.",r.idNo)}${field("TRAINER / ASSESSOR",r.trainer)}${field("TIMESHEET NOS",r.timesheet)}${field("ISSUE DATE",r.issueDate)}${field("EXPIRY DATE",r.expiryDate)}${field("CERTIFIED BY BRANCH",r.branch)}
-  </div><div class="scope"><div class="label">SCOPE OF WORK</div><div class="value">${esc(r.scope)}</div></div></div></div></div>`;
- }
-}
-function field(a,b){return `<div class="label">${a}</div><div class="value">${esc(b)}</div>`}
-const af=document.getElementById("adminForm");
-if(af){renderRecords();af.addEventListener("submit",e=>{e.preventDefault();let d=Object.fromEntries(new FormData(af).entries());let records=getRecords();let i=records.findIndex(x=>x.certNo.toLowerCase()===d.certNo.toLowerCase());if(i>=0)records[i]=d;else records.push(d);saveRecords(records);af.reset();renderRecords();alert("Record saved.");})}
-function renderRecords(){let box=document.getElementById("records");if(!box)return;box.innerHTML=getRecords().map((r,i)=>`<div class="record"><div><strong>${esc(r.certNo)}</strong><br>${esc(r.name)}<br><small>${esc(r.expiryDate)}</small></div><button onclick="removeRecord(${i})">DELETE</button></div>`).join("")}
-function removeRecord(i){let r=getRecords();r.splice(i,1);saveRecords(r);renderRecords()}'''
-
-readme = r'''# Scaffolder Training Verification
-
-A front-end demo verification portal inspired by the supplied layout.
-
-## Included
-- Home verification search
-- Verification result page
-- Local browser-based admin panel
-- Responsive mobile layout
-- Sample record: STV-OM-250M-2179
-
-## Run
-Open `index.html` in a browser.
-
-## Production
-This demo uses localStorage and has no real authentication or server database.
-For a real public portal, connect it to a backend/database, add secure admin authentication,
-server-side verification, image storage, HTTPS, and proper privacy/security controls.
-Do not use another company's branding or represent the site as an official government/certification body without authorization.
-'''
-
-files = {
-    "index.html": index_html,
-    "verify.html": verify_html,
-    "admin.html": admin_html,
-    "style.css": css,
-    "app.js": js,
-    "README.md": readme
-}
-for name, content in files.items():
-    with open(os.path.join(base,name),"w",encoding="utf-8") as f:
-        f.write(content)
-
-zip_path="/mnt/data/Scaffolder_Training_Verification.zip"
-with zipfile.ZipFile(zip_path,"w",zipfile.ZIP_DEFLATED) as z:
-    for name in files:
-        z.write(os.path.join(base,name),name)
-zip_path
+</html>
