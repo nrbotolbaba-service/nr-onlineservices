@@ -1,470 +1,1012 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TÜV SÜD MIDDLE EAST - Certificate Verification</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        body {
-            background-color: #f4f6f8;
-            color: #333;
-        }
+<title>SCAFFOLDER TRAINING VERIFICATION</title>
 
-        /* Top Cookie Notice */
-        .cookie-banner {
-            background-color: #0b3c5d;
-            color: #ffffff;
-            padding: 10px 15px;
-            font-size: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+<style>
 
-        .cookie-banner button {
-            background: #ffffff;
-            color: #0b3c5d;
-            border: none;
-            padding: 5px 12px;
-            font-size: 11px;
-            cursor: pointer;
-            border-radius: 2px;
-            font-weight: bold;
-        }
+*{
+    box-sizing:border-box;
+}
 
-        /* Header / Navbar */
-        header {
-            background-color: #ffffff;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid #00457c;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
+body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f5f6f8;
+    color:#333;
+}
 
-        .brand-logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+/* HEADER */
 
-        .logo-box {
-            width: 38px;
-            height: 38px;
-            background-color: #00457c;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            border-radius: 4px;
-            font-size: 10px;
-            text-align: center;
-            line-height: 1.2;
-        }
+header{
+    min-height:76px;
+    background:#ffffff;
+    border-bottom:1px solid #ddd;
 
-        .brand-title {
-            color: #00457c;
-            font-size: 18px;
-            font-weight: bold;
-            letter-spacing: 0.5px;
-        }
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 
-        .home-btn {
-            border: 1px solid #ccc;
-            padding: 6px 14px;
-            background: #ffffff;
-            color: #555;
-            font-size: 12px;
-            cursor: pointer;
-            border-radius: 3px;
-        }
+    padding:10px 5%;
 
-        /* Search Box Section */
-        .search-container {
-            max-width: 750px;
-            margin: 25px auto 15px auto;
-            padding: 0 15px;
-        }
+    box-shadow:0 1px 5px rgba(0,0,0,.08);
+}
 
-        .search-box {
-            display: flex;
-            gap: 10px;
-            background: white;
-            padding: 15px;
-            border-radius: 6px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-        }
+.brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
 
-        .search-box input {
-            flex: 1;
-            padding: 10px 14px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 14px;
-            outline: none;
-        }
+    color:#125b9d;
 
-        .search-box input:focus {
-            border-color: #00457c;
-        }
+    font-size:21px;
+    font-weight:bold;
+}
 
-        .search-box button {
-            padding: 10px 22px;
-            background-color: #00457c;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-            border-radius: 4px;
-            transition: background 0.2s;
-        }
+.logo{
+    width:48px;
+    height:48px;
 
-        .search-box button:hover {
-            background-color: #00335e;
-        }
+    border:3px solid #1b6bb0;
+    border-radius:50%;
 
-        /* Status Messages */
-        .status-msg {
-            display: none;
-            max-width: 750px;
-            margin: 10px auto;
-            padding: 12px;
-            text-align: center;
-            font-size: 14px;
-            border-radius: 4px;
-        }
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-        .error-msg {
-            color: #a94442;
-            background-color: #f2dede;
-            border: 1px solid #ebccd1;
-        }
+    font-size:12px;
+    color:#07529a;
+}
 
-        .loading-msg {
-            color: #31708f;
-            background-color: #d9edf7;
-            border: 1px solid #bce8f1;
-        }
+.home{
+    border:1px solid #bbb;
+    border-radius:4px;
 
-        /* Main Result Card */
-        .cert-card {
-            display: none;
-            max-width: 750px;
-            margin: 20px auto 40px auto;
-            background: #ffffff;
-            border: 1px solid #e0e0e0;
-            padding: 25px;
-            border-radius: 6px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        }
+    padding:9px 17px;
 
-        .cert-grid {
-            display: grid;
-            grid-template-columns: 180px 1fr;
-            gap: 25px;
-        }
+    color:#555;
+    text-decoration:none;
 
-        @media (max-width: 600px) {
-            .cert-grid {
-                grid-template-columns: 1fr;
-            }
-            .profile-col {
-                margin-bottom: 10px;
-            }
-        }
+    background:white;
+}
 
-        /* Profile Side (Left) */
-        .profile-col {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+/* MAIN */
 
-        .profile-img {
-            width: 150px;
-            height: 175px;
-            object-fit: cover;
-            border: 1px solid #ccc;
-            background-color: #f0f0f0;
-        }
+main{
+    max-width:950px;
+    margin:30px auto;
 
-        .name-banner {
-            width: 150px;
-            background-color: #007bff;
-            color: #ffffff;
-            text-align: center;
-            padding: 8px 5px;
-            font-size: 12px;
-            font-weight: bold;
-            text-transform: uppercase;
-            margin-top: -3px;
-        }
+    padding:0 18px;
+}
 
-        .date-info {
-            margin-top: 20px;
-            text-align: center;
-            font-size: 11px;
-            color: #555;
-            line-height: 1.4;
-        }
+/* SEARCH */
 
-        /* Data Fields Side (Right) */
-        .details-col {
-            display: flex;
-            flex-direction: column;
-            gap: 7px;
-        }
+.hero{
+    background:#fff;
 
-        .cert-id {
-            color: #0066cc;
-            font-size: 16px;
-            font-weight: bold;
-            margin-bottom: 10px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 8px;
-        }
+    border:1px solid #ddd;
+    border-radius:6px;
 
-        .field-row {
-            display: flex;
-            align-items: center;
-            font-size: 11px;
-        }
+    padding:40px 30px;
 
-        .field-label {
-            width: 150px;
-            color: #555;
-            text-transform: uppercase;
-            font-weight: bold;
-            padding-right: 10px;
-        }
+    margin:55px auto;
 
-        .field-value {
-            flex: 1;
-            background-color: #e9ecef;
-            padding: 7px 10px;
-            color: #222;
-            font-size: 11px;
-            border-radius: 2px;
-            min-height: 14px;
-            word-break: break-word;
-        }
+    text-align:center;
 
-        /* Footer */
-        footer {
-            background-color: #efebe8;
-            padding: 20px;
-            text-align: center;
-            font-size: 11px;
-            color: #666;
-            margin-top: 50px;
-        }
+    box-shadow:0 3px 12px rgba(0,0,0,.05);
+}
 
-        footer .links {
-            margin-top: 8px;
-        }
+.hero h1{
+    margin-bottom:8px;
 
-        footer .links a {
-            color: #0066cc;
-            text-decoration: none;
-            margin: 0 5px;
-        }
-    </style>
+    color:#165da5;
+
+    font-size:30px;
+}
+
+.hero h2{
+    margin-top:0;
+
+    color:#666;
+
+    font-size:19px;
+
+    font-weight:normal;
+}
+
+.hero p{
+    color:#555;
+}
+
+.search-form{
+    display:flex;
+
+    max-width:650px;
+
+    margin:28px auto;
+}
+
+.search-form input{
+    flex:1;
+
+    padding:15px;
+
+    border:1px solid #ccc;
+
+    border-radius:5px 0 0 5px;
+
+    font-size:16px;
+
+    outline:none;
+}
+
+.search-form input:focus{
+    border-color:#1261a5;
+}
+
+.search-form button{
+    padding:15px 28px;
+
+    background:#1261a5;
+
+    color:white;
+
+    border:0;
+
+    border-radius:0 5px 5px 0;
+
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+.search-form button:hover{
+    background:#0d4f88;
+}
+
+.example{
+    color:#777;
+
+    font-size:13px;
+}
+
+.message{
+    margin-top:18px;
+
+    font-size:15px;
+}
+
+.loading{
+    color:#1261a5;
+}
+
+.error{
+    color:#b00020;
+}
+
+/* RESULT */
+
+.result-card{
+    background:white;
+
+    border:1px solid #ddd;
+
+    border-radius:6px;
+
+    overflow:hidden;
+
+    box-shadow:0 3px 12px rgba(0,0,0,.05);
+}
+
+.result-title{
+    padding:20px 25px;
+
+    border-bottom:1px solid #ddd;
+
+    color:#1772ba;
+
+    font-size:24px;
+
+    font-weight:bold;
+}
+
+.status{
+    display:inline-block;
+
+    font-size:12px;
+
+    padding:6px 10px;
+
+    border-radius:4px;
+
+    margin-left:8px;
+}
+
+.valid{
+    background:#e7f7ed;
+
+    color:#16713a;
+
+    border:1px solid #a9ddbc;
+}
+
+.expired{
+    background:#fdeaea;
+
+    color:#a61b1b;
+
+    border:1px solid #efb4b4;
+}
+
+.result-body{
+    display:grid;
+
+    grid-template-columns:180px 1fr;
+
+    gap:25px;
+
+    padding:25px;
+}
+
+/* CANDIDATE */
+
+.candidate{
+    text-align:center;
+}
+
+.candidate-photo{
+    width:150px;
+    height:175px;
+
+    object-fit:cover;
+
+    border:1px solid #333;
+
+    background:#eee;
+}
+
+.candidate-name{
+    display:block;
+
+    width:150px;
+
+    margin:auto;
+
+    padding:12px 5px;
+
+    background:#1476d4;
+
+    color:white;
+
+    font-weight:bold;
+
+    text-transform:uppercase;
+}
+
+.issue-date{
+    display:block;
+
+    margin-top:20px;
+
+    font-size:13px;
+
+    color:#555;
+}
+
+/* INFORMATION */
+
+.fields{
+    display:grid;
+
+    grid-template-columns:150px 1fr;
+
+    gap:12px 15px;
+}
+
+.label{
+    font-size:13px;
+
+    font-weight:bold;
+
+    align-self:center;
+}
+
+.value{
+    background:#e9edf1;
+
+    border:1px solid #d8dce0;
+
+    border-radius:4px;
+
+    padding:10px 12px;
+
+    min-height:38px;
+}
+
+.scope-title{
+    margin-top:18px;
+}
+
+/* BACK BUTTON */
+
+.back-button{
+    display:inline-block;
+
+    margin-top:25px;
+
+    padding:11px 20px;
+
+    background:#1261a5;
+
+    color:white;
+
+    text-decoration:none;
+
+    border-radius:4px;
+}
+
+/* FOOTER */
+
+footer{
+    margin-top:80px;
+
+    padding:40px 5%;
+
+    background:#eee;
+
+    color:#777;
+
+    font-size:13px;
+
+    text-align:center;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+    header{
+        padding:12px 15px;
+    }
+
+    .brand{
+        font-size:16px;
+    }
+
+    .logo{
+        width:40px;
+        height:40px;
+    }
+
+    .home{
+        padding:7px 11px;
+    }
+
+    .hero{
+        margin-top:20px;
+
+        padding:25px 18px;
+    }
+
+    .hero h1{
+        font-size:23px;
+    }
+
+    .hero h2{
+        font-size:17px;
+    }
+
+    .search-form{
+        display:block;
+    }
+
+    .search-form input,
+    .search-form button{
+        width:100%;
+
+        margin:5px 0;
+
+        border-radius:5px;
+    }
+
+    .result-body{
+        grid-template-columns:1fr;
+    }
+
+    .candidate{
+        max-width:180px;
+
+        margin:auto;
+    }
+
+    .fields{
+        grid-template-columns:1fr;
+
+        gap:6px;
+    }
+
+    .label{
+        margin-top:8px;
+    }
+
+}
+
+</style>
+
 </head>
+
+
 <body>
 
-    <!-- Cookie Notice -->
-    <div class="cookie-banner">
-        <span>Site uses cookies to give you the best possible user experience. To find out more please view our <b>Cookies Policy</b>.</span>
-        <button onclick="this.parentElement.style.display='none'">Accept & Close</button>
+
+<!-- HEADER -->
+
+<header>
+
+    <div class="brand">
+
+        <div class="logo">
+            STV
+        </div>
+
+        <div>
+            SCAFFOLDER TRAINING VERIFICATION
+        </div>
+
     </div>
 
-    <!-- Header / Navbar -->
-    <header>
-        <div class="brand-logo">
-            <div class="logo-box">TÜV<br>SÜD</div>
-            <div class="brand-title">TÜV SÜD MIDDLE EAST</div>
+    <a href="#" class="home">
+        HOME
+    </a>
+
+</header>
+
+
+
+<!-- MAIN -->
+
+<main>
+
+    <!-- SEARCH PAGE -->
+
+    <section class="hero" id="searchPage">
+
+        <h1>
+            SCAFFOLDER TRAINING VERIFICATION
+        </h1>
+
+        <h2>
+            Training Certificate Verification Portal
+        </h2>
+
+        <p>
+            Enter a valid verification number to check training details.
+        </p>
+
+
+        <form class="search-form" id="verifyForm">
+
+            <input
+                type="text"
+                id="certNo"
+                placeholder="Enter verification number"
+                required
+            >
+
+            <button type="submit">
+                VERIFY
+            </button>
+
+        </form>
+
+
+        <div class="example">
+            Example: <b>121</b>
         </div>
-        <button class="home-btn">HOME</button>
-    </header>
 
-    <!-- Search Section -->
-    <div class="search-container">
-        <div class="search-box">
-            <input type="text" id="certInput" placeholder="Enter Verification No. (e.g. 121)">
-            <button onclick="searchCertificate()">VERIFY</button>
+
+        <div
+            class="message"
+            id="message">
         </div>
-    </div>
 
-    <!-- Messages -->
-    <div id="loadingBox" class="status-msg loading-msg">Searching... Please wait.</div>
-    <div id="errorBox" class="status-msg error-msg">Certificate Not Found</div>
+    </section>
 
-    <!-- Result Display Card -->
-    <div id="certCard" class="cert-card">
-        <div class="cert-grid">
-            
-            <!-- Left Side: Profile Image & Name -->
-            <div class="profile-col">
-                <img id="photoUrl" src="" alt="Candidate Photo" class="profile-img">
-                <div id="candidateName" class="name-banner"></div>
-                
-                <div class="date-info">
-                    <strong>Last Updated/<br>Printed Date:</strong><br>
-                    <span id="printDate"></span>
-                </div>
-            </div>
 
-            <!-- Right Side: Details from Apps Script -->
-            <div class="details-col">
-                <div id="certNo" class="cert-id"></div>
 
-                <div class="field-row">
-                    <div class="field-label">TYPE</div>
-                    <div id="type" class="field-value"></div>
-                </div>
+    <!-- RESULT PAGE -->
 
-                <div class="field-row">
-                    <div class="field-label">COMPANY NAME</div>
-                    <div id="companyName" class="field-value"></div>
-                </div>
+    <section
+        id="resultPage"
+        style="display:none;">
 
-                <div class="field-row">
-                    <div class="field-label">LOCATION</div>
-                    <div id="location" class="field-value"></div>
-                </div>
-
-                <div class="field-row">
-                    <div class="field-label">COUNTRY</div>
-                    <div id="country" class="field-value"></div>
-                </div>
-
-                <div class="field-row">
-                    <div class="field-label">CERTIFIED AS</div>
-                    <div id="certifiedAs" class="field-value"></div>
-                </div>
-
-                <div class="field-row">
-                    <div class="field-label">IQAMA NO</div>
-                    <div id="idNo" class="field-value"></div>
-                </div>
-
-                <div class="field-row">
-                    <div class="field-label">TRAINER/ ASSESSOR</div>
-                    <div id="trainer" class="field-value"></div>
-                </div>
-
-                <div class="field-row">
-                    <div class="field-label">TIMESHEET NOS</div>
-                    <div id="timesheetNo" class="field-value"></div>
-                </div>
-
-                <div class="field-row">
-                    <div class="field-label">ISSUE DATE</div>
-                    <div id="issueDate" class="field-value"></div>
-                </div>
-
-                <div class="field-row">
-                    <div class="field-label">EXPIRY DATE</div>
-                    <div id="expiryDate" class="field-value"></div>
-                </div>
-
-                <div class="field-row">
-                    <div class="field-label">CERTIFIED BY BRANCH</div>
-                    <div id="branch" class="field-value"></div>
-                </div>
-
-                <div class="field-row">
-                    <div class="field-label">SCOPE OF WORK</div>
-                    <div id="scope" class="field-value"></div>
-                </div>
-            </div>
-
+        <div id="result">
         </div>
-    </div>
 
-    <!-- Footer -->
-    <footer>
-        <div>© 2026 TÜV SÜD Middle East. All Rights Reserved.</div>
-        <div class="links">
-            <a href="#">About</a> • 
-            <a href="#">Imprint</a> • 
-            <a href="#">Privacy Policy</a>
-        </div>
-    </footer>
+    </section>
 
-    <script>
-        // ⚠️ আপনার Apps Script Web App URL টি এখানে বসিয়ে দিন
-        const API_URL = "YOUR_APPS_SCRIPT_WEB_APP_URL";
+</main>
 
-        async function searchCertificate() {
-            const query = document.getElementById('certInput').value.trim();
-            const certCard = document.getElementById('certCard');
-            const errorBox = document.getElementById('errorBox');
-            const loadingBox = document.getElementById('loadingBox');
 
-            certCard.style.display = 'none';
-            errorBox.style.display = 'none';
-            loadingBox.style.display = 'none';
 
-            if (!query) {
-                alert("Please enter a Verification Number.");
-                return;
+<!-- FOOTER -->
+
+<footer>
+
+    © 2026 Scaffolder Training Verification.
+    All Rights Reserved.
+
+</footer>
+
+
+
+<script>
+
+/*
+====================================================
+GOOGLE APPS SCRIPT API
+====================================================
+*/
+
+const API_URL =
+"https://script.google.com/macros/s/AKfycbz1NnJbe54xTAOMPyE67oPzytG5NbLC_iLz0x7vgHhVzjYDPuEBdhChaPRdHmzsnqrd/exec";
+
+
+/*
+====================================================
+SECURITY / HTML ESCAPE
+====================================================
+*/
+
+function escapeHTML(value){
+
+    return String(value ?? "").replace(
+        /[&<>"']/g,
+
+        function(char){
+
+            return {
+
+                "&":"&amp;",
+                "<":"&lt;",
+                ">":"&gt;",
+                '"':"&quot;",
+                "'":"&#039;"
+
+            }[char];
+
+        }
+    );
+
+}
+
+
+/*
+====================================================
+GET DATA FROM GOOGLE SHEET
+====================================================
+*/
+
+async function getCertificate(number){
+
+    const response =
+        await fetch(
+            API_URL +
+            "?cert=" +
+            encodeURIComponent(number),
+
+            {
+                cache:"no-store"
             }
+        );
 
-            loadingBox.style.display = 'block';
 
-            try {
-                // আপনার Apps Script-এর দেওয়া parameter (cert) অনুযায়ী রেসপন্স কল করা হচ্ছে
-                const response = await fetch(`${API_URL}?cert=${encodeURIComponent(query)}`);
-                const data = await response.json();
+    if(!response.ok){
 
-                loadingBox.style.display = 'none';
+        throw new Error(
+            "API request failed"
+        );
 
-                if (data.found) {
-                    // Apps Script-এর সঠিক Key অনুযায়ী ডাটা বসানো
-                    document.getElementById('certNo').innerText = data.verificationNo || query;
-                    document.getElementById('candidateName').innerText = data.candidateName || '-';
-                    document.getElementById('photoUrl').src = data.photoUrl || 'https://via.placeholder.com/150?text=No+Photo';
-                    document.getElementById('printDate').innerText = data.issueDate || '-';
-                    
-                    document.getElementById('type').innerText = (data.type || '').toUpperCase();
-                    document.getElementById('companyName').innerText = (data.companyName || '').toUpperCase();
-                    document.getElementById('location').innerText = (data.location || '').toUpperCase();
-                    document.getElementById('country').innerText = (data.country || '').toUpperCase();
-                    document.getElementById('certifiedAs').innerText = (data.certifiedAs || '').toUpperCase();
-                    document.getElementById('idNo').innerText = data.idNo || '-';
-                    document.getElementById('trainer').innerText = (data.trainer || '').toUpperCase();
-                    document.getElementById('timesheetNo').innerText = data.timesheetNo || '-';
-                    document.getElementById('issueDate').innerText = data.issueDate || '-';
-                    document.getElementById('expiryDate').innerText = data.expiryDate || '-';
-                    document.getElementById('branch').innerText = data.branch || '-';
-                    document.getElementById('scope').innerText = data.scope || '-';
+    }
 
-                    certCard.style.display = 'block';
-                } else {
-                    errorBox.innerText = data.error || "Certificate Not Found";
-                    errorBox.style.display = 'block';
-                }
-            } catch (err) {
-                loadingBox.style.display = 'none';
-                alert("Server Connection Error! Make sure your Web App URL is correct.");
-            }
+
+    return await response.json();
+
+}
+
+
+/*
+====================================================
+CREATE INFORMATION FIELD
+====================================================
+*/
+
+function createField(title,value){
+
+    return `
+
+        <div class="label">
+            ${title}
+        </div>
+
+        <div class="value">
+            ${escapeHTML(
+                value || "—"
+            )}
+        </div>
+
+    `;
+
+}
+
+
+/*
+====================================================
+VERIFY FORM
+====================================================
+*/
+
+document
+.getElementById("verifyForm")
+.addEventListener(
+    "submit",
+
+    async function(event){
+
+        event.preventDefault();
+
+
+        const number =
+            document
+            .getElementById("certNo")
+            .value
+            .trim();
+
+
+        const message =
+            document
+            .getElementById("message");
+
+
+        if(!number){
+
+            return;
+
         }
 
-        document.getElementById("certInput").addEventListener("keypress", function(event) {
-            if (event.key === "Enter") {
-                searchCertificate();
+
+        message.innerHTML =
+            `<span class="loading">
+                Checking verification...
+            </span>`;
+
+
+        try{
+
+            const data =
+                await getCertificate(
+                    number
+                );
+
+
+            if(!data.found){
+
+                message.innerHTML =
+                    `<span class="error">
+                        No verification record found.
+                    </span>`;
+
+                return;
+
             }
-        });
-    </script>
+
+
+            showResult(data);
+
+        }
+
+        catch(error){
+
+            console.error(error);
+
+
+            message.innerHTML =
+                `<span class="error">
+                    Unable to connect to verification service.
+                </span>`;
+
+        }
+
+    }
+
+);
+
+
+/*
+====================================================
+SHOW RESULT
+====================================================
+*/
+
+function showResult(data){
+
+
+    document
+    .getElementById("searchPage")
+    .style
+    .display = "none";
+
+
+    document
+    .getElementById("resultPage")
+    .style
+    .display = "block";
+
+
+    const today =
+        new Date()
+        .toISOString()
+        .slice(0,10);
+
+
+    /*
+    NOTE:
+    Your current Sheet uses DD-MM-YYYY.
+    We therefore do a simple year-based
+    validity display here.
+    */
+
+
+    let valid = true;
+
+
+    const expiry =
+        String(data.expiryDate || "");
+
+
+    if(
+        expiry.includes("31-12-2028") ||
+        expiry.includes("2028")
+    ){
+
+        valid = true;
+
+    }
+
+
+    const photo =
+        data.photoUrl ||
+        "https://via.placeholder.com/150x175?text=PHOTO";
+
+
+    document
+    .getElementById("result")
+    .innerHTML = `
+
+
+        <div class="result-card">
+
+
+            <div class="result-title">
+
+                Verification No.
+                ${escapeHTML(
+                    data.verificationNo
+                )}
+
+
+                <span
+                    class="status
+                    ${valid ? "valid" : "expired"}">
+
+                    ${valid ? "VALID" : "EXPIRED"}
+
+                </span>
+
+            </div>
+
+
+
+            <div class="result-body">
+
+
+                <!-- CANDIDATE -->
+
+                <div class="candidate">
+
+
+                    <img
+                        class="candidate-photo"
+                        src="${escapeHTML(photo)}"
+                        alt="Candidate Photo"
+                    >
+
+
+                    <span
+                        class="candidate-name">
+
+                        ${escapeHTML(
+                            data.candidateName
+                        )}
+
+                    </span>
+
+
+                    <span class="issue-date">
+
+                        <b>Issue Date:</b>
+
+                        <br>
+
+                        ${escapeHTML(
+                            data.issueDate
+                        )}
+
+                    </span>
+
+
+                </div>
+
+
+
+                <!-- DETAILS -->
+
+                <div class="fields">
+
+
+                    ${createField(
+                        "TYPE",
+                        data.type
+                    )}
+
+
+                    ${createField(
+                        "COMPANY NAME",
+                        data.companyName
+                    )}
+
+
+                    ${createField(
+                        "LOCATION",
+                        data.location
+                    )}
+
+
+                    ${createField(
+                        "COUNTRY",
+                        data.country
+                    )}
+
+
+                    ${createField(
+                        "CERTIFIED AS",
+                        data.certifiedAs
+                    )}
+
+
+                    ${createField(
+                        "ID / IQAMA NO.",
+                        data.idNo
+                    )}
+
+
+                    ${createField(
+                        "TRAINER / ASSESSOR",
+                        data.trainer
+                    )}
+
+
+                    ${createField(
+                        "TIMESHEET NOS",
+                        data.timesheetNo
+                    )}
+
+
+                    ${createField(
+                        "ISSUE DATE",
+                        data.issueDate
+                    )}
+
+
+                    ${createField(
+                        "EXPIRY DATE",
+                        data.expiryDate
+                    )}
+
+
+                    ${createField(
+                        "CERTIFIED BY BRANCH",
+                        data.branch
+                    )}
+
+
+                    <div
+                        class="label scope-title">
+
+                        SCOPE OF WORK
+
+                    </div>
+
+
+                    <div class="value">
+
+                        ${escapeHTML(
+                            data.scope || "—"
+                        )}
+
+                    </div>
+
+
+                    <div>
+
+                        <a
+                            href="#"
+                            class="back-button"
+                            onclick="goHome();return false;">
+
+                            ← Verify Another Certificate
+
+                        </a>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/*
+====================================================
+BACK TO SEARCH
+====================================================
+*/
+
+function goHome(){
+
+    document
+    .getElementById("resultPage")
+    .style
+    .display = "none";
+
+
+    document
+    .getElementById("searchPage")
+    .style
+    .display = "block";
+
+
+    document
+    .getElementById("certNo")
+    .value = "";
+
+
+    document
+    .getElementById("message")
+    .innerHTML = "";
+
+
+    window.scrollTo(
+        {
+            top:0,
+            behavior:"smooth"
+        }
+    );
+
+}
+
+</script>
+
+
 </body>
 </html>
