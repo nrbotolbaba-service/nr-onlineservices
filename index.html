@@ -141,3 +141,57 @@
   </script>
 </body>
 </html>
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyQz_2tcJUqJMCcSsI_RqdBVZovx_F_saKeIzPE85g8Oe1smKokKGb0cLa3i1Qlfpa_/exec";
+
+async function verifyData() {
+  const inputVal = document.getElementById("certInput").value.trim();
+  if (!inputVal) return alert("Please enter a Verification Number");
+
+  document.getElementById("searchBtn").classList.add("hidden");
+  document.getElementById("loadingText").classList.remove("hidden");
+
+  try {
+    const res = await fetch(`${SCRIPT_URL}?id=${encodeURIComponent(inputVal)}`, {
+      method: "GET",
+      redirect: "follow"
+    });
+    
+    const data = await res.json();
+
+    if (data) {
+      document.getElementById("search-section").classList.add("hidden");
+      document.getElementById("result-section").classList.remove("hidden");
+
+      document.getElementById("certId").innerText = data.verificationNo || '-';
+      document.getElementById("userName").innerText = data.candidateName || '-';
+      document.getElementById("valType").innerText = data.type || '-';
+      document.getElementById("valCompany").innerText = data.companyName || '-';
+      document.getElementById("valLocation").innerText = data.location || '-';
+      document.getElementById("valCountry").innerText = data.country || '-';
+      document.getElementById("valCertifiedAs").innerText = data.certifiedAs || '-';
+      document.getElementById("valIqama").innerText = data.iqamaNo || '-';
+      document.getElementById("valTrainer").innerText = data.trainer || '-';
+      document.getElementById("valTimesheet").innerText = data.timesheetNo || '-';
+      document.getElementById("valIssueDate").innerText = data.issueDate || '-';
+      document.getElementById("valExpiryDate").innerText = data.expiryDate || '-';
+
+      const img = document.getElementById("userImg");
+      const placeholder = document.getElementById("imgPlaceholder");
+      if (data.photoUrl && data.photoUrl.startsWith("http")) {
+        img.src = data.photoUrl;
+        img.classList.remove("hidden");
+        placeholder.classList.add("hidden");
+      } else {
+        img.classList.add("hidden");
+        placeholder.classList.remove("hidden");
+      }
+    } else {
+      alert("No record found matching this Verification Number!");
+    }
+  } catch (err) {
+    alert("Error fetching data. Please verify your internet connection or Google Sheet entries.");
+  } finally {
+    document.getElementById("searchBtn").classList.remove("hidden");
+    document.getElementById("loadingText").classList.add("hidden");
+  }
+}
