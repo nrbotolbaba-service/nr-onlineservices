@@ -1,54 +1,147 @@
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyQz_2tcJUqJMCcSsI_RqdBVZovx_F_saKeIzPE85g8Oe1smKokKGb0cLa3i1Qlfpa_/exec";
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verification Portal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex flex-col min-h-screen font-sans">
 
-async function verifyData() {
-  const inputVal = document.getElementById("certInput").value.trim();
-  if (!inputVal) return alert("Please enter a Verification Number");
+  <!-- Header -->
+  <header class="bg-white shadow border-b py-3 px-6 flex justify-between items-center">
+    <div class="flex items-center space-x-3">
+      <div class="bg-blue-600 text-white font-bold p-2 rounded">TÜV</div>
+      <h1 class="text-xl font-bold text-gray-800">TÜV SÜD MIDDLE EAST</h1>
+    </div>
+    <button onclick="resetSearch()" class="border px-3 py-1 rounded text-sm text-gray-600 hover:bg-gray-50">HOME</button>
+  </header>
 
-  document.getElementById("searchBtn").classList.add("hidden");
-  document.getElementById("loadingText").classList.remove("hidden");
-
-  try {
-    const res = await fetch(`${SCRIPT_URL}?id=${encodeURIComponent(inputVal)}`, {
-      method: "GET",
-      redirect: "follow"
-    });
+  <!-- Main Container -->
+  <main class="flex-grow container mx-auto px-4 py-8 flex flex-col items-center justify-center">
     
-    const data = await res.json();
+    <!-- Search Form Section -->
+    <div id="search-section" class="w-full max-w-md bg-white p-6 rounded shadow-md text-center">
+      <h2 class="text-lg font-bold text-gray-700 uppercase mb-1">Welcome to Genuinity Check</h2>
+      <h3 class="text-md font-semibold text-gray-800 uppercase mb-6">Verify Card / Certificate</h3>
 
-    if (data) {
-      document.getElementById("search-section").classList.add("hidden");
-      document.getElementById("result-section").classList.remove("hidden");
+      <div class="mb-4">
+        <label class="block text-xs text-gray-500 mb-2">Please Enter Report / Certificate / ID Card Number</label>
+        <input type="text" id="certInput" placeholder="CERTIFICATE OR ID CARD NUMBER" class="w-full border p-2 text-center rounded focus:outline-none focus:border-blue-500 uppercase">
+      </div>
 
-      document.getElementById("certId").innerText = data.verificationNo || '-';
-      document.getElementById("userName").innerText = data.candidateName || '-';
-      document.getElementById("valType").innerText = data.type || '-';
-      document.getElementById("valCompany").innerText = data.companyName || '-';
-      document.getElementById("valLocation").innerText = data.location || '-';
-      document.getElementById("valCountry").innerText = data.country || '-';
-      document.getElementById("valCertifiedAs").innerText = data.certifiedAs || '-';
-      document.getElementById("valIqama").innerText = data.iqamaNo || '-';
-      document.getElementById("valTrainer").innerText = data.trainer || '-';
-      document.getElementById("valTimesheet").innerText = data.timesheetNo || '-';
-      document.getElementById("valIssueDate").innerText = data.issueDate || '-';
-      document.getElementById("valExpiryDate").innerText = data.expiryDate || '-';
+      <button id="searchBtn" onclick="verifyData()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded transition duration-200">
+        Submit!
+      </button>
+      <p id="loadingText" class="text-blue-600 font-semibold mt-3 hidden">Searching database...</p>
+    </div>
 
-      const img = document.getElementById("userImg");
-      const placeholder = document.getElementById("imgPlaceholder");
-      if (data.photoUrl && data.photoUrl.startsWith("http")) {
-        img.src = data.photoUrl;
-        img.classList.remove("hidden");
-        placeholder.classList.add("hidden");
-      } else {
-        img.classList.add("hidden");
-        placeholder.classList.remove("hidden");
+    <!-- Result Card Section -->
+    <div id="result-section" class="hidden w-full max-w-2xl bg-white border rounded shadow-md p-6 mt-4">
+      <div class="flex flex-col md:flex-row gap-6">
+        
+        <!-- Left Side: Image and Name -->
+        <div class="w-full md:w-1/3 flex flex-col items-center">
+          <div class="w-40 h-48 border bg-gray-200 flex items-center justify-center text-gray-500 mb-2 overflow-hidden">
+            <img id="userImg" src="" alt="Photo" class="w-full h-full object-cover hidden">
+            <span id="imgPlaceholder" class="text-xs text-gray-400">NO PHOTO</span>
+          </div>
+          <div class="w-full bg-blue-600 text-white text-center font-bold py-2 px-1 text-sm uppercase rounded" id="userName">
+            -
+          </div>
+        </div>
+
+        <!-- Right Side: Certificate Info -->
+        <div class="w-full md:w-2/3">
+          <h3 id="certId" class="text-blue-600 font-bold text-lg mb-3">-</h3>
+          
+          <div class="space-y-2 text-sm">
+            <div class="flex border-b pb-1"><span class="w-1/3 text-gray-600 font-semibold uppercase">Type</span><span id="valType" class="w-2/3 text-gray-800"></span></div>
+            <div class="flex border-b pb-1"><span class="w-1/3 text-gray-600 font-semibold uppercase">Company Name</span><span id="valCompany" class="w-2/3 text-gray-800"></span></div>
+            <div class="flex border-b pb-1"><span class="w-1/3 text-gray-600 font-semibold uppercase">Location</span><span id="valLocation" class="w-2/3 text-gray-800"></span></div>
+            <div class="flex border-b pb-1"><span class="w-1/3 text-gray-600 font-semibold uppercase">Country</span><span id="valCountry" class="w-2/3 text-gray-800"></span></div>
+            <div class="flex border-b pb-1"><span class="w-1/3 text-gray-600 font-semibold uppercase">Certified As</span><span id="valCertifiedAs" class="w-2/3 text-gray-800"></span></div>
+            <div class="flex border-b pb-1"><span class="w-1/3 text-gray-600 font-semibold uppercase">Iqama No</span><span id="valIqama" class="w-2/3 text-gray-800"></span></div>
+            <div class="flex border-b pb-1"><span class="w-1/3 text-gray-600 font-semibold uppercase">Trainer / Assessor</span><span id="valTrainer" class="w-2/3 text-gray-800"></span></div>
+            <div class="flex border-b pb-1"><span class="w-1/3 text-gray-600 font-semibold uppercase">Timesheet Nos</span><span id="valTimesheet" class="w-2/3 text-gray-800"></span></div>
+            <div class="flex border-b pb-1"><span class="w-1/3 text-gray-600 font-semibold uppercase">Issue Date</span><span id="valIssueDate" class="w-2/3 text-gray-800"></span></div>
+            <div class="flex border-b pb-1"><span class="w-1/3 text-gray-600 font-semibold uppercase">Expiry Date</span><span id="valExpiryDate" class="w-2/3 text-gray-800"></span></div>
+          </div>
+          
+          <button onclick="resetSearch()" class="mt-4 text-xs bg-gray-200 px-3 py-1 rounded hover:bg-gray-300">Search Again</button>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-200 text-center py-4 text-xs text-gray-600">
+    © 2026 TÜV SÜD Middle East. All Rights Reserved.
+  </footer>
+
+  <script>
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyQz_2tcJUqJMCcSsI_RqdBVZovx_F_saKeIzPE85g8Oe1smKokKGb0cLa3i1Qlfpa_/exec";
+
+    async function verifyData() {
+      const inputVal = document.getElementById("certInput").value.trim();
+      if (!inputVal) return alert("Please enter a Verification Number");
+
+      document.getElementById("searchBtn").classList.add("hidden");
+      document.getElementById("loadingText").classList.remove("hidden");
+
+      try {
+        const res = await fetch(`${SCRIPT_URL}?id=${encodeURIComponent(inputVal)}`, {
+          method: "GET",
+          redirect: "follow"
+        });
+        
+        const data = await res.json();
+
+        if (data) {
+          document.getElementById("search-section").classList.add("hidden");
+          document.getElementById("result-section").classList.remove("hidden");
+
+          document.getElementById("certId").innerText = data.verificationNo || '-';
+          document.getElementById("userName").innerText = data.candidateName || '-';
+          document.getElementById("valType").innerText = data.type || '-';
+          document.getElementById("valCompany").innerText = data.companyName || '-';
+          document.getElementById("valLocation").innerText = data.location || '-';
+          document.getElementById("valCountry").innerText = data.country || '-';
+          document.getElementById("valCertifiedAs").innerText = data.certifiedAs || '-';
+          document.getElementById("valIqama").innerText = data.iqamaNo || '-';
+          document.getElementById("valTrainer").innerText = data.trainer || '-';
+          document.getElementById("valTimesheet").innerText = data.timesheetNo || '-';
+          document.getElementById("valIssueDate").innerText = data.issueDate || '-';
+          document.getElementById("valExpiryDate").innerText = data.expiryDate || '-';
+
+          const img = document.getElementById("userImg");
+          const placeholder = document.getElementById("imgPlaceholder");
+          if (data.photoUrl && data.photoUrl.startsWith("http")) {
+            img.src = data.photoUrl;
+            img.classList.remove("hidden");
+            placeholder.classList.add("hidden");
+          } else {
+            img.classList.add("hidden");
+            placeholder.classList.remove("hidden");
+          }
+        } else {
+          alert("No record found matching this Verification Number!");
+        }
+      } catch (err) {
+        alert("Error fetching data. Please verify your internet connection or Google Sheet entries.");
+      } finally {
+        document.getElementById("searchBtn").classList.remove("hidden");
+        document.getElementById("loadingText").classList.add("hidden");
       }
-    } else {
-      alert("No record found matching this Verification Number!");
     }
-  } catch (err) {
-    alert("Error fetching data. Please verify your internet connection or Google Sheet entries.");
-  } finally {
-    document.getElementById("searchBtn").classList.remove("hidden");
-    document.getElementById("loadingText").classList.add("hidden");
-  }
-}
+
+    function resetSearch() {
+      document.getElementById("result-section").classList.add("hidden");
+      document.getElementById("search-section").classList.remove("hidden");
+      document.getElementById("certInput").value = "";
+    }
+  </script>
+</body>
+</html>
