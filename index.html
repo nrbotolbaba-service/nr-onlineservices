@@ -8,7 +8,6 @@
 </head>
 <body class="bg-gray-100 flex flex-col min-h-screen font-sans">
 
-  <!-- Header -->
   <header class="bg-white shadow border-b py-3 px-6 flex justify-between items-center">
     <div class="flex items-center space-x-3">
       <div class="bg-blue-600 text-white font-bold px-3 py-1 rounded">TÜV</div>
@@ -17,10 +16,8 @@
     <button onclick="resetSearch()" class="border px-3 py-1 rounded text-sm text-gray-600 hover:bg-gray-50">HOME</button>
   </header>
 
-  <!-- Main Container -->
   <main class="flex-grow container mx-auto px-4 py-8 flex flex-col items-center justify-center">
     
-    <!-- Search Form Section -->
     <div id="search-section" class="w-full max-w-md bg-white p-6 rounded shadow-md text-center">
       <h2 class="text-lg font-bold text-gray-700 uppercase mb-1">Welcome to Genuinity Check</h2>
       <h3 class="text-md font-semibold text-gray-800 uppercase mb-6">Verify Card / Certificate</h3>
@@ -36,11 +33,9 @@
       <p id="loadingText" class="text-blue-600 font-semibold mt-3 hidden">Searching database...</p>
     </div>
 
-    <!-- Result Card Section -->
     <div id="result-section" class="hidden w-full max-w-2xl bg-white border rounded shadow-md p-6 mt-4">
       <div class="flex flex-col md:flex-row gap-6">
         
-        <!-- Left Side: Image and Name -->
         <div class="w-full md:w-1/3 flex flex-col items-center">
           <div class="w-40 h-48 border bg-gray-200 flex items-center justify-center text-gray-500 mb-2 overflow-hidden">
             <img id="userImg" src="" alt="Photo" class="w-full h-full object-cover hidden">
@@ -51,7 +46,6 @@
           </div>
         </div>
 
-        <!-- Right Side: Certificate Info -->
         <div class="w-full md:w-2/3">
           <h3 id="certId" class="text-blue-600 font-bold text-lg mb-3">-</h3>
           
@@ -76,13 +70,11 @@
 
   </main>
 
-  <!-- Footer -->
   <footer class="bg-gray-200 text-center py-4 text-xs text-gray-600">
     © 2026 TÜV SÜD Middle East. All Rights Reserved.
   </footer>
 
   <script>
-    // Updated Web App URL
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzDi7mFSrCiVgsCb48DagvILx6QU5kOTXEhDdnEfG0IYpM3DbAB5ZeKmF0Mw6GnRsYI/exec";
 
     function verifyData() {
@@ -92,62 +84,55 @@
       document.getElementById("searchBtn").classList.add("hidden");
       document.getElementById("loadingText").classList.remove("hidden");
 
-      // Dynamic JSONP Callback setup to bypass CORS completely
-      const callbackName = 'jsonp_cb_' + Math.round(100000 * Math.random());
-      
-      window[callbackName] = function(data) {
-        delete window[callbackName];
-        if (document.head.contains(script)) {
-          document.head.removeChild(script);
-        }
-        document.getElementById("searchBtn").classList.remove("hidden");
-        document.getElementById("loadingText").classList.add("hidden");
-
-        if (data) {
-          document.getElementById("search-section").classList.add("hidden");
-          document.getElementById("result-section").classList.remove("hidden");
-
-          document.getElementById("certId").innerText = data.verificationNo || '-';
-          document.getElementById("userName").innerText = data.candidateName || '-';
-          document.getElementById("valType").innerText = data.type || '-';
-          document.getElementById("valCompany").innerText = data.companyName || '-';
-          document.getElementById("valLocation").innerText = data.location || '-';
-          document.getElementById("valCountry").innerText = data.country || '-';
-          document.getElementById("valCertifiedAs").innerText = data.certifiedAs || '-';
-          document.getElementById("valIqama").innerText = data.iqamaNo || '-';
-          document.getElementById("valTrainer").innerText = data.trainer || '-';
-          document.getElementById("valTimesheet").innerText = data.timesheetNo || '-';
-          document.getElementById("valIssueDate").innerText = data.issueDate || '-';
-          document.getElementById("valExpiryDate").innerText = data.expiryDate || '-';
-
-          const img = document.getElementById("userImg");
-          const placeholder = document.getElementById("imgPlaceholder");
-          if (data.photoUrl && data.photoUrl.startsWith("http")) {
-            img.src = data.photoUrl;
-            img.classList.remove("hidden");
-            placeholder.classList.add("hidden");
-          } else {
-            img.classList.add("hidden");
-            placeholder.classList.remove("hidden");
-          }
-        } else {
-          alert("No record found matching this Verification Number!");
-        }
-      };
-
+      // JSONP Implementation to bypass browser CORS block
       const script = document.createElement('script');
-      script.src = `${SCRIPT_URL}?id=${encodeURIComponent(inputVal)}&callback=${callbackName}`;
+      script.src = `${SCRIPT_URL}?id=${encodeURIComponent(inputVal)}&callback=handleResponse`;
+      
+      document.body.appendChild(script);
+
+      // Handle Script Error
       script.onerror = function() {
-        delete window[callbackName];
-        if (document.head.contains(script)) {
-          document.head.removeChild(script);
-        }
+        alert("Error connecting to database. Please refresh and try again.");
         document.getElementById("searchBtn").classList.remove("hidden");
         document.getElementById("loadingText").classList.add("hidden");
-        alert("Error connecting to database. Please make sure Apps Script deployment is set to 'Anyone'.");
+        script.remove();
       };
-      
-      document.head.appendChild(script);
+    }
+
+    function handleResponse(data) {
+      document.getElementById("searchBtn").classList.remove("hidden");
+      document.getElementById("loadingText").classList.add("hidden");
+
+      if (data) {
+        document.getElementById("search-section").classList.add("hidden");
+        document.getElementById("result-section").classList.remove("hidden");
+
+        document.getElementById("certId").innerText = data.verificationNo || '-';
+        document.getElementById("userName").innerText = data.candidateName || '-';
+        document.getElementById("valType").innerText = data.type || '-';
+        document.getElementById("valCompany").innerText = data.companyName || '-';
+        document.getElementById("valLocation").innerText = data.location || '-';
+        document.getElementById("valCountry").innerText = data.country || '-';
+        document.getElementById("valCertifiedAs").innerText = data.certifiedAs || '-';
+        document.getElementById("valIqama").innerText = data.iqamaNo || '-';
+        document.getElementById("valTrainer").innerText = data.trainer || '-';
+        document.getElementById("valTimesheet").innerText = data.timesheetNo || '-';
+        document.getElementById("valIssueDate").innerText = data.issueDate || '-';
+        document.getElementById("valExpiryDate").innerText = data.expiryDate || '-';
+
+        const img = document.getElementById("userImg");
+        const placeholder = document.getElementById("imgPlaceholder");
+        if (data.photoUrl && data.photoUrl.startsWith("http")) {
+          img.src = data.photoUrl;
+          img.classList.remove("hidden");
+          placeholder.classList.add("hidden");
+        } else {
+          img.classList.add("hidden");
+          placeholder.classList.remove("hidden");
+        }
+      } else {
+        alert("No record found matching this Verification Number!");
+      }
     }
 
     function resetSearch() {
