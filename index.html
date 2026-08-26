@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Verification Portal</title>
+  <title>Verification Portal - TÜV SÜD Middle East</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 flex flex-col min-h-screen font-sans">
@@ -11,7 +11,7 @@
   <!-- Header -->
   <header class="bg-white shadow border-b py-3 px-6 flex justify-between items-center">
     <div class="flex items-center space-x-3">
-      <div class="bg-blue-600 text-white font-bold p-2 rounded">TÜV</div>
+      <div class="bg-blue-600 text-white font-bold px-3 py-1 rounded">TÜV</div>
       <h1 class="text-xl font-bold text-gray-800">TÜV SÜD MIDDLE EAST</h1>
     </div>
     <button onclick="resetSearch()" class="border px-3 py-1 rounded text-sm text-gray-600 hover:bg-gray-50">HOME</button>
@@ -82,22 +82,26 @@
   </footer>
 
   <script>
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyQz_2tcJUqJMCcSsI_RqdBVZovx_F_saKeIzPE85g8Oe1smKokKGb0cLa3i1Qlfpa_/exec";
+    // Updated Web App URL
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzDi7mFSrCiVgsCb48DagvILx6QU5kOTXEhDdnEfG0IYpM3DbAB5ZeKmF0Mw6GnRsYI/exec";
 
-    async function verifyData() {
+    function verifyData() {
       const inputVal = document.getElementById("certInput").value.trim();
       if (!inputVal) return alert("Please enter a Verification Number");
 
       document.getElementById("searchBtn").classList.add("hidden");
       document.getElementById("loadingText").classList.remove("hidden");
 
-      try {
-        const res = await fetch(`${SCRIPT_URL}?id=${encodeURIComponent(inputVal)}`, {
-          method: "GET",
-          redirect: "follow"
-        });
-        
-        const data = await res.json();
+      // Dynamic JSONP Callback setup to bypass CORS completely
+      const callbackName = 'jsonp_cb_' + Math.round(100000 * Math.random());
+      
+      window[callbackName] = function(data) {
+        delete window[callbackName];
+        if (document.head.contains(script)) {
+          document.head.removeChild(script);
+        }
+        document.getElementById("searchBtn").classList.remove("hidden");
+        document.getElementById("loadingText").classList.add("hidden");
 
         if (data) {
           document.getElementById("search-section").classList.add("hidden");
@@ -129,12 +133,21 @@
         } else {
           alert("No record found matching this Verification Number!");
         }
-      } catch (err) {
-        alert("Error fetching data. Please verify your internet connection or Google Sheet entries.");
-      } finally {
+      };
+
+      const script = document.createElement('script');
+      script.src = `${SCRIPT_URL}?id=${encodeURIComponent(inputVal)}&callback=${callbackName}`;
+      script.onerror = function() {
+        delete window[callbackName];
+        if (document.head.contains(script)) {
+          document.head.removeChild(script);
+        }
         document.getElementById("searchBtn").classList.remove("hidden");
         document.getElementById("loadingText").classList.add("hidden");
-      }
+        alert("Error connecting to database. Please make sure Apps Script deployment is set to 'Anyone'.");
+      };
+      
+      document.head.appendChild(script);
     }
 
     function resetSearch() {
