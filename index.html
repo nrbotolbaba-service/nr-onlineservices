@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +8,7 @@
 </head>
 <body class="bg-gray-100 flex flex-col min-h-screen font-sans">
 
+  <!-- Header -->
   <header class="bg-white shadow border-b py-3 px-6 flex justify-between items-center">
     <div class="flex items-center space-x-3">
       <div class="bg-blue-600 text-white font-bold px-3 py-1 rounded">TÜV</div>
@@ -16,8 +17,10 @@
     <button onclick="resetSearch()" class="border px-3 py-1 rounded text-sm text-gray-600 hover:bg-gray-50">HOME</button>
   </header>
 
+  <!-- Main Container -->
   <main class="flex-grow container mx-auto px-4 py-8 flex flex-col items-center justify-center">
     
+    <!-- Search Box -->
     <div id="search-section" class="w-full max-w-md bg-white p-6 rounded shadow-md text-center">
       <h2 class="text-lg font-bold text-gray-700 uppercase mb-1">Welcome to Genuinity Check</h2>
       <h3 class="text-md font-semibold text-gray-800 uppercase mb-6">Verify Card / Certificate</h3>
@@ -27,12 +30,13 @@
         <input type="text" id="certInput" placeholder="CERTIFICATE OR ID CARD NUMBER" class="w-full border p-2 text-center rounded focus:outline-none focus:border-blue-500 uppercase">
       </div>
 
-      <button id="searchBtn" onclick="verifyData()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded transition duration-200">
+      <button id="searchBtn" onclick="manualSearch()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded transition duration-200">
         Submit!
       </button>
       <p id="loadingText" class="text-blue-600 font-semibold mt-3 hidden">Searching database...</p>
     </div>
 
+    <!-- Result Box -->
     <div id="result-section" class="hidden w-full max-w-2xl bg-white border rounded shadow-md p-6 mt-4">
       <div class="flex flex-col md:flex-row gap-6">
         
@@ -70,36 +74,52 @@
 
   </main>
 
+  <!-- Footer -->
   <footer class="bg-gray-200 text-center py-4 text-xs text-gray-600">
     © 2026 TÜV SÜD Middle East. All Rights Reserved.
   </footer>
 
   <script>
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzDi7mFSrCiVgsCb48DagvILx6QU5kOTXEhDdnEfG0IYpM3DbAB5ZeKmF0Mw6GnRsYI/exec";
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwc-YKAXJ2G_jYg0CjPCx9eAMzlBlzaMob5mXfyJDFsHeomoBu2y8b6jhTBYzUwTygz/exec";
 
-    function verifyData() {
+    // Auto-check URL Parameters on Page Load (For QR Code Scanning)
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const idFromUrl = urlParams.get('id');
+      
+      if (idFromUrl) {
+        document.getElementById("certInput").value = idFromUrl;
+        fetchData(idFromUrl);
+      }
+    });
+
+    function manualSearch() {
       const inputVal = document.getElementById("certInput").value.trim();
       if (!inputVal) return alert("Please enter a Verification Number");
+      fetchData(inputVal);
+    }
 
+    function fetchData(id) {
       document.getElementById("searchBtn").classList.add("hidden");
       document.getElementById("loadingText").classList.remove("hidden");
 
-      // JSONP Implementation to bypass browser CORS block
-      const script = document.createElement('script');
-      script.src = `${SCRIPT_URL}?id=${encodeURIComponent(inputVal)}&callback=handleResponse`;
-      
-      document.body.appendChild(script);
+      const oldScript = document.getElementById("jsonp-script");
+      if (oldScript) oldScript.remove();
 
-      // Handle Script Error
+      const script = document.createElement("script");
+      script.id = "jsonp-script";
+      script.src = `${SCRIPT_URL}?id=${encodeURIComponent(id)}&callback=renderData`;
+      
       script.onerror = function() {
-        alert("Error connecting to database. Please refresh and try again.");
+        alert("Error connecting to database. Please refresh.");
         document.getElementById("searchBtn").classList.remove("hidden");
         document.getElementById("loadingText").classList.add("hidden");
-        script.remove();
       };
+
+      document.body.appendChild(script);
     }
 
-    function handleResponse(data) {
+    function renderData(data) {
       document.getElementById("searchBtn").classList.remove("hidden");
       document.getElementById("loadingText").classList.add("hidden");
 
@@ -122,7 +142,7 @@
 
         const img = document.getElementById("userImg");
         const placeholder = document.getElementById("imgPlaceholder");
-        if (data.photoUrl && data.photoUrl.startsWith("http")) {
+        if (data.photoUrl && String(data.photoUrl).startsWith("http")) {
           img.src = data.photoUrl;
           img.classList.remove("hidden");
           placeholder.classList.add("hidden");
@@ -132,14 +152,16 @@
         }
       } else {
         alert("No record found matching this Verification Number!");
+        resetSearch();
       }
     }
 
     function resetSearch() {
+      window.history.pushState({}, document.title, window.location.pathname);
       document.getElementById("result-section").classList.add("hidden");
       document.getElementById("search-section").classList.remove("hidden");
       document.getElementById("certInput").value = "";
     }
   </script>
 </body>
-</html>
+  </html>
